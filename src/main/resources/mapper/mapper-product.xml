@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.site.mapper.ProductMapper">
+	<!-- 상품 전체리스트 호출 -->
+	<select id="selectProductList" resultType="com.site.vo.ProductVo">
+		<![CDATA[
+			SELECT *
+				FROM
+				(
+					SELECT ROWNUM AS RNUM, A.*
+					FROM
+					(						
+		]]>
+		<choose>
+			<when test="sort=='productDateDesc'">		<!-- 최신순 정렬 -->
+				<![CDATA[
+						SELECT *
+						FROM PRODUCT
+						ORDER BY PRODUCT_DATE DESC
+					
+				]]>
+			</when>
+			
+			<when test="sort=='productPriceAsc'">		<!-- 낮은가격순 정렬 -->
+				<![CDATA[
+						SELECT *
+						FROM PRODUCT
+						ORDER BY PRODUCT_PRICE
+				]]>
+			</when>
+			
+			<when test="sort=='productPriceDesc'">		<!-- 높은가격순 정렬 -->
+				<![CDATA[
+						SELECT *
+						FROM PRODUCT
+						ORDER BY PRODUCT_PRICE DESC
+				]]>
+			</when>
+			
+			<when test="sort=='productSales'">			<!-- 판매량순 정렬 -->
+				<![CDATA[
+						SELECT P.*
+						FROM PRODUCT P, PRODUCT_INVENTORY I
+						WHERE P.PRODUCT_NO = I.PRODUCT_NO
+						ORDER BY I.PRODUCT_TOTAL_STOCK
+				]]>
+			</when>
+			<otherwise>
+			<![CDATA[
+						SELECT *
+						FROM PRODUCT
+						ORDER BY PRODUCT_DATE DESC
+				]]>
+			</otherwise>
+		</choose>
+		<![CDATA[
+					) A
+				)
+				WHERE RNUM >= #{startRow}
+				AND	  RNUM <= #{endRow}
+		]]>
+	</select>
+	
+	<!-- 전체 상품 수 -->
+	<select id="selectProductCount" resultType="int">
+		SELECT COUNT(*)
+		FROM PRODUCT
+	</select>
+	
+	<!-- 검색리스트 호출 -->
+	<select id="selectProductListSearch" resultType="com.site.vo.ProductVo">
+		<![CDATA[
+				SELECT *
+				FROM
+				(
+					SELECT ROWNUM AS RNUM, A.*
+					FROM
+					(
+		]]>
+		<if test="search != null and search != '' ">
+			<choose>
+				<when test="sort=='productDateDesc'">		<!-- 최신순 정렬 -->
+					<![CDATA[
+							SELECT *
+							FROM PRODUCT
+							WHERE ST_NO LIKE '%' || #{search} || '%'
+							OR	  PRODUCT_NAME LIKE '%' || #{search} || '%'
+							ORDER BY PRODUCT_DATE DESC		
+					]]>
+				</when>
+				
+				<when test="sort=='productPriceAsc'">		<!-- 낮은가격순 정렬 -->
+					<![CDATA[
+							SELECT *
+							FROM PRODUCT
+							WHERE ST_NO LIKE '%' || #{search} || '%'
+							OR	  PRODUCT_NAME LIKE '%' || #{search} || '%'
+							ORDER BY PRODUCT_PRICE		
+					]]>
+				</when>
+				
+				<when test="sort=='productPriceDesc'">		<!-- 높은가격순 정렬 -->
+					<![CDATA[
+							SELECT *
+							FROM PRODUCT
+							WHERE ST_NO LIKE '%' || #{search} || '%'
+							OR	  PRODUCT_NAME LIKE '%' || #{search} || '%'
+							ORDER BY PRODUCT_PRICE DESC		
+					]]>
+				</when>
+				
+				<when test="sort=='productSales'">			<!-- 판매량순 정렬 -->
+					<![CDATA[
+							SELECT P.*
+							FROM PRODUCT P, PRODUCT_INVENTORY I
+							WHERE P.PRODUCT_NO = I.PRODUCT_NO
+							AND ( P.ST_NO LIKE '%' || #{search} || '%'
+							OR	  P.PRODUCT_NAME LIKE '%' || #{search} || '%' )
+							ORDER BY I.PRODUCT_TOTAL_STOCK		
+					]]>
+				</when>
+				
+				<otherwise>
+					<![CDATA[
+							SELECT *
+							FROM PRODUCT
+							WHERE ST_NO LIKE '%' || #{search} || '%'
+							OR	  PRODUCT_NAME LIKE '%' || #{search} || '%'
+							ORDER BY PRODUCT_DATE DESC	
+						]]>
+				</otherwise>
+				
+			</choose>
+		</if>
+		<![CDATA[
+					) A
+				)
+				WHERE RNUM >= #{startRow}
+				AND	  RNUM <= #{endRow}
+		]]>
+	</select>
+	
+	<!-- 검색된 상품 수 -->
+	<select id="selectProductSearchCount" resultType="int">
+		SELECT COUNT(*)
+		FROM   PRODUCT
+		WHERE  ST_NO LIKE '%' || #{search} || '%'
+		OR	   PRODUCT_NAME LIKE '%' || #{search} || '%'
+	</select>
+	
+	<!-- 상세뷰페이지 호출 -->
+	<select id="selectProductView" resultType="com.site.vo.ProductVo">
+		SELECT *
+		FROM   PRODUCT P, PRODUCT_INVENTORY I
+		WHERE  P.PRODUCT_NO = I.PRODUCT_NO
+		AND	   P.PRODUCT_NO = #{product_no}
+	</select>
+	
+</mapper>
