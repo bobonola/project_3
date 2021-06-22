@@ -27,20 +27,7 @@ public class BankServiceImpl implements BankService
 	@Autowired
 	DataSourceTransactionManager transactionManager;
 
-	@Override
-	public Map<String, Object> getUsers()
-	{
-		Map<String, Object> result = new HashMap<>();
-		List<UserVO> userList = mapper.getUsers();
-		result.put( "users", userList );
-
-		for( UserVO uvo : userList )
-		{
-			System.out.println( uvo.getUserID() );
-		}
-
-		return result;
-	}
+	
 
 	@Override
 	public Map<String, Object> operating( Map<String, Object> input )

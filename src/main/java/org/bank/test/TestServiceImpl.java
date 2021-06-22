@@ -9,13 +9,4 @@ public class TestServiceImpl implements TestService
 	@Autowired
 	private TestMapper mapper;
 
-	@Override
-	public boolean sizeTest( int size )
-	{
-		int executed = mapper.updateSize( size );
-		boolean isUpdated = (executed != 0);
-		
-		return isUpdated;
-	}
-
 }

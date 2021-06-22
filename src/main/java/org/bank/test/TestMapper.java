@@ -6,6 +6,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface TestMapper
 {
 
-	int updateSize( int size );
 
 }

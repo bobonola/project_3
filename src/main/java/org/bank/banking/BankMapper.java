@@ -13,7 +13,6 @@ import org.bank.data.UserVO;
 public interface BankMapper
 {
 
-	List<UserVO> getUsers();
 
 	UserVO getUser( String userID );
 

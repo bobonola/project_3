@@ -14,21 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TestController
 {
 
-	@Autowired
-	TestService testService;
 
 	@Autowired
 	BankService bankService;
 
-	@RequestMapping( "/size" )
-	public String sizeTest()
-	{
-		int size = 240;
-		boolean isChanged = testService.sizeTest( size );
-		System.out.println( isChanged );
 
-		return "redirect:/";
-	}
 
 	@RequestMapping( "/getuser" )
 	public String userTest( Model m )
