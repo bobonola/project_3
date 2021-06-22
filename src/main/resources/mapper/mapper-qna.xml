@@ -226,9 +226,21 @@
 		WHERE  QNA_NO = #{qna_no}
 	</delete>
 	
+	<!-- qna 수정페이지 호출 -->
+	<select id="selectQnaModify" resultType="com.site.vo.QnaVo">
+		SELECT *
+		FROM   QNA
+		WHERE  QNA_NO = #{qna_no}
+	</select>
 	
-	
-	
+	<!-- qna 수정 저장 -->
+	<update id="updateQnaModifyDo">
+		UPDATE QNA
+		SET	   QNA_TITLE = #{qna_title},
+			   QNA_CONTENT = #{qna_content},
+			   QNA_DATE = SYSDATE
+		WHERE  QNA_NO = #{qna_no}
+	</update>
 	
 	
 	

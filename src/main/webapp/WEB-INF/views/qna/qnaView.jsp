@@ -15,7 +15,7 @@
     function qnaDelete_check(qna_no){
     	alert("test : " + qna_no);
     	if(confirm("삭제하시겠습니까?")){
-    		location.href="./qnaDelete?qna_no=" + ${qnaVo.qna_no};
+    		location.href="./qnaDelete?qna_no=${map.qnaVo.qna_no}";
     	}else{
     		return false;
     	}
@@ -24,7 +24,7 @@
 </head>
 <body>
 <section>
-    <h1>NOTICE</h1>
+    <h1>QNA 게시판</h1>
 
     <table>
       <colgroup>
@@ -56,8 +56,10 @@
     </table>
 
     <a href="./qnaList"><div class="list">목록</div></a>
-    <div class="list" onclick="qnaDelete_check()">삭제</div>
-    <a href="./qnaModify?qna_no=${map.qnaVo.qna_no}"><div class="list">수정</div></a>
+    <c:if test="${session_email == map.qnaVo.email }">
+	    <a href="#" onclick="qnaDelete_check()"><div class="list">삭제</div></a>
+	    <a href="./qnaModify?qna_no=${map.qnaVo.qna_no}"><div class="list">수정</div></a>
+    </c:if>
     <a href="./qnaReply?qna_no=${map.qnaVo.qna_no}"><div class="list">답변달기</div></a>
   </section>
 </body>

@@ -122,4 +122,15 @@ public class QnaServiceImpl implements QnaService {
 		qnaMapper.deleteQnaDelete(qna_no);
 	}
 
+	@Override		// qna 수정페이지 호출
+	public QnaVo qnaModify(int qna_no) {
+		QnaVo qnaVo = qnaMapper.selectQnaModify(qna_no);
+		return qnaVo;
+	}
+
+	@Override		// 수정 저장
+	public void qnaModifyDo(QnaVo qnaVo) {
+		qnaMapper.updateQnaModifyDo(qnaVo);
+	}
+
 }

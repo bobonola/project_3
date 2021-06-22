@@ -69,18 +69,18 @@
 			    <c:otherwise>
 			    	<c:if test="${session_admin_code == 1 }">
 			    		<c:if test="${session_email == qnaVo.email }">
-			    			<a href="./qnaView?bno=${qnaVo.qna_no }">
+			    			<a href="./qnaView?qna_no=${qnaVo.qna_no }">
 						        <c:forEach begin="1" end="${qnaVo.qna_indent}">
 						        <img alt="" src="../images/icon_reply.png"></c:forEach>
 							    ${qnaVo.qna_title }
 						    </a>
 			    		</c:if>
 			    		<c:if test="${session_email != qnaVo.email }">
-			    		비밀글입니다.
+			    			<img alt="" src="../images/ico/ico_lock.gif">&nbsp;&nbsp; 비밀글입니다.
 			    		</c:if>
 			    	</c:if>
 			    	<c:if test="${session_admin_code == 2 }">
-			    		<a href="./qnaView?bno=${qnaVo.qna_no }">
+			    		<a href="./qnaView?qna_no=${qnaVo.qna_no }">
 						        <c:forEach begin="1" end="${qnaVo.qna_indent}">
 						        <img alt="" src="../images/icon_reply.png"></c:forEach>
 							    ${qnaVo.qna_title }

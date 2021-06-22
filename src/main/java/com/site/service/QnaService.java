@@ -16,5 +16,9 @@ public interface QnaService {
 	Map<String, Object> qnaView(int qna_no);
 	// qna 글 삭제
 	void qnaDelete(int qna_no);
+	// qna 수정페이지 호출
+	QnaVo qnaModify(int qna_no);
+	// qna 수정 저장
+	void qnaModifyDo(QnaVo qnaVo);
 
 }

@@ -33,5 +33,9 @@ public interface QnaMapper {
 	QnaVo selectQnaViewNext(int qna_no);
 	// qna 글 삭제
 	void deleteQnaDelete(int qna_no);
+	// qna 수정페이지 호출
+	QnaVo selectQnaModify(int qna_no);
+	// qna 수정 저장
+	void updateQnaModifyDo(QnaVo qnaVo);
 
 }

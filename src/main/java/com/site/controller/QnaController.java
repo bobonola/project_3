@@ -67,4 +67,16 @@ public class QnaController {
 		return "redirect:/qna/qnaList";
 	}
 	
+	@RequestMapping("/qna/qnaModify")
+	public String qnaModify(@RequestParam("qna_no")int qna_no, Model model) {
+		QnaVo qnaVo = qnaService.qnaModify(qna_no);
+		model.addAttribute(qnaVo);
+		return "/qna/qnaModify";
+	}
+	
+	@RequestMapping("/qna/qnaModifyDo")
+	public String qnaModifyDo(QnaVo qnaVo) {
+		qnaService.qnaModifyDo(qnaVo);
+		return "redirect:/qna/qnaList?qna_no=" + qnaVo.getQna_no();
+	}
 }
