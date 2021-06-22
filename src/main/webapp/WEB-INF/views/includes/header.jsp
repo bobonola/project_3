@@ -12,15 +12,20 @@
 <link rel="stylesheet" type="text/css" href="css/header.css">
 </head>
 <body>
-	<header>
-		<div id="nav_up">
-			<ul>
-				<li>회원가입&nbsp;|</li>
-				<li>로그인&nbsp;|</li> 
-				<li><a href="/qnaList">QNA</a></li>
-				<li>배송지역검색&nbsp;|</li>
-				<li>기프트카드 등록</li>
-			</ul>
-		</div>
+	<div id="nav_up">
+		<ul>
+			<li><a href="/qna/qnaList">QNA</a></li>
+			<li>기프트카드 등록</li>
+			<c:choose>
+				<c:when test="${session_flag == null || session_flag == 'fail' }">
+					<li><a href="./join">회원가입&nbsp;</a>|</li>
+					<li><a href="./login">로그인&nbsp;</a>|</li> 
+				</c:when>
+				<c:otherwise>
+					<li><a href="./logout">로그아웃</a></li>
+			 	</c:otherwise>	
+			</c:choose>
+		</ul>
+	</div>
 </body>
 </html>

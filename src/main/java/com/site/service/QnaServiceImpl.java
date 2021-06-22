@@ -95,4 +95,31 @@ public class QnaServiceImpl implements QnaService {
 		return map;
 	}
 
+	@Override		// qna 쓰기 저장
+	public void qnaWriteDo(QnaVo qnaVo) {
+		qnaMapper.insertQnaWriteDo(qnaVo);
+	}
+
+	@Override		// qna 상세 뷰페이지 호출
+	public Map<String, Object> qnaView(int qna_no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		qnaMapper.updateHit(qna_no);	// 조회수 1 증가
+		QnaVo qnaVo = qnaMapper.selectQnaView(qna_no);
+		// 이전글
+		QnaVo qnaPre = qnaMapper.selectQnaViewPre(qna_no);
+		// 다음글
+		QnaVo qnaNext = qnaMapper.selectQnaViewNext(qna_no);
+		
+		map.put("qnaVo", qnaVo);
+		map.put("qnaPre", qnaPre);
+		map.put("qnaNext", qnaNext);
+		
+		return map;
+	}
+
+	@Override		// qna 글 삭제
+	public void qnaDelete(int qna_no) {
+		qnaMapper.deleteQnaDelete(qna_no);
+	}
+
 }

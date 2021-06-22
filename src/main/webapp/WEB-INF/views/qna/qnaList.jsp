@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
@@ -10,8 +11,8 @@
   <title>게시판</title>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/notice_list.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/notice_list.css">
 </head>
 <body>
 <section>
@@ -56,13 +57,43 @@
 	        <td><span class="table-notice">${qnaVo.qna_no }</span></td>
 	        <td class="table-title">
 	        <!-- content_view?번호를 전달 -->
-		    <a href="./qnaView?bno=${qnaVo.qna_no }">
-		        <c:forEach begin="1" end="${qnaVo.qna_indent}">
-		        <img alt="" src="./images/icon_reply.png"></c:forEach>
-			    ${qnaVo.qna_title }
-		    </a>
+	        <c:choose>
+	        
+		        <c:when test="${qnaVo.qna_secret_code == 1 }">
+				    <a href="./qnaView?qna_no=${qnaVo.qna_no }">
+				        <c:forEach begin="1" end="${qnaVo.qna_indent}">
+				        <img alt="" src="../images/icon_reply.png"></c:forEach>
+					    ${qnaVo.qna_title }
+				    </a>
+			    </c:when>
+			    <c:otherwise>
+			    	<c:if test="${session_admin_code == 1 }">
+			    		<c:if test="${session_email == qnaVo.email }">
+			    			<a href="./qnaView?bno=${qnaVo.qna_no }">
+						        <c:forEach begin="1" end="${qnaVo.qna_indent}">
+						        <img alt="" src="../images/icon_reply.png"></c:forEach>
+							    ${qnaVo.qna_title }
+						    </a>
+			    		</c:if>
+			    		<c:if test="${session_email != qnaVo.email }">
+			    		비밀글입니다.
+			    		</c:if>
+			    	</c:if>
+			    	<c:if test="${session_admin_code == 2 }">
+			    		<a href="./qnaView?bno=${qnaVo.qna_no }">
+						        <c:forEach begin="1" end="${qnaVo.qna_indent}">
+						        <img alt="" src="../images/icon_reply.png"></c:forEach>
+							    ${qnaVo.qna_title }
+						    </a>
+			    	</c:if>
+			    </c:otherwise>
+		    </c:choose>
 	        </td>
-	        <td>${qnaVo.qna_date}</td>
+	        <td>
+	        	<fmt:parseDate value="${qnaVo.qna_date}" var="parseDate"
+												pattern="yyyy-MM-dd HH:mm" />
+				<fmt:formatDate value="${parseDate}" pattern="yyyy/MM/dd HH:mm" />
+	        </td>
 	        <td>${qnaVo.qna_name}</td>
 	        <td>${qnaVo.qna_hit}</td>
 	      </tr>

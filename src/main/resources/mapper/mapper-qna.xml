@@ -130,4 +130,144 @@
 	    </choose>
 	</select>
 	
+	<!-- qna 쓰기 저장 -->
+	<insert id="insertQnaWriteDo"> 
+	   INSERT INTO QNA
+	   VALUES
+	   (SEQ_QNA_NO.NEXTVAL, #{email}, #{qna_title},
+	   #{qna_content}, SYSDATE, 0, SEQ_QNA_NO.CURRVAL,
+	   0, 0, #{qna_secret_code})
+	</insert>
+	
+	<!-- 조회수 1 증가 -->
+	<update id="updateHit">
+		UPDATE QNA
+		SET    QNA_HIT = QNA_HIT + 1
+		WHERE  QNA_NO = #{qna_no}
+	</update>
+	
+	<!-- 뷰페이지 호출 -->
+	<select id="selectQnaView" resultType="com.site.vo.QnaVo">
+		<![CDATA[	
+			SELECT Q.*, U.NAME AS QNA_NAME
+			FROM   QNA Q, USERS U
+			WHERE  Q.EMAIL = U.EMAIL
+			AND	   Q.QNA_NO = #{qna_no}
+	    ]]>
+	</select>
+	
+	<!-- 이전글 -->
+	<select id="selectQnaViewPre" resultType="com.site.vo.QnaVo">
+		<![CDATA[	
+			SELECT *
+			FROM
+			(
+				SELECT ROWNUM RNUM, A.*
+				FROM
+				(
+					SELECT *
+					FROM QNA
+					ORDER BY QNA_GROUP DESC, QNA_STEP
+				) A
+			)
+			WHERE RNUM =
+			(
+				SELECT RNUM
+				FROM
+				(
+					SELECT ROWNUM RNUM, A.*
+					FROM
+					(
+						SELECT * 
+						FROM QNA
+						ORDER BY QNA_GROUP DESC, QNA_STEP
+					) a
+				)
+				WHERE QNA_NO = #{qna_no}
+			) - 1
+		]]>
+	</select>
+	
+	<!-- 다음글 -->
+	<select id="selectQnaViewNext" resultType="com.site.vo.QnaVo">
+		<![CDATA[
+		    SELECT *
+			FROM
+			(
+				SELECT ROWNUM RNUM, A.*
+				FROM
+				(
+					SELECT *
+					FROM QNA
+					ORDER BY QNA_GROUP DESC, QNA_STEP
+				) A
+			)
+			WHERE RNUM =
+			(
+				SELECT RNUM
+				FROM
+				(
+					SELECT ROWNUM RNUM, A.*
+					FROM
+					(
+						SELECT * 
+						FROM QNA
+						ORDER BY QNA_GROUP DESC, QNA_STEP
+					) a
+				)
+				WHERE QNA_NO = #{qna_no}
+			) + 1
+		]]>
+	</select>
+	
+	<!-- qna 글 삭제 -->
+	<delete id="deleteQnaDelete">
+		DELETE QNA
+		WHERE  QNA_NO = #{qna_no}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>
