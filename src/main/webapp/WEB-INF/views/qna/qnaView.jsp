@@ -24,6 +24,7 @@
 </head>
 <body>
 <section>
+	 <input type="hidden" name="qna_secret_code" value="${map.qnaVo.qna_secret_code }">
     <h1>QNA 게시판</h1>
 
     <table>
@@ -56,11 +57,15 @@
     </table>
 
     <a href="./qnaList"><div class="list">목록</div></a>
-    <c:if test="${session_email == map.qnaVo.email }">
-	    <a href="#" onclick="qnaDelete_check()"><div class="list">삭제</div></a>
-	    <a href="./qnaModify?qna_no=${map.qnaVo.qna_no}"><div class="list">수정</div></a>
+    <c:if test="${session_admin_code == 1 }">
+    	<c:if test="${session_email == map.qnaVo.email }">
+	    	<a href="#" onclick="qnaDelete_check()"><div class="list">삭제</div></a>
+	    	<a href="./qnaModify?qna_no=${map.qnaVo.qna_no}"><div class="list">수정</div></a>
+    	</c:if>
     </c:if>
-    <a href="./qnaReply?qna_no=${map.qnaVo.qna_no}"><div class="list">답변달기</div></a>
+    <c:if test="${session_admin_code == 2 }">    	
+    	<a href="./qnaReply?qna_no=${map.qnaVo.qna_no}&qna_secret_code=${map.qnaVo.qna_secret_code}"><div class="list">답변달기</div></a>
+    </c:if>
   </section>
 </body>
 </html>

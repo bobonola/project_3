@@ -37,5 +37,9 @@ public interface QnaMapper {
 	QnaVo selectQnaModify(int qna_no);
 	// qna 수정 저장
 	void updateQnaModifyDo(QnaVo qnaVo);
+	// qna step 1 증가
+	void insertQnaReplyDoPlus(QnaVo qnaVo);
+	// qna 답글 저장
+	void insertQnaReplyDo(QnaVo qnaVo);
 
 }

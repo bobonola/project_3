@@ -67,16 +67,29 @@ public class QnaController {
 		return "redirect:/qna/qnaList";
 	}
 	
-	@RequestMapping("/qna/qnaModify")
+	@RequestMapping("/qna/qnaModify")	// qna 수정페이지 호출
 	public String qnaModify(@RequestParam("qna_no")int qna_no, Model model) {
 		QnaVo qnaVo = qnaService.qnaModify(qna_no);
 		model.addAttribute(qnaVo);
 		return "/qna/qnaModify";
 	}
 	
-	@RequestMapping("/qna/qnaModifyDo")
+	@RequestMapping("/qna/qnaModifyDo")	// qna 수정 저장
 	public String qnaModifyDo(QnaVo qnaVo) {
 		qnaService.qnaModifyDo(qnaVo);
 		return "redirect:/qna/qnaList?qna_no=" + qnaVo.getQna_no();
+	}
+	
+	@RequestMapping("/qna/qnaReply")	// 답글페이지 호출
+	public String qnaReply(@RequestParam("qna_no")int qna_no, Model model) {
+		QnaVo qnaVo = qnaService.qnaModify(qna_no);
+		model.addAttribute(qnaVo);
+		return "/qna/qnaReply";
+	}
+	
+	@RequestMapping("/qna/qnaReplyDo")	// qna 답글 저장
+	public String qnaReplyDo(QnaVo qnaVo, Model model) {
+		qnaService.qnaReplyDo(qnaVo);
+		return "redirect:/qna/qnaList";
 	}
 }

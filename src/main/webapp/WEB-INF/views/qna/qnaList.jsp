@@ -76,7 +76,15 @@
 						    </a>
 			    		</c:if>
 			    		<c:if test="${session_email != qnaVo.email }">
-			    			<img alt="" src="../images/ico/ico_lock.gif">&nbsp;&nbsp; 비밀글입니다.
+				    		<c:if test="${qnaVo.qna_indent == 0 }">
+				    			<img alt="" src="../images/ico/ico_lock.gif">&nbsp;&nbsp; 비밀글입니다.
+				    		</c:if>
+				    		<c:if test="${qnaVo.qna_indent != 0 }">
+				    			<c:forEach begin="1" end="${qnaVo.qna_indent}">
+					        		<img alt="" src="../images/icon_reply.png">		
+					        	</c:forEach>
+					        	<img alt="" src="../images/ico/ico_lock.gif">&nbsp;&nbsp; 비밀글입니다.
+				        	</c:if>
 			    		</c:if>
 			    	</c:if>
 			    	<c:if test="${session_admin_code == 2 }">

@@ -6,14 +6,24 @@
 <head>
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>글수정</title>
+  <title>QNA 답변</title>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/write.css">
+  <script type="text/javascript">
+	  document.addEventListener("DOMContentLoaded", function(){
+		  
+		  document.getElementById("qna_secret_code${qnaVo.qna_secret_code }").checked = true;
+		  
+		  
+	  });
+	  
+	</script>
+	  
 </head>
 <body>
 <section>
-    <h1>게시글수정</h1>
+    <h1>QNA 답글</h1>
     <hr>
 
     <form action="./qnaReplyDo" name="qnaReply" method="post">
@@ -29,7 +39,7 @@
         <tr>
           <th>작성자</th>
           <td>
-            <input type="text" name="qna_name">
+            <input type="text" name="email" value="${session_email }">
           </td>
         </tr>
         <tr>
@@ -54,8 +64,8 @@ ${qnaVo.qna_content }
         	<th>비밀글 체크</th>
         	<td>
 		        <div id="radiobox">
-		        	오픈글<input type="radio" name="qna_secret_code" value="1" checked>
-					비밀글<input type="radio" name="qna_secret_code" value="2">  
+		        	오픈글<input type="radio" name="qna_secret_code" id="qna_secret_code1" value="1">
+					비밀글<input type="radio" name="qna_secret_code" id="qna_secret_code2" value="2">  
 		        </div>
         	</td>
         </tr>

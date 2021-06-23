@@ -20,5 +20,7 @@ public interface QnaService {
 	QnaVo qnaModify(int qna_no);
 	// qna 수정 저장
 	void qnaModifyDo(QnaVo qnaVo);
+	// qna 답글 저장
+	void qnaReplyDo(QnaVo qnaVo);
 
 }
