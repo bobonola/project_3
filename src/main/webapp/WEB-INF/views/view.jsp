@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -11,7 +11,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
 <!-- 웹 페이지에 대한 설명(description)을 정의 -->
-<meta name="description" content="JARDIN SHOP" />
+<meta name="description" content="SHOES SHOP" />
 
 <!-- 검색 엔진을 위한 키워드(keyword)를 정의 -->
 <meta name="keywords" content="JARDIN SHOP" />
@@ -42,14 +42,13 @@
 <script type="text/javascript" src="../js/main.js"></script>
 <script type="text/javascript" src="../js/common.js"></script>
 <script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=PT+Sans:700' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="../js/jquery.anchor.js"></script>
-
-
 
 <script type="text/javascript">
 $(document).ready(function() {
 	
-
 
 });
 </script>
@@ -112,51 +111,69 @@ $(document).ready(function() {
 				<div class="imgSlide">
 					<div class="img">
 						<ul>
-							<li><img src="../images/nike2.png" alt="제품이미지" /></li>
-							<li><img src="../images/nike2-1.png" alt="제품이미지" /></li>
-							<li><img src="../images/nike2-2.png" alt="제품이미지" /></li>
+							<li><img src="${map.productVo.product_main_image }" alt="제품이미지" /></li>
+							<li><img src="${map.productVo.product_image1 }" /></li>
+							<li><img src="${map.productVo.product_image2 }" /></li>
+							<li><img src="${map.productVo.product_image3 }" /></li>
+							<li><img src="${map.productVo.product_image4 }" /></li>
+							
 						</ul>
 					</div>
 
 					<div class="thum">
 						<ul>
-							<li><img src="../images/nike2.png" alt="썸네일 제품이미지" /></li>
-							<li><img src="../images/nike2-1.png" alt="썸네일 제품이미지" /></li>
-							<li><img src="../images/nike2-2.png" alt="썸네일 제품이미지" /></li>
+							<li><img src="${map.productVo.product_main_image }" alt="썸네일 제품이미지" /></li>
+							<li><img src="${map.productVo.product_image1 }" alt="썸네일 제품이미지" /></li>
+							<li><img src="${map.productVo.product_image2 }" alt="썸네일 제품이미지" /></li>
+							<li><img src="${map.productVo.product_image3 }" alt="썸네일 제품이미지" /></li>
+							<li><img src="${map.productVo.product_image4 }" alt="썸네일 제품이미지" /></li>
 						</ul>
 					</div>
 				</div>
 				<!-- //Slide -->
-				
+
 
 				<!-- info -->
 				<div class="info">
 					<p class="title">
-					
-						나이키 와플 트레이너 2(상품명)
+					${ map.productVo.product_name }
 					</p>
-
+	
 					<div class="priceInfo">
+						<tr>
 						<ul>
+							
 							<li>
-								<div class="stit">판매가</div> <div class="heavygray"><strong>109000원</strong></div>
-								<!-- <fmt:formatNumber value="" pattern="###,###,###" /> -->
+								<div class="stit">판매가</div>&emsp; <div class="heavygray">&emsp;<strong><fmt:formatNumber value="${map.productVo.product_price}" pattern="#,###"/> 원</strong></div>
+								
 							</li>
+							<br>
 							<li>
-								<div class="stit">브랜드명</div> <div class="orange"><strong>나이키</strong></div>
+								<div class="stit">스타일 번호</div> &emsp;<div class="orange">&emsp;<strong>${map.productVo.st_no}</strong></div>
 							</li>
+							<br>
 							<li>
-								<div class="stit">사이즈</div> <div>250</div>
+								<div class="stit">사이즈</div> &emsp;
+								<select name="product_size" id="product_size">
+									<option value="" selected="selected">＊＊＊＊사이즈 선택＊＊＊＊</option>
+									<option value="230">&nbsp;size 230&emsp;&emsp;&emsp;&emsp; 재고 : ${map.productVo.product_size_230 }</option>
+									<option value="240">&nbsp;size 240&emsp;&emsp;&emsp;&emsp; 재고 : ${map.productVo.product_size_240 }</option>
+									<option value="250">&nbsp;size 250&emsp;&emsp;&emsp;&emsp; 재고 : ${map.productVo.product_size_250 }</option>
+									<option value="260">&nbsp;size 260&emsp;&emsp;&emsp;&emsp; 재고 : ${map.productVo.product_size_260 }</option>
+									<option value="270">&nbsp;size 270&emsp;&emsp;&emsp;&emsp; 재고 : ${map.productVo.product_size_270 }</option>
+									<option value="280">&nbsp;size 280&emsp;&emsp;&emsp;&emsp; 재고 : ${map.productVo.product_size_280 }</option>
+									<option value="290">&nbsp;size 290&emsp;&emsp;&emsp;&emsp; 재고 : ${map.productVo.product_size_290 }</option>
+									<option value="300">&nbsp;size 300&emsp;&emsp;&emsp;&emsp; 재고 : ${map.productVo.product_size_300 }</option>	
+								</select>
 							</li>
+							<br>
 							<li>
-								<div class="stit">재고</div> <div>___개</div>
-							</li>
-							<li>
-								<div class="stit">수량</div> <div class="num"><input id="spinner" value="1" /></div>
+								<div class="stit">수&emsp;량</div> &emsp; <div class="num">&emsp;<input id="spinner" value="1" /></div>
 							</li>
 							<br>
 						</ul>
 					</div>
+					</table>
 
 					<!-- 판매중 -->
 					<div class="infobtn">
@@ -191,7 +208,7 @@ $(document).ready(function() {
 					<li class="last"><a href="javascript:;" onclick="return false;" id="goodsNotice">정책 및 공지</a></li>
 				</ul>
 			</div><script type="text/javascript">$(function(){$(".detailTab ul li a:eq(0)").click();});</script>
-			<!-- .eq() 메서드는 선택한 요소에 인덱스 번호에 해당하는 요소를 찾음 -->
+			<!-- .eq() 메서드는 선택한 요소의 인덱스 번호에 해당하는 요소를 찾음 -->
 
 		<!-- //tab -->
 
@@ -204,7 +221,14 @@ $(document).ready(function() {
 						
 						<!-- 상세 큰사진 올리는부분(무단도용방지 사진 가져오는법) : 가져오고 싶은 사진있는곳으로가서 F12 -> 사진부분 검사 -> 
 							img alt src =""의 ""안의주소 복사하기 -> 붙여넣기 -> 그럼 사진 저장 안해도 알아서 불러옴, 저작권조심 연습할때만 하기 -->
-					<img src="https://image.a-rt.com/art/editor/202106/1623126029958.jpg" class="web" alt="제품상세 정보" />
+					<!-- <img src="https://image.a-rt.com/art/editor/202106/1623126029958.jpg" class="web" alt="제품상세 정보" /> -->
+					
+					<img src="${map.productVo.product_main_image }" class="web" alt="제품상세 정보" />
+					<img src="${map.productVo.product_image1 }" class="web" alt="제품상세 정보" />
+					<img src="${map.productVo.product_image2 }" class="web" alt="제품상세 정보" />
+					<img src="${map.productVo.product_image3 }" class="web" alt="제품상세 정보" />
+					<img src="${map.productVo.product_image4 }" class="web" alt="제품상세 정보" />
+					<img src="${map.productVo.product_image5 }" class="web" alt="제품상세 정보" />
 					
 					<div class="checkInfoDiv">
 						<table summary="제품의 정보를 알 수 있는 표로 제품명, 내용량, 제조원, 포장재질, 유통기한, 고객상담실, 식품의 유형, 유통전문판매원, 영양성분, 원재료명 및 함량, 업소명 및 소재지 순으로 나열되어 있습니다." class="checkTable" border="1" cellspacing="0">
@@ -264,12 +288,16 @@ $(document).ready(function() {
 				</div>
 				<!-- detail info -->
 				
-				<!-- 구매후기 등록 -->
-				<div class="col three">
-					<a href="./reWrite" class="btn btn-dark">구매후기 작성하러가기</a>		
-				</div>
-				
-				<!-- 상품리뷰 -->
+				<!-- goods review -->
+				<div class="goodsReview disnone">
+					<div class="headTitle">
+						<p class="btn"><a href="./rewrite">구매 후기 작성</a></p>
+					</div>
+					<br>
+					<br>
+					<br>
+					
+				<!-- 글만있는 리뷰 -->
 					<div class="accordion">
 						<ul>
 							<!-- 반복 -->
