@@ -22,4 +22,15 @@ public class ProductVo {
 	private String product_image5;			// 상품이미지5
 	private int product_price;				// 상품가격
 	private String product_description;		// 상품설명
+	
+	private int product_total_stock;
+	private int product_size_230;
+	private int product_size_240;
+	private int product_size_250;
+	private int product_size_260;
+	private int product_size_270;
+	private int product_size_280;
+	private int product_size_290;
+	private int product_size_300;
+
 }

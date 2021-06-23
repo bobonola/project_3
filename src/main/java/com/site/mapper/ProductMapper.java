@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.site.vo.ProductVo;
+import com.site.vo.ReviewVo;
 
 @Mapper
 public interface ProductMapper {
@@ -19,5 +20,7 @@ public interface ProductMapper {
 	int selectProductSearchCount(String search);
 	// 상세뷰페이지 호출
 	ProductVo selectProductView(int product_no);
+	// 리뷰(글)쓰기
+	void insertProductRewrite(ReviewVo reviewVo);
 
 }

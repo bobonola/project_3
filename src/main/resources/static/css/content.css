@@ -63,11 +63,11 @@
 .tabCategory .cateRight ul li a.on{color:#444; background:url('../images/bg/bg_cateright_on.gif') right 6px no-repeat; padding:0 20px 0 0;}
 
 
-
-
 /****************  PRODUCT DETAIL  **************/
-#pDetail{border-top:3px #f7703c solid; border-bottom:1px #5b524d solid; background:#f9f9f9; padding:40px; overflow:hidden;}
-#pDetail .imgSlide{float:left; width:350px; margin:0 40px 0 0;}
+#pDetail{border-top:3px #333 solid; border-bottom:3px #333 solid; background:#f9f9f9; padding:40px; overflow:hidden;}
+/*윗부분 굵은줄 색부분*/
+
+#pDetail .imgSlide{float:left; margin:0 40px 0 0;}
 #pDetail .imgSlide .img{position:relative; width:348px; height:348px; border:1px #dedede solid; overflow:hidden;}
 #pDetail .imgSlide .img ul{position:relative; left:0; top:0;}
 #pDetail .imgSlide .img ul li{float:left; padding:33px 0; background:#fff;}
@@ -85,18 +85,19 @@
 #pDetail .info .priceInfo ul li:after {content:""; display:block; clear:both;}
 #pDetail .info .priceInfo ul li.dep{padding:0 0 30px 0;}
 #pDetail .info .priceInfo ul li div{display:block; float:left; font-family:'Dotum'; font-size:13px;}
-#pDetail .info .priceInfo ul li div.stit{width:78px;}
+#pDetail .info .priceInfo ul li div.stit{width:150PX;}
 #pDetail .info .priceInfo ul li div.num{margin:-4px 0 0 0;}
 #pDetail .info .priceInfo ul li div strong{ font-family:'Dotum' }
 
 #detailContent{width:840px; margin:0 auto;}
 #detailContent .detailInfo{width:100%; overflow:hidden;}
 #detailContent .headTitle{position:relative; width:100%; font-size:14px; color:#666; border-bottom:1px #5b524d solid; padding:0 0 14px 0; overflow:hidden; word-break:keep-all;}
-#detailContent .headTitle strong{font-size:24px; font-weight:600; color:#444;}
-#detailContent .headTitle .btn{position:absolute; right:0; top:0;}
-#detailContent .headTitle .btn a{display:block; width:130px; height:30px; text-align:center; line-height:30px; color:#fff; font-size:14px; font-weight:600; background:#5a524c;}
+/* #detailContent .headTitle strong{font-size:24px; font-weight:600; color:#444;} */
+#detailContent .headTitle .btn{right:0; top:0; height:50px;}
+#detailContent .headTitle .btn a{display:block; width:850px; height:200px; text-align:center; line-height:65px; color:#fff; font-size:15px; font-weight:600; 
+								 background:#5a524c;}
 #detailContent .headTitle .btn a:hover{color:#fff; text-decoration:none;}
-#detailContent .depth{margin:40px 0 0 0;}
+/* #detailContent .depth{margin:40px 0 0 0;} */
 
 #detailContent .goodsRelation{width:100%; overflow:hidden;}
 #detailContent .relationList{width:100%; margin:20px 0 0 0; padding:0 0 20px 0; border-bottom:1px #d9d9d9 solid; overflow:hidden;}
@@ -303,12 +304,12 @@
 .normaltab{margin:40px 0 0 0;}
 
 .detailTab{width:100%; margin:50px 0; overflow:hidden;}
-.detailTab ul{width:100%; border-bottom:2px #f7703c solid; overflow:hidden;}
+.detailTab ul{width:100%; border-bottom:3px #5a524c solid; overflow:hidden;}
 .detailTab ul li{float:left; padding:0 5px 0 0;}
 .detailTab ul li.last{padding:0;}
 .detailTab ul li a{display:block; width:176px; height:40px; line-height:40px; background:#ebebeb; font-weight:600; font-size:14px; text-align:center;}
-.detailTab ul li a span{color:#f7703c;}
-.detailTab ul li a.on{background:#f7703c; color:#fff;}
+.detailTab ul li a span{color:#333;}
+.detailTab ul li a.on{background:#333; color:#fff;}
 .detailTab ul li a.on span{color:#fff;}
 
 .brandTab{width:100%; overflow:hidden;}
@@ -486,6 +487,8 @@
 .imgListType ul li .txt .databox span.cont{width:97px;}
 .imgListType ul li .confhide{clear:both; display:none; padding:20px 0 0 0;}
 .reviewContent{margin:0 20px; border-top:1px #d9d9d9 solid;}
+
+
 
 
 
@@ -786,7 +789,7 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
 
 
 /* web check */
-.web{}
+.web{width:auto; padding:5px;}
 .mobile{display:none;}
 
 
@@ -1162,7 +1165,7 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
 .detailTab ul li.last{width:100%; padding:0;}
 .detailTab ul li a{width:100%;}
 .detailTab ul li.dep{margin:0 2% 0 0;}
-.detailTab ul li.last a{width:100%;}
+.detail ul li.last a{width:100%;}
 
 
 /* PRODUCTLIST */
@@ -1184,9 +1187,9 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
 
 
 /* search */
-.search{width:auto; max-width:228px; margin:0 auto;}
+.search{width:50px; margin:0 auto;}
 .search ul li.se{margin:0 5px 0 0;}
-.searchStyleSelectBoxInner{padding:0 8px 0 4px;}
+.searchStyleSelectBoxInner{padding:0 8px 0 4px; border:1 #d9d9d9 solid; }
 
 
 /* IMGLISTTYPE */
@@ -1324,5 +1327,7 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
 .infobtn li a span{display:block;}
 .infobtn li a.ty3{width:78px;}
 
+/*구매후기 버튼*/
+#reWrite{width:10px;}
 
 }

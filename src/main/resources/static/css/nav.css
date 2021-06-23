@@ -30,7 +30,7 @@ nav>ul:nth-child(3) li{ float:left; margin-left: 20px; color: #101010; font-weig
 	
 /*장바구니 그림*/ 
 nav>ul:nth-child(3)>li:nth-child(1)>a{ width:32px; height: 32px; display: inline-block;
-	background: url('../images/ico_set.png') -584px -320px no-repeat; 
+	background: url('../images/view_img/ico_set.png') -584px -320px no-repeat; 
 	background-size: 800px 800px; letter-spacing: -2px;} 
 	
 /*장바구니 글 색 변경*/

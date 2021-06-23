@@ -15,7 +15,7 @@ html{overflow-y:scroll; width:100%;}
 
 
 /* header */
-#header{max-width:900px; margin:33px auto 0;}
+/* #header{max-width:900px; margin:33px auto 0;}
 #header #snbBox{position:relative; width:100%; height:47px; overflow:hidden;}
 #header #snbBox h1{position:absolute; left:50%; top:0; margin:1px 0 0 -150px;}
 #header #snbBox #quickmenu{float:left; margin:0 0 0 27px;}
@@ -28,7 +28,7 @@ html{overflow-y:scroll; width:100%;}
 #header #snbBox #snb ul li{float:left; height:25px; line-height:25px; padding:0 0 0 18px;}
 #header #snbBox #snb ul li a{color:#888; font-size:11px; font-weight:600;}
 #header #snbBox #snb #search{float:right; width:190px; height:20px; border:1px #ffa886 solid;}
-#header #snbBox #snb #search input.searchType{width:157px; height:18px; line-height:18px; border:0; padding:0 0 0 5px;}
+#header #snbBox #snb #search input.searchType{width:157px; height:18px; line-height:18px; border:0; padding:0 0 0 5px;} */
 
 
 /* GNB */
@@ -181,7 +181,7 @@ transition-property:transform, left, top; transition-duration:0s; transform:tran
 
 
 /******* footer ********/
-#footerWrap{width:100%; margin:56px 0 0 0; overflow:hidden;}
+/* #footerWrap{width:100%; margin:56px 0 0 0; overflow:hidden;}
 #footerWrap #footer{width:100%; background:#ebebeb; margin:0 auto;}
 #footerWrap #footer #fnb{width:100%; background:#5a524c; overflow:hidden;}
 #footerWrap #footer #fnb ul{max-width:860px; padding:0 0 0 40px; margin:0 auto; border-left:1px #7b7470 solid; border-right:1px #7b7470 solid; overflow:hidden;}
@@ -197,7 +197,7 @@ transition-property:transform, left, top; transition-duration:0s; transform:tran
 #footerWrap #footer #finfo address ul li.copy{color:#919191; background:url(none);}
 #footerWrap #footer #finfo address ul li.webnone{background:url(none);}
 #footerWrap #footer #finfo #inicis{position:absolute; right:33px; top:34px;}
-
+ */
 
 /* quick */
 #quick{position:fixed; top:598px; width:110px; height:180px; margin-left:940px;}
@@ -288,14 +288,14 @@ transition-property:transform, left, top; transition-duration:0s; transform:tran
 #noticeBLock ul li.first{border:0;}
 #noticeBLock ul li.last{width:220px; border-right:0;}
 
-#footerWrap #footer #fnb ul{max-width:748px; padding:0 0 0 20px;}
+/* #footerWrap #footer #fnb ul{max-width:748px; padding:0 0 0 20px;}
 #footerWrap #footer #fnb ul li{padding:0 65px 0 0;}
 #footerWrap #footer #finfo{max-width:768px;}
 #footerWrap #footer #finfo #flogo{padding:0 13px 0 5px;}
 #footerWrap #footer #finfo address{width:490px;}
 #footerWrap #footer #finfo address ul li.webnone{background:url('../images/bg/bg_address.gif') right 3px no-repeat;}
 #footerWrap #footer #finfo address ul li.tnone{background:url(none);}
-#footerWrap #footer #finfo #inicis{right:19px;}
+#footerWrap #footer #finfo #inicis{right:19px;} */
 
 
 
@@ -305,7 +305,7 @@ transition-property:transform, left, top; transition-duration:0s; transform:tran
 /* media query */
 @media all and (max-width: 767px){
 
-#header{margin:0;}
+/* #header{margin:0;}
 #header #snbBox{height:auto; padding:35px 0 0 0;}
 #header #snbBox h1{position:relative; left:0; top:0; width:250px; margin:0 auto;}
 #header #snbBox h1 img{width:250px;}
@@ -316,7 +316,7 @@ transition-property:transform, left, top; transition-duration:0s; transform:tran
 #header #snbBox #quickmenu ul li{height:43px; line-height:43px; padding:0 0 0 30px;}
 #header #snbBox #quickmenu ul li a{color:#fff; font-size:12px;}
 #header #snbBox #quickmenu #mnaviOpen{display:block; position:absolute; left:10px; top:7px; cursor:pointer;}
-#header #snbBox #quickmenu #mnaviClose{display:none; position:absolute; left:0; top:0; cursor:pointer;}
+#header #snbBox #quickmenu #mnaviClose{display:none; position:absolute; left:0; top:0; cursor:pointer;} */
 
 #gnb{background:#4a4a4a;}
 #gnb #top{margin:0;}
@@ -394,7 +394,7 @@ transition-property:transform, left, top; transition-duration:0s; transform:tran
 #noticeBLock ul li.cln{height:270px;}
 
 
-#footerWrap #footer #fnb ul{max-width:245px; padding:5px 0; margin:0 auto; border:0;}
+/* #footerWrap #footer #fnb ul{max-width:245px; padding:5px 0; margin:0 auto; border:0;}
 #footerWrap #footer #fnb ul li{padding:0;}
 #footerWrap #footer #fnb ul li.left{width:173px;}
 
@@ -405,6 +405,6 @@ transition-property:transform, left, top; transition-duration:0s; transform:tran
 #footerWrap #footer #finfo address ul{margin:0 0 0 -10px;}
 #footerWrap #footer #finfo address ul li.tnone{background:url('../images/bg/bg_address.gif') right 3px no-repeat;}
 #footerWrap #footer #finfo address ul li span{display:block;}
-#footerWrap #footer #finfo #inicis{right:10px; top:120px;}
+#footerWrap #footer #finfo #inicis{right:10px; top:120px;} */
 
 }

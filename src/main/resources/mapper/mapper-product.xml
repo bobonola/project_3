@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.site.mapper.ProductMapper">
+
 	<!-- 상품 전체리스트 호출 -->
 	<select id="selectProductList" resultType="com.site.vo.ProductVo">
 		<![CDATA[
@@ -15,7 +16,8 @@
 					(						
 		]]>
 		<choose>
-			<when test="sort=='productDateDesc'">		<!-- 최신순 정렬 -->
+		<!-- 최신순 정렬 -->
+			<when test="sort=='productDateDesc'">		
 				<![CDATA[
 						SELECT *
 						FROM PRODUCT
@@ -24,7 +26,8 @@
 				]]>
 			</when>
 			
-			<when test="sort=='productPriceAsc'">		<!-- 낮은가격순 정렬 -->
+			<!-- 낮은가격순 정렬 -->
+			<when test="sort=='productPriceAsc'">		
 				<![CDATA[
 						SELECT *
 						FROM PRODUCT
@@ -32,7 +35,8 @@
 				]]>
 			</when>
 			
-			<when test="sort=='productPriceDesc'">		<!-- 높은가격순 정렬 -->
+			<!-- 높은가격순 정렬 -->
+			<when test="sort=='productPriceDesc'">		
 				<![CDATA[
 						SELECT *
 						FROM PRODUCT
@@ -40,7 +44,8 @@
 				]]>
 			</when>
 			
-			<when test="sort=='productSales'">			<!-- 판매량순 정렬 -->
+			<!-- 판매량순 정렬 -->
+			<when test="sort=='productSales'">			
 				<![CDATA[
 						SELECT P.*
 						FROM PRODUCT P, PRODUCT_INVENTORY I
@@ -82,7 +87,9 @@
 		]]>
 		<if test="search != null and search != '' ">
 			<choose>
-				<when test="sort=='productDateDesc'">		<!-- 최신순 정렬 -->
+			
+			<!-- 최신순 정렬 -->
+				<when test="sort=='productDateDesc'">		
 					<![CDATA[
 							SELECT *
 							FROM PRODUCT
@@ -92,7 +99,8 @@
 					]]>
 				</when>
 				
-				<when test="sort=='productPriceAsc'">		<!-- 낮은가격순 정렬 -->
+				<!-- 낮은가격순 정렬 -->
+				<when test="sort=='productPriceAsc'">		
 					<![CDATA[
 							SELECT *
 							FROM PRODUCT
@@ -102,7 +110,8 @@
 					]]>
 				</when>
 				
-				<when test="sort=='productPriceDesc'">		<!-- 높은가격순 정렬 -->
+				<!-- 높은가격순 정렬 -->
+				<when test="sort=='productPriceDesc'">		
 					<![CDATA[
 							SELECT *
 							FROM PRODUCT
@@ -112,7 +121,8 @@
 					]]>
 				</when>
 				
-				<when test="sort=='productSales'">			<!-- 판매량순 정렬 -->
+				<!-- 판매량순 정렬 -->
+				<when test="sort=='productSales'">			
 					<![CDATA[
 							SELECT P.*
 							FROM PRODUCT P, PRODUCT_INVENTORY I
@@ -158,5 +168,18 @@
 		WHERE  P.PRODUCT_NO = I.PRODUCT_NO
 		AND	   P.PRODUCT_NO = #{product_no}
 	</select>
+	
+	<!-- 글쓰기 저장 -->
+	<insert id="insertProductRewrite">
+		insert into review
+		values(
+		SEQ_REVIEW_NO,
+         #{EMAIL},
+		 #{REVIEW_CONTENT},
+		 #{REVIEW_IMAGE},
+		sysdate,
+		0 
+        )
+	</insert>
 	
 </mapper>

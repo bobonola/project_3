@@ -28,11 +28,6 @@ th {
   font-size: 20px;
 }
 
-#radiobox input {
-	width: 50px;
-	height: 20px;
-}
-
 select,
 input,
 textarea {
@@ -79,7 +74,6 @@ textarea {
 }
 
 button {
-  cursor : pointer;	
   width: 130px;
   height: 45px;
 
