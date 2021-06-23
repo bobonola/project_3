@@ -22,6 +22,8 @@
 	  
 </head>
 <body>
+<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
+<c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 <section>
     <h1>QNA 답글</h1>
     <hr>
@@ -79,6 +81,6 @@ ${qnaVo.qna_content }
     </form>
 
   </section>
-
+	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 </body>
 </html>

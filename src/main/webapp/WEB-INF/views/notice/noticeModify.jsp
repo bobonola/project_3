@@ -9,8 +9,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>글수정</title>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/write.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/write.css">
 </head>
 <body>
 <c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
@@ -19,7 +19,7 @@
     <h1>게시글수정</h1>
     <hr>
 
-    <form action="modifyDo" name="modify" method="post" enctype="multipart/form-data">
+    <form action="./noticeModifyDo" name="noticeModify" method="post" enctype="multipart/form-data">
      
       <input type="hidden" name="notice_no" value="${noticeVo.notice_no }">
       <input type="hidden" name="notice_image" value="${ noticeVo.notice_image}">  
@@ -50,18 +50,18 @@
           <th>이미지 표시</th>
           <td>
             <input type="file" name="file" id="file" >
-            <a href="/noticeUpload/${noticeVo.notice_image }">${noticeVo.notice_image }</a>
+            <a href="./noticeUpload/${noticeVo.notice_image }">${noticeVo.notice_image }</a>
           </td>
         </tr>
       </table>
       <hr>
       <div class="button-wrapper">
         <button type="submit" class="write">수정완료</button>
-        <button type="button" class="cancel" onclick="javascript:location.href='noticeList'">취소</button>
+        <button type="button" class="cancel" onclick="javascript:location.href='./noticeList'">취소</button>
       </div>
     </form>
 
   </section>
-
+	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 </body>
 </html>

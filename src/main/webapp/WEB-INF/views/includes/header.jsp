@@ -9,7 +9,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700,900&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/header.css">
+<link rel="stylesheet" type="text/css" href="../css/header.css">
 </head>
 <body>
 	<div id="nav_up">
@@ -18,11 +18,11 @@
 			<li>기프트카드 등록</li>
 			<c:choose>
 				<c:when test="${session_flag == null || session_flag == 'fail' }">
-					<li><a href="./join">회원가입&nbsp;</a>|</li>
-					<li><a href="./login">로그인&nbsp;</a>|</li> 
+					<li><a href="/join">회원가입&nbsp;</a>|</li>
+					<li><a href="/login">로그인&nbsp;</a>|</li> 
 				</c:when>
 				<c:otherwise>
-					<li><a href="./logout">로그아웃</a></li>
+					<li><a href="/logout">로그아웃</a></li>
 			 	</c:otherwise>	
 			</c:choose>
 		</ul>

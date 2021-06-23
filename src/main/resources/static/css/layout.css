@@ -189,7 +189,6 @@ transition-property:transform, left, top; transition-duration:0s; transform:tran
 #footerWrap #footer #fnb ul li a{font-size:14px; color:#fff; font-weight:600;}
 #footerWrap #footer #fnb ul li.brand{padding:0;}
 #footerWrap #footer #fnb ul li.brand a{color:#fe6124; font-size:17px;}
-
 #footerWrap #footer #finfo{position:relative; max-width:900px; padding:30px 0; margin:0 auto; overflow:hidden;}
 #footerWrap #footer #finfo #flogo{float:left; padding:0 24px 0 27px;}
 #footerWrap #footer #finfo address{float:left; width:518px; padding:5px 0 0 0;}
@@ -397,7 +396,6 @@ transition-property:transform, left, top; transition-duration:0s; transform:tran
 /* #footerWrap #footer #fnb ul{max-width:245px; padding:5px 0; margin:0 auto; border:0;}
 #footerWrap #footer #fnb ul li{padding:0;}
 #footerWrap #footer #fnb ul li.left{width:173px;}
-
 #footerWrap #footer #finfo{max-width:245px; margin:0 auto;}
 #footerWrap #footer #finfo #flogo{float:none; padding:0;}
 #footerWrap #footer #finfo #flogo img{margin:0 0 0 -15px;}

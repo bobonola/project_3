@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.site.service.ProductService;
-import com.site.vo.ReviewVo;
 
 @Controller
 public class ProductController {
@@ -22,7 +21,7 @@ public class ProductController {
 	ProductService productService;
 	
 	// 메인페이지 호출
-	@RequestMapping("/index2")		
+	@RequestMapping("/index")		
 	public String index(@RequestParam(value="page", defaultValue="1")int page,
 			@RequestParam @Nullable String sort,
 			@RequestParam @Nullable String search,
@@ -38,7 +37,7 @@ public class ProductController {
 		
 		model.addAttribute("map",map);
 		
-		return "/index2";
+		return "/index";
 	}
 	
 	// 상세뷰페이지 호출

@@ -14,9 +14,9 @@
   		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
   		<link rel="stylesheet" href="css/style.css">
   		<link rel="stylesheet" href="css/notice_list.css">
-  		<link rel="stylesheet" type="text/css" href="../css/reset.css?v=Y" />
-		<link rel="stylesheet" type="text/css" href="../css/layout.css?v=Y" />
-		<link rel="stylesheet" type="text/css" href="../css/content.css?v=Y" />
+  		<link rel="stylesheet" type="text/css" href="/css/reset.css?v=Y" />
+		<link rel="stylesheet" type="text/css" href="/css/layout.css?v=Y" />
+		<link rel="stylesheet" type="text/css" href="/css/content.css?v=Y" />
 	</head>
 	<body>
 	 	<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
@@ -24,7 +24,7 @@
 	 	<section>
 	 		<div class="wrapper">
 	 		
-		      <form action="./index2" name="search" method="post">
+		      <form action="./index" name="search" method="post">
 		
 		        <div class="title">
 		          <input type="text" size="16" name="search" id="search" value="${map.search }">
@@ -35,7 +35,7 @@
 		    </div>
 	 		
 	 		<div class="tabCategory">
-				
+				 
 			</div>
 	 		<div id="best">
 	 		
@@ -61,7 +61,7 @@
 	 			
 	 			<div class="cateRight">
 					
-	 		<form action="./index2" method="post">
+	 		<form action="./index" method="post">
 					        <select name="sort" id="category">
 					          <option value="productDateDesc" ${(map.sort eq 'productDateDesc')? 'selected':'' }>신상품순</option>
 					          <option value="productPriceAsc" ${(map.sort eq 'productPriceAsc')? 'selected':'' }>낮은가격순</option>
@@ -81,13 +81,13 @@
 	 			
 	 			<!-- 하단 넘버링 -->
 		    <ul class="page-num">
-		      <a href="./index2?page=1&&search=${map.search}&sort=${map.sort}"><li class="first"></li></a>
+		      <a href="./index?page=1&&search=${map.search}&sort=${map.sort}"><li class="first"></li></a>
 		      <!-- 이전페이지는 1이상일때 -1을 해줌, 1일때는 링크 삭제시킴 -->
 		      <c:if test="${map.page <= 1 }">
 		        <li class="prev"></li>
 		      </c:if>
 		      <c:if test="${map.page>1}">
-		        <a href="./index2?page=${map.page - 1 }&search=${map.search}&sort=${map.sort}"><li class="prev"></li></a>
+		        <a href="./index?page=${map.page - 1 }&search=${map.search}&sort=${map.sort}"><li class="prev"></li></a>
 		      </c:if>
 		      
 		      <!-- 번호넣기 -->
@@ -97,7 +97,7 @@
 		        </c:if>
 		        <c:if test="${map.page != nowPage }">
 		          <li class="num">
-		            <a href="./index2?page=${nowPage}&search=${map.search}&sort=${map.sort}"><div>${nowPage}</div></a>
+		            <a href="./index?page=${nowPage}&search=${map.search}&sort=${map.sort}"><div>${nowPage}</div></a>
 		          </li>
 		        </c:if>
 		      </c:forEach>
@@ -106,10 +106,10 @@
 		        <li class="next"></li>
 		      </c:if>
 		      <c:if test="${map.page < map.maxPage }">
-		        <a href="./index2?page=${map.page + 1 }&search=${map.search}&sort=${map.sort}"><li class="next"></li></a>
+		        <a href="./index?page=${map.page + 1 }&search=${map.search}&sort=${map.sort}"><li class="next"></li></a>
 		      </c:if>
 		      <!-- 마지막페이지 이동 -->
-		      <a href="./index2?page=${map.maxPage }&search=${map.search}&sort=${map.sort}"><li class="last"></li></a>
+		      <a href="./index?page=${map.maxPage }&search=${map.search}&sort=${map.sort}"><li class="last"></li></a>
 		    </ul>
 		    <!-- 하단 넘버링 끝 -->	
 	 		</div>

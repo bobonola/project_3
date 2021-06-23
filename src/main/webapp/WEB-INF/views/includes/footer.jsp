@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title></title>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700,900&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css/footer.css">
+<link rel="stylesheet" type="text/css" href="../css/footer.css">
 </head>
 <body>
 

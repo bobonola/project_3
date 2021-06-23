@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="../css/notice_list.css">
 </head>
 <body>
+<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
+<c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 <section>
     <h1>QNA 게시판</h1>
     <div class="wrapper">
@@ -83,7 +85,7 @@
 				    			<c:forEach begin="1" end="${qnaVo.qna_indent}">
 					        		<img alt="" src="../images/icon_reply.png">		
 					        	</c:forEach>
-					        	<img alt="" src="../images/ico/ico_lock.gif">&nbsp;&nbsp; 비밀글입니다.
+					        	<img alt="" src="../images/ico/ico_lock.gif">&nbsp;&nbsp; [답변] 비밀글입니다.
 				        	</c:if>
 			    		</c:if>
 			    	</c:if>
@@ -113,11 +115,11 @@
     <ul class="page-num">
       <a href="./qnaList?page=1&category=${map.category}&search=${map.search}"><li class="first"></li></a>
       <!-- 이전페이지는 1이상일때 -1을 해줌, 1일때는 링크 삭제시킴 -->
-      <c:if test="${map.page<=1 }">
+      <c:if test="${map.page <= 1 }">
         <li class="prev"></li>
       </c:if>
-      <c:if test="${map.page>1}">
-        <a href="./qnaList?page=${map.page-1 }&category=${map.category}&search=${map.search}"><li class="prev"></li></a>
+      <c:if test="${map.page > 1}">
+        <a href="./qnaList?page=${map.page - 1 }&category=${map.category}&search=${map.search}"><li class="prev"></li></a>
       </c:if>
       
       <!-- 번호넣기 -->
@@ -132,11 +134,11 @@
         </c:if>
       </c:forEach>
       <!-- 다음페이지는 max보다 작을때 +1 증가, max보다 크거나 같을때 링크 삭제시킴 -->
-      <c:if test="${map.page>=map.maxPage }">
+      <c:if test="${map.page >= map.maxPage }">
         <li class="next"></li>
       </c:if>
-      <c:if test="${map.page<map.maxPage }">
-        <a href="./qnaList?page=${map.page+1 }&category=${map.category}&search=${map.search}"><li class="next"></li></a>
+      <c:if test="${map.page < map.maxPage }">
+        <a href="./qnaList?page=${map.page + 1 }&category=${map.category}&search=${map.search}"><li class="next"></li></a>
       </c:if>
       <!-- 마지막페이지 이동 -->
       <a href="./qnaList?page=${map.maxPage }&category=${map.category}&search=${map.search}"><li class="last"></li></a>
@@ -145,6 +147,6 @@
 
     <a href="./qnaWrite"><div class="write">쓰기</div></a>
   </section>
-
+	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 </body>
 </html>

@@ -21,19 +21,19 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping("/login")
+	@RequestMapping("/login")		// 로그인
 	public String login() {
 		return "/login";
 	}
 	
-	@RequestMapping("/logout")
+	@RequestMapping("/logout")		// 로그아웃
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		return "/index2";
+		return "/index";
 	}
 	
-	@RequestMapping(value="/login_ajax")
+	@RequestMapping(value="/login_ajax")	// 로그인
 	@ResponseBody
 	public Map<String, Object> login_ajax(UserVo userVo,
 			HttpServletRequest request,

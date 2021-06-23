@@ -12,12 +12,12 @@
   <title>공 지 사 항</title>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/read.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/read.css">
     <script type="text/javascript">
-    function delete_check(){
+    function noticeDelete_check(){
     	if(confirm("삭제하시겠습니까?")){
-    		location.href="./delete?notice_no=${map.noticeVo.notice_no}";
+    		location.href="./noticeDelete?notice_no=${map.noticeVo.notice_no}";
     	}else{
     		return false;
     	}
@@ -49,16 +49,11 @@
 
 
     </table>
-    <c:choose>
-    <c:when test="${session_admin_code==2 }">
-    	<a href="./noticeList"><div class="list">목록</div></a>
-    	<a href="#" onclick="delete_check()"><div class="list">삭제</div></a>
-    	<a href="./modify?notice_no=${map.noticeVo.notice_no }"><div class="list">수정</div>   
-    </c:when>
-    <c:otherwise>
-    	 <a href="./noticeList"><div class="list">목록</div></a>
-    </c:otherwise>
-    </c:choose>
+    <a href="./noticeList"><div class="list">목록</div></a>
+	    <c:if test="${session_admin_code == 2 }">
+	    	<a href="#" onclick="noticeDelete_check()"><div class="list">삭제</div></a>
+	    	<a href="./noticeModify?notice_no=${map.noticeVo.notice_no }"><div class="list">수정</div>   
+	    </c:if>
     
 </section>
 

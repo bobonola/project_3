@@ -149,7 +149,7 @@ $(document).ready(function() {
 							</li>
 							<br>
 							<li>
-								<div class="stit">스타일 번호</div> &emsp;<div class="orange">&emsp;<strong>${map.productVo.st_no}</strong></div>
+								<div class="stit">스타일 번호</div> &emsp;<div class="heavygray">&emsp;<strong>${map.productVo.st_no}</strong></div>
 							</li>
 							<br>
 							<li>
@@ -291,13 +291,13 @@ $(document).ready(function() {
 				<!-- goods review -->
 				<div class="goodsReview disnone">
 					<div class="headTitle">
-						<p class="btn"><a href="./rewrite">구매 후기 작성</a></p>
+						<p class="btn"><a href="./rewrite?product_no=${ map.productVo.product_no }" >구매 후기 작성</a></p>
 					</div>
 					<br>
 					<br>
 					<br>
 					
-				<!-- 글만있는 리뷰 -->
+				<!-- 리뷰 -->
 					<div class="accordion">
 						<ul>
 							<!-- 반복 -->
@@ -309,11 +309,9 @@ $(document).ready(function() {
 									<div class="writer">[ezlin****]</div>
 									<div class="day">
 										<p>2014-03-24</p>
-										<p>
-											<img src="../images/ico/ico_star.gif" alt="별점" />
-											<img src="../images/ico/ico_star.gif" alt="별점" />
-											<img src="../images/ico/ico_star.gif" alt="별점" />
-										</p>
+											<img src="../images/ico/ico_star.gif" alt="별점" class="rating"/>
+											<img src="../images/ico/ico_star.gif" alt="별점" class="rating" />
+											<img src="../images/ico/ico_star.gif" alt="별점" class="rating" />
 									</div>
 								</div>
 
@@ -354,11 +352,9 @@ $(document).ready(function() {
 									<div class="writer">[ezlin****]</div>
 									<div class="day">
 										<p>2014-03-24</p>
-										<p>
-											<img src="../images/ico/ico_star.gif" alt="별점" />
-											<img src="../images/ico/ico_star.gif" alt="별점" />
-											<img src="../images/ico/ico_star.gif" alt="별점" />
-										</p>
+											<img src="../images/ico/ico_star.gif" alt="별점" class="rating"/>
+											<img src="../images/ico/ico_star.gif" alt="별점" class="rating" />
+											<img src="../images/ico/ico_star.gif" alt="별점" class="rating" />
 									</div>
 								</div>
 
@@ -398,11 +394,9 @@ $(document).ready(function() {
 									<div class="writer">[ezlin****]</div>
 									<div class="day">
 										<p>2014-03-24</p>
-										<p>
-											<img src="../images/ico/ico_star.gif" alt="별점" />
-											<img src="../images/ico/ico_star.gif" alt="별점" />
-											<img src="../images/ico/ico_star.gif" alt="별점" />
-										</p>
+											<img src="../images/ico/ico_star.gif" alt="별점" class="rating"/>
+											<img src="../images/ico/ico_star.gif" alt="별점" class="rating" />
+											<img src="../images/ico/ico_star.gif" alt="별점" class="rating" />
 									</div>
 								</div>
 

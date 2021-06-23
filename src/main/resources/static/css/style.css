@@ -46,26 +46,22 @@ header span {
   padding-top: 15px;
   padding-bottom: 20px;
 }
-
 .nav-menu {
   text-align: center;
   width: 80%;
 }
-
 nav ul {
   display: inline-block;
   position: relative;
   top: -8px;
   margin: auto;
 }
-
 nav li {
   margin-top: 0;
   padding: 0 20px;
   font-size: 22px;
   font-weight: bold;
 }
-
 nav div {
   display: inline-block;
 } */
@@ -73,7 +69,6 @@ nav div {
 /* .logo {
   background: url(https://www.cjcookit.com/cjkit/web/images/common/ico_set.png) no-repeat -310px -375px;
   background-size: 800px 800px;
-
   width: 110px;
   height: 40px;
   margin-left: 5px;

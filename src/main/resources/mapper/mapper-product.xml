@@ -161,13 +161,5 @@
 		OR	   PRODUCT_NAME LIKE '%' || #{search} || '%'
 	</select>
 	
-	<!-- 상세뷰페이지 호출 -->
-	<select id="selectProductView" resultType="com.site.vo.ProductVo">
-		SELECT *
-		FROM   PRODUCT P, PRODUCT_INVENTORY I
-		WHERE  P.PRODUCT_NO = I.PRODUCT_NO
-		AND	   P.PRODUCT_NO = #{product_no}
-	</select>
-	
 	
 </mapper>

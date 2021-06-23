@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.site.vo.ProductVo;
-import com.site.vo.ReviewVo;
 
 @Mapper
 public interface ProductMapper {

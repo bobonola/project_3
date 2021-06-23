@@ -22,15 +22,14 @@ public class ProductVo {
 	private String product_image5;			// 상품이미지5
 	private int product_price;				// 상품가격
 	private String product_description;		// 상품설명
-	
-	private int product_total_stock;
-	private int product_size_230;
-	private int product_size_240;
-	private int product_size_250;
-	private int product_size_260;
-	private int product_size_270;
-	private int product_size_280;
-	private int product_size_290;
-	private int product_size_300;
+	private int product_total_stock;		// 상품재고총합계
+	private int product_size_230;			// 상품사이즈230재고
+	private int product_size_240;			// 상품사이즈240재고
+	private int product_size_250;			// 상품사이즈250재고
+	private int product_size_260;			// 상품사이즈260재고
+	private int product_size_270;			// 상품사이즈270재고
+	private int product_size_280;			// 상품사이즈280재고
+	private int product_size_290;			// 상품사이즈290재고
+	private int product_size_300;			// 상품사이즈300재고
 
 }

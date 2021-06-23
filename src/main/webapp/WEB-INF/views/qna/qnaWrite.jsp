@@ -18,6 +18,8 @@
   <link  rel="stylesheet" href="../css/write.css">
 </head>
 <body>
+<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
+<c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 <section>
     <h1>QNA 글쓰기</h1>
     <hr>
@@ -60,11 +62,11 @@
       <hr>
       <div class="button-wrapper">
         <button type="submit" class="write">작성완료</button>
-        <button type="button" class="cancel" onclick="javascript:location.href='qnaList'">취소</button>
+        <button type="button" class="cancel" onclick="javascript:location.href='./qnaList'">취소</button>
       </div>
     </form>
 
   </section>
-
+	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 </body>
 </html>

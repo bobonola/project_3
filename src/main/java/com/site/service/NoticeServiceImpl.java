@@ -23,18 +23,18 @@ public class NoticeServiceImpl implements NoticeService {
 		Map<String,Object> map = new HashMap<String, Object>();
 		
 		int limit = 10;
-		int startrow = (page-1)*limit+1;
-		int endrow = startrow+limit-1;
+		int startRow = (page - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
 		
-		List<NoticeVo> list = noticeMapper.selectNoticeList(startrow,endrow);
-		int listCount=0;
+		List<NoticeVo> list = noticeMapper.selectNoticeList(startRow, endRow);
+		int listCount = 0;
 		listCount = noticeMapper.selectNoticeCount();
 		
-		int maxPage = (int)((double)listCount/limit+0.95);
-		int startPage = (((int) ((double)page / 10 + 0.95)) - 1) * 10 + 1;
+		int maxPage = (int)((double)listCount / limit + 0.95);
+		int startPage = (((int)((double)page / 10 + 0.95)) - 1) * 10 + 1;
 		int endPage = maxPage;
-		if (endPage>startPage+10-1) {
-			endPage=startPage+10-1;
+		if (endPage > startPage + 10 - 1) {
+			endPage = startPage + 10 - 1;
 		}
 		map.put("list", list);
 		map.put("page", page);
@@ -46,11 +46,6 @@ public class NoticeServiceImpl implements NoticeService {
 		return map;
 	}
 
-	@Override
-	public Map<String, Object> noticeListSearch(int page, String category, String search) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override  //뷰페이지 
 	public Map<String, Object> noticeView(int notice_no) {
@@ -65,14 +60,14 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override //글쓰기
 	public void noticeWriteDo(NoticeVo noticeVo, MultipartFile file) {
 
-		String fileUrl="C:/Users/Koreavc/git/shoppingmall/test0617/src/main/resources/static/noticeUpload/";	
+		String fileUrl = "C:/Users/Koreavc/git/shoppingmall/test0617/src/main/resources/static/noticeUpload/";	
 		long time = System.currentTimeMillis();
-		String uploadImage = time+"_"+file.getOriginalFilename();
-		File f = new File(fileUrl+uploadImage);
+		String uploadImage = time + "_" + file.getOriginalFilename();
+		File f = new File(fileUrl + uploadImage);
 		
 		try {
 			file.transferTo(f);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		noticeVo.setNotice_image(uploadImage);
@@ -93,26 +88,20 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override //수정페이지 저장
 	public void noticeModifyDo(NoticeVo noticeVo, MultipartFile file) {
-		String fileUrl="C:/Users/Koreavc/git/shoppingmall/test0617/src/main/resources/static/noticeUpload/";	
+		String fileUrl = "C:/Users/Koreavc/git/shoppingmall/test0617/src/main/resources/static/noticeUpload/";	
 		long time = System.currentTimeMillis();
-		String uploadImage = time+"_"+file.getOriginalFilename();
-		File f = new File(fileUrl+uploadImage);
+		String uploadImage = time + "_" + file.getOriginalFilename();
+		File f = new File(fileUrl + uploadImage);
 		
 		try {
 			file.transferTo(f);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		noticeVo.setNotice_image(uploadImage);
 		noticeMapper.updateNoticeModifyDo(noticeVo);
 		
 	}
-	
-	
-
-
-
-
 
 
 }

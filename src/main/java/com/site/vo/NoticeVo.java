@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class NoticeVo {
 	
-	private int notice_no;
-	private String email;
-	private String notice_title;
-	private String notice_content;
-	private Timestamp notice_date;
-	private int notice_hit;
-	private String notice_image;
+	private int notice_no;			// 공지사항 번호
+	private String email;			// 사용자 이메일
+	private String notice_title;	// 공지사항 제목
+	private String notice_content;	// 공지사항 내용
+	private Timestamp notice_date;	// 공지사항 작성일
+	private int notice_hit;			// 공지사항 조회수
+	private String notice_image;	// 공지사항 이미지
 
 }

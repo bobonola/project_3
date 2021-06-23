@@ -12,7 +12,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserMapper userMapper;
 
-	@Override
+	@Override		// 사용자 로그인
 	public UserVo login(UserVo userVo) {
 		return userMapper.selectLogin(userVo);
 	}

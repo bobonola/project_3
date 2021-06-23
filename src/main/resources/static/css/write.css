@@ -28,6 +28,13 @@ th {
   font-size: 20px;
 }
 
+
+#radiobox input {
+	width:20px;
+	height:20px;
+	margin:20px;
+}
+
 select,
 input,
 textarea {

@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.site.mapper.ProductMapper;
 import com.site.vo.ProductVo;
-import com.site.vo.ReviewVo;
 
 @Service
 public class ProductServiceImpl implements ProductService {
