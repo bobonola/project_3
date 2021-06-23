@@ -19,9 +19,6 @@ public interface ProductService {
 	// 상세뷰페이지 호출
 	Map<String, Object> productView(int product_no);
 	
-	// 리뷰(글)저장
-	void rewriteInsert(ReviewVo reviewVo, MultipartFile file);
-	
 	
 
 }

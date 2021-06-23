@@ -169,17 +169,5 @@
 		AND	   P.PRODUCT_NO = #{product_no}
 	</select>
 	
-	<!-- 글쓰기 저장 -->
-	<insert id="insertProductRewrite">
-		insert into review
-		values(
-		SEQ_REVIEW_NO,
-         #{EMAIL},
-		 #{REVIEW_CONTENT},
-		 #{REVIEW_IMAGE},
-		sysdate,
-		0 
-        )
-	</insert>
 	
 </mapper>
