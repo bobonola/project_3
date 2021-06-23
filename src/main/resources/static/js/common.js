@@ -41,6 +41,15 @@ $(function(){
 			$(".detailTab ul li").css("background","url(none)");
 			$(this).children("a").addClass("on");
 		}
+	/*
+	.bind( eventType [, eventData] , handler( eventObject ) )
+	-> jQuery로 선택한 DOM 객체에 이벤트 핸들러를 등록하는 메서드
+		※eventType: 공백으로 구분된 하나 이상의 JavaScript 이벤트를 포함하는 문자열, 
+		             "click", "keydown" 또는 사용자 정의 함수명
+	-> jQuery는 매우 빈번하게 일어나는 이벤트에 대해선 bind()를 사용하지 않고 사용할 수 있도록 
+	   일종의 전용 바인더를 제공하는데 jQuery.click(), jQuery.hover() 등
+	
+	*/
 	});
 
 	
