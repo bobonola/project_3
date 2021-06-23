@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserVo {
+	
+	
+	
 	private String email;
 	private int user_no;
 	private String password;
@@ -18,4 +21,5 @@ public class UserVo {
 	private String address1;
 	private String address2;
 	private String zipcode;
+
 }
