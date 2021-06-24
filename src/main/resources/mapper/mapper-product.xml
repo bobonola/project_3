@@ -161,5 +161,14 @@
 		OR	   PRODUCT_NAME LIKE '%' || #{search} || '%'
 	</select>
 	
+	<!-- 뷰페이지 호출 -->
+	<select id="selectProductView" resultType="com.site.vo.ProductVo">
+		<![CDATA[	
+			SELECT *
+			FROM   PRODUCT P, PRODUCT_INVENTORY I
+			WHERE  P.PRODUCT_NO = I.PRODUCT_NO
+			AND	   P.PRODUCT_NO = #{product_no}
+	    ]]>
+	</select>
 	
 </mapper>
