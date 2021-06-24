@@ -77,7 +77,7 @@ public class BankServiceImpl implements BankService
 		catch( Exception e )
 		{
 			result.put( "messageType", CommunicationMessage.fail );
-			result.put( CommunicationMessage.fail, e.getMessage() );
+			result.put( "message", e.getMessage() );
 		}
 
 		return result;
@@ -144,7 +144,7 @@ public class BankServiceImpl implements BankService
 		{
 			result = new HashMap<>();
 			result.put( "messageType", CommunicationMessage.fail );
-			result.put( CommunicationMessage.fail, "존재하지 않는 사람입니다." );
+			result.put( "message", "존재하지 않는 사람입니다." );
 		}
 		else
 		{
@@ -182,7 +182,7 @@ public class BankServiceImpl implements BankService
 		if ( accountInfo == null ) // 계좌가 존재하지 않는다면?
 		{
 			result.put( "messageType", CommunicationMessage.fail );
-			result.put( CommunicationMessage.fail, "계좌가 존재하지 않습니다." );
+			result.put( "message", "계좌가 존재하지 않습니다." );
 
 			return result;
 		}
@@ -192,7 +192,7 @@ public class BankServiceImpl implements BankService
 		if ( password.equals( userPassword ) == false ) // 비밀번호 불일치
 		{
 			result.put( "messageType", CommunicationMessage.fail );
-			result.put( CommunicationMessage.fail, "비밀번호가 일치하지 않습니다." );
+			result.put( "message", "비밀번호가 일치하지 않습니다." );
 
 			return result;
 		}
@@ -202,7 +202,7 @@ public class BankServiceImpl implements BankService
 		if ( mallInfo == null )
 		{
 			result.put( "messageType", CommunicationMessage.fail );
-			result.put( CommunicationMessage.fail, "등록되지 않은 업체입니다." );
+			result.put( "message", "등록되지 않은 업체입니다." );
 
 			return result;
 		}
@@ -247,7 +247,7 @@ public class BankServiceImpl implements BankService
 			mapper.logging( log );
 
 			result.put( "messageType", CommunicationMessage.error );
-			result.put( CommunicationMessage.error, ErrorMsg );
+			result.put( "message", ErrorMsg );
 		}
 
 		return result;
@@ -308,7 +308,7 @@ public class BankServiceImpl implements BankService
 		if ( cardInfo == null )
 		{
 			result.put( "messageType", CommunicationMessage.fail );
-			result.put( CommunicationMessage.fail, "카드가 존재하지 않습니다." );
+			result.put( "message", "카드가 존재하지 않습니다." );
 			return result;
 		}
 
@@ -319,7 +319,7 @@ public class BankServiceImpl implements BankService
 		if ( transaction_password.equals( userPassword ) == false ) // 비밀번호 불일치
 		{
 			result.put( "messageType", CommunicationMessage.fail );
-			result.put( CommunicationMessage.fail, "비밀번호가 일치하지 않습니다." );
+			result.put( "message", "비밀번호가 일치하지 않습니다." );
 			return result;
 		}
 
@@ -327,7 +327,7 @@ public class BankServiceImpl implements BankService
 		if ( cvs.equals( cardInfo.getCvs() ) == false ) // CVS 불일치
 		{
 			result.put( "messageType", CommunicationMessage.fail );
-			result.put( CommunicationMessage.fail, "CVS가 일치하지 않습니다." );
+			result.put( "message", "CVS가 일치하지 않습니다." );
 			return result;
 		}
 
@@ -336,7 +336,7 @@ public class BankServiceImpl implements BankService
 		if ( mallInfo == null )
 		{
 			result.put( "messageType", CommunicationMessage.fail );
-			result.put( CommunicationMessage.fail, "비밀번호가 일치하지 않습니다." );
+			result.put( "message", "비밀번호가 일치하지 않습니다." );
 
 			return result;
 		}
@@ -380,7 +380,7 @@ public class BankServiceImpl implements BankService
 			mapper.logging( log );
 
 			result.put( "messageType", CommunicationMessage.error );
-			result.put( CommunicationMessage.error, errorMsg );
+			result.put( "message", errorMsg );
 		}
 
 		return result;
