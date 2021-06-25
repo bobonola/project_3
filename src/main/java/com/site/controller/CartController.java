@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.site.service.CartService;
+import com.site.vo.CartVo;
 
 @Controller
-@RequestMapping("/cart")
 public class CartController {
 	
 	@Autowired
 	CartService cartService;
 	
-	@RequestMapping("/cartList")
+	@RequestMapping("/cart/cartList")		// 장바구니 리스트
 	public String cartList(Model model) {
 		Map<String, Object> map = null;
 		
@@ -27,16 +27,25 @@ public class CartController {
 		return "/cart/cartList";
 	}
 	
-	@RequestMapping("/cartDelete")
+	@RequestMapping("/cart/cartDelete")		// 장바구니 선택 삭제
 	public String cartDelete(@RequestParam("product_no")int product_no) {
 		cartService.cartDelete(product_no);
 		return "redirect:/cart/cartList";
 	}
 	
-	@RequestMapping("/cartAllDelete")
+	@RequestMapping("/cart/cartAllDelete")	// 장바구니 전체 삭제
 	public String cartAllDelete() {
 		cartService.cartAllDelete();
 		return "redirect:/cart/cartList";
+	}
+	
+	@RequestMapping("/pay/payment")
+	public String payment(Model model) {
+		Map<String, Object> map = null;
+		
+		map = cartService.cartList();
+		model.addAttribute("map", map);
+		return "/pay/payment";
 	}
 	
 	

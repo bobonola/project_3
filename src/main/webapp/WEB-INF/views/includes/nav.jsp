@@ -26,7 +26,7 @@
 			<li><a href="#"><span>관리자페이지</span></a></li>
 		</c:when>
 		<c:otherwise>
-			<li><a href="#"><span>장바구니</span></a></li>
+			<li><a href="/cart/cartList"><span>장바구니</span></a></li>
 		</c:otherwise>
 		</c:choose>
 		</ul>

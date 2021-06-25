@@ -65,6 +65,50 @@
 		}
 	}
 	
+	function button_event3(email) {
+		alert("결제창으로 이동합니다!");
+		window.location = "/pay/payment?email=" + email;
+	}
+	
+	$( document ).ready(function() {
+	    //console.log( "ready!" );
+	    
+	    $('#checkbox_${cartVo.product_no}').click(function(){
+			var checked = $('#ck1').is(':checked');
+			$('#ck1').prop('checked',!checked);
+		});
+	    
+	    $('#allChk').click(function(){
+			var checked = $('#allChk').is(':checked');
+			
+			if(checked){
+				//alert("checkbox");
+				$('input:checkbox').prop('checked',true);
+			}
+		});
+	    
+	    sum_total();
+	    
+	  
+	});
+	
+	function sum_total() {
+		var select_obj = 0;
+		  
+	    $('input[type="checkbox"]:checked').each(function (index) {
+	        
+	        select_obj += parseInt( $(this).val());
+	    });
+	    
+	   // alert(select_obj);
+	    
+	    //alert($('#sum_total_price').text());
+	    
+	    $('#sum_total_price').text(select_obj);
+	
+	}
+	
+	
 </script>
 
 <div id="allwrap">
@@ -74,71 +118,7 @@
 <c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 
 
-	<!-- GNB -->
-	<div id="gnb">
-		
-		<div id="top">
-			<ul>
-				<li class="brand t1"><a href="#" id="topNavi1">JARDIN’s BRAND</a>
-					<ul id="topSubm1">
-						<li><a href="#">클래스</a></li>
-						<li><a href="#">홈스타일 카페모리</a></li>
-						<li><a href="#">드립커피백</a></li>
-						<li><a href="#">카페리얼 커피</a></li>
-						<li><a href="#">오리지널커피백</a></li>
-						<li><a href="#">카페리얼 음료</a></li>
-						<li><a href="#">마일드커피백</a></li>
-						<li><a href="#">워터커피</a></li>
-						<li><a href="#">카페포드</a></li>
-						<li><a href="#">모히또파티</a></li>
-						<li><a href="#">테이크아웃 카페모리</a></li>
-						<li><a href="#">포타제</a></li>
-					</ul>
-				</li>
-				<li class="t2"><a href="#" id="topNavi2">원두</a>
-					<ul id="topSubm2">
-						<li><a href="#">클래스</a></li>
-						<li><a href="#">로스터리샵</a></li>
-						<li><a href="#">커피휘엘</a></li>
-						<li><a href="#">산지별 생두</a></li>
-					</ul>
-				</li>
-				<li class="t1"><a href="#" id="topNavi3">원두커피백</a>
-					<ul id="topSubm3">
-						<li><a href="#">드립커피 로스트</a></li>
-						<li><a href="#">오리지널커피백</a></li>
-						<li><a href="#">마일드커피백</a></li>
-					</ul>
-				</li>
-				<li class="t2"><a href="#" id="topNavi4">인스턴트</a>
-					<ul id="topSubm4">
-						<li><a href="#">까페모리</a></li>
-						<li><a href="#">홈스타일카페모리</a></li>
-						<li><a href="#">포타제</a></li>
-					</ul>
-				</li>
-				<li class="t1"><a href="#" id="topNavi5">음료</a>
-					<ul id="topSubm5">
-						<li><a href="#">까페리얼</a></li>
-						<li><a href="#">워터커피</a></li>
-						<li><a href="#">모히또</a></li>
-					</ul>
-				</li>
-				<li class="t2"><a href="#" id="topNavi6">커피용품</a>
-					<ul id="topSubm6">
-						<li><a href="#">종이컵</a></li>
-						<li><a href="#">커피필터</a></li>
-						<li><a href="#">머신 등</a></li>
-					</ul>
-				</li>
-				<li class="t1"><a href="#" id="topNavi7">선물세트</a></li>
-				<li class="t2"><a href="#" id="topNavi8">대량구매</a></li>
-			</ul>
-		</div>
-
-		<script type="text/javascript">initTopMenu();</script>
-	</div>
-	<!-- //GNB -->
+	
 
 	<!-- container -->
 	<div id="container">
@@ -197,7 +177,7 @@
 							<col width="14%" class="tnone" />
 							</colgroup>
 							<thead>
-								<th scope="col"><input type="checkbox" /></th>
+								<th scope="col"><input type="checkbox" id="allChk" onchange="sum_total()" value="0"/></th>			
 								<th scope="col">상품명</th>
 								<th scope="col" class="tnone">가격/포인트</th>
 								<th scope="col">수량</th>
@@ -207,28 +187,31 @@
 							<tbody>
 							<c:set var="sum" value="0" />
 								<c:forEach var="cartVo" items="${map.list }">
-								<tr>
-									<td><input type="checkbox"/></td>
-									<td class="left">
-										<p class="img"><img src="http://localhost:8000/images/product_images/nike001.jpg" alt="상품" width="66" height="66" /></p>
-
-										<ul class="goods">
-											<li>
-												<a href="#">${cartVo.product_name }</a>
-											</li>
-										</ul>
-									</td>
-									<td class="tnone"><fmt:formatNumber value="${cartVo.product_price}" pattern="#,###"/> 원<br/></td>
-									<td>${cartVo.product_count }</td>
-									<td><fmt:formatNumber value="${cartVo.product_total_price}" pattern="#,###"/> 원</td>
-									<td class="tnone">
-										<ul class="order">	
-											<li><a href="#" class="obtnMini iw70">바로구매</a></li>
-											<li><a onclick="button_event1(${cartVo.product_no})" href="#" class="nbtnMini iw70">상품삭제</a></li>
-										</ul>
-									</td>
-								</tr>
-								<c:set var="sum" value="${sum + (cartVo.product_total_price)}" />
+									<c:if test="${session_email == cartVo.email}">
+										<tr>
+											
+											<td><input type="checkbox" id="checkbox_${cartVo.product_no }" value="${cartVo.product_total_price}" onchange="sum_total()" /></td>
+											<td class="left">
+												<p class="img"><img src="..${cartVo.product_main_image }" alt="상품" width="66" height="66" /></p>
+		
+												<ul class="goods">
+													<li>
+														<a href="#">${cartVo.product_name }</a>
+													</li>
+												</ul>
+											</td>
+											<td class="tnone"><fmt:formatNumber value="${cartVo.product_price}" pattern="#,###"/> 원<br/></td>
+											<td>${cartVo.product_count }</td>
+											<td><fmt:formatNumber value="${cartVo.product_total_price}" pattern="#,###"/> 원</td>
+											<td class="tnone">
+												<ul class="order">	
+													<li><a href="#" class="obtnMini iw70">바로구매</a></li>
+													<li><a onclick="button_event1(${cartVo.product_no})" href="#" class="nbtnMini iw70">상품삭제</a></li>
+												</ul>
+											</td>
+										</tr>
+										<c:set var="sum" value="${sum + (cartVo.product_total_price)}" />
+									</c:if>
 								</c:forEach>
 							</tbody>
 						</table>
@@ -238,7 +221,7 @@
 						<div class="bRight">
 							<ul>
 								<li><a onclick="button_event2()" href="#" class="selectbtn">전체삭제</a></li>
-								<li><a href="#" class="selectbtn">전체구매</a></li>
+								<li><a onclick="button_event3('${session_email}')" href="#" class="selectbtn">전체구매</a></li>
 							</ul>
 						</div>
 					</div>
@@ -249,28 +232,15 @@
 					<div class="amount">
 						<h4>총 주문금액</h4>
 						<ul class="info">
-							<li>
-								<span class="title">상품 합계금액</span>
-								<span class="won"><strong><fmt:formatNumber value="${sum}" pattern="#,###" /></strong> 원</span>
-							</li>
-							<li>
-								<span class="title">배송비 (8만원 이상 무료)</span>
-								<c:if test="${80000 lt sum }">
-									<span class="won"><strong>0</strong> 원</span>
-								</c:if>
-								<c:if test="${80000 ge sum }">
-									<span class="won"><strong><fmt:formatNumber value="3000" pattern="#,###" /></strong> 원</span>
-								</c:if>
-								
-							</li>
+							
 						</ul>
 						<ul class="total">
 							<li class="txt"><strong>결제 예정 금액</strong></li>
-							<c:if test="${80000 lt sum }">
-								<li class="money"><span><fmt:formatNumber value="${sum}" pattern="#,###" /></span> 원</li>
+							<c:if test="${100000 lt sum }">
+								<li class="money"><span id="sum_total_price"><fmt:formatNumber value="${sum}" pattern="#,###" /></span> 원</li>
 							</c:if>
-							<c:if test="${80000 ge sum }">
-								<li class="money"><span><fmt:formatNumber value="${sum + 3000}" pattern="#,###" /></span> 원</li>
+							<c:if test="${100000 ge sum }">
+								<li class="money"><span id="sum_total_price"><fmt:formatNumber value="${sum + 3000}" pattern="#,###" /></span> 원</li>
 							</c:if>
 						</ul>
 					</div>

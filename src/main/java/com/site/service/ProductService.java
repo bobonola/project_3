@@ -17,7 +17,5 @@ public interface ProductService {
 	
 	// 상세뷰페이지 호출
 	Map<String, Object> productView(int product_no);
-	
-	
 
 }

@@ -2,6 +2,8 @@ package com.site.service;
 
 import java.util.Map;
 
+import com.site.vo.CartVo;
+
 public interface CartService {
 
 	// 장바구니 리스트 호출

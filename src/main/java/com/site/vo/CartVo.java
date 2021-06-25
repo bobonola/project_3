@@ -16,6 +16,6 @@ public class CartVo {
 	private int product_count;			// 상품갯수
 	private int product_price;			// 상품가격
 	private int product_total_price;	// 상품 총합 가격
-	private String product_main_image;
+	private String product_main_image;	// 상품 메인이미지
 	
 }

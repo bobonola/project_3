@@ -504,7 +504,7 @@
 .orderTable td.right{padding:20px 10px; text-align:right; font-size:13px;}
 .orderTable td p.day{color:#888}
 .orderTable td p.orderNum{font-size:14px; color:#666; text-decoration:underline; padding:4px 0 0 0; line-height:1.2;}
-.orderTable td p.img{position:relative; float:left; width:0; height:66px;}
+.orderTable td p.img{position:relative; float:left; width:66px; height:66px;}
 .orderTable td p.img img{position:absolute; left:0; top:0;}
 .orderTable td ul.state{width:86px; margin:8px auto 0;}
 .orderTable td ul.state li{float:left; padding:0 0 5px 0;}
