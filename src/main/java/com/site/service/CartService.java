@@ -13,4 +13,8 @@ public interface CartService {
 	// 장바구니 전체삭제
 	void cartAllDelete();
 
+	//장바구니 물건 추가
+	void cartInsert(CartVo cartVo);
+
+
 }

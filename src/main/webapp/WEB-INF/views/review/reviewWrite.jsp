@@ -18,17 +18,9 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean"
 	rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/write.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/write.css">
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<script type="text/javascript">
-
-
-
-</script>
-
-
 </head>
 
 <body>
@@ -36,19 +28,22 @@
 		<h1>구매후기 작성</h1>
 		<hr>
 		<!-- enctype="multipart/form-data" : 이걸 써줘야 파일이 업로드된다. 꼭 필요함! -->	
-		<form action="./reviewWriteDo" name="reviewWrite" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="product_no" value="${product_no}">
-			<table>
+		<form action="./rewriteInsert" name="write" method="post" enctype="multipart/form-data">
+		<table>
 				<colgroup>
 					<col width="15%">
 					<col width="85%">
 				</colgroup>
 				<tr>
-					<th>작성자</th>
+					<th>작 성 자</th>
 					<td><input type="text" name="email" value="${session_email}" readonly="readonly"></td> <!-- 세션에 저장된 이메일을 value에 -->
+						<!-- 번호를 뿌릴곳이 없기 때문에 숨김으로 product_no를 view에서 받아옴 -->
+						<input type="hidden" name="product_no" value="${product_no}"></td>
+								
 				</tr>
+				
 				<tr>
-					<th>제목</th>
+					<th>제   목</th>
 					<td><input type="text" name="review_title"></td>
 				</tr>
 				<tr>
@@ -60,26 +55,26 @@
 									<label for="starFive" class="star">
 									<input type="radio" name="review_ratings" id="starFive" value="5" checked="checked"/>
 									<c:forEach begin="1" end="5">
-										<img src="../images/view_img/ico_star.gif" alt="별점" />
+										<img src="../images/product_images/ico_star.gif" alt="별점" />
 									</c:forEach>
 									
 									<input type="radio" name="review_ratings" id="starFour" value="4"/>
 									<c:forEach begin="1" end="4">
-										<img src="../images/view_img/ico_star.gif" alt="별점" />
+										<img src="../images/product_images/ico_star.gif" alt="별점" />
 									</c:forEach>
 									
 									<input type="radio" name="review_ratings" id="starThree" value="3"/>
 									<c:forEach begin="1" end="3">
-										<img src="../images/view_img/ico_star.gif" alt="별점" />
+										<img src="../images/product_images/ico_star.gif" alt="별점" />
 									</c:forEach>
 									
 									<input type="radio" name="review_ratings" id="starTwo" value="2"/>
 									<c:forEach begin="1" end="2">
-										<img src="../images/view_img/ico_star.gif" alt="별점" />
+										<img src="../images/product_images/ico_star.gif" alt="별점" />
 									</c:forEach>
 
 									<input type="radio" name="review_ratings" id="starOne" value="1"/>
-										<img src="../images/view_img/ico_star.gif" alt="별점" />
+										<img src="../images/product_images/ico_star.gif" alt="별점" />
 									</label>
 								</li>
 

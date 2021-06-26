@@ -161,7 +161,7 @@
 		OR	   PRODUCT_NAME LIKE '%' || #{search} || '%'
 	</select>
 	
-	<!-- 뷰페이지 호출 -->
+	<!-- 상세뷰페이지 호출 -->
 	<select id="selectProductView" resultType="com.site.vo.ProductVo">
 		<![CDATA[	
 			SELECT *

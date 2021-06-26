@@ -29,4 +29,12 @@
 		DELETE CART
 	</delete>
 	
+	<!-- 장바구니 쓰기 저장 -->
+	<insert id="cartInsertDo"> 
+	   INSERT INTO cart
+	   (cart_no, email, product_no, product_count) 
+	   VALUES
+	   (SEQ_CART_NO.NEXTVAL, #{email}, #{product_no}, #{product_count})
+	</insert>
+	
 </mapper>

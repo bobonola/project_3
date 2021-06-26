@@ -15,5 +15,8 @@ public interface CartMapper {
 	void deleteCartDelete(int product_no);
 	// 장바구니 전체삭제
 	void deleteCartAllDelete();
+	
+	//장바구니 물건 추가
+	void cartInsertDo(CartVo cartVo);
 
 }

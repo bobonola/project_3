@@ -1,6 +1,9 @@
 package com.site.service;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +19,7 @@ public class ReviewServiceImpl implements ReviewService {
 	ReviewMapper reviewMapper;
 	
 	@Override
-	public void reviewWirteDo(ReviewVo reviewVo, MultipartFile file) {
+	public void rewriteInsert(ReviewVo reviewVo, MultipartFile file) {
 		//파일저장위치
 		String fileUrl = "D:/workspace3/shop/src/main/resources/static/upload/";
 		
@@ -44,5 +47,64 @@ public class ReviewServiceImpl implements ReviewService {
 
 		System.out.println("DB저장 후 uploadFileName : " + reviewVo.getEmail());
 	}
+	
+	//리뷰 리스트
+		@Override
+		public Map<String, Object> reviewList(int page, int product_no) {
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			int limit = 10;
+			
+			int startRow = (page - 1) * limit + 1;
+			int endRow = startRow + limit - 1;
+			
+			List<ReviewVo> list = reviewMapper.selectReviewList(startRow, endRow,product_no);
+			int listCount = 0;	// 총 게시글 수
+			listCount = reviewMapper.selectReviewCount();
+			
+			//하단 최대 넘버링페이지 
+			int maxPage = (int)((double)listCount / limit + 0.99); 
+			//하단 시작 넘버링페이지
+			int startPage = (((int) ((double)page / 10 + 0.99)) - 1) * 10 + 1;
+			//하단 끝 넘버링페이지
+			int endPage = maxPage;
+			// 1,2,3,4,5,6,7,8,9,10 -> 10개가 모두 있을 경우는 10을 endPage에 넣어줌.
+			if (endPage > startPage + 10 - 1) {
+				endPage = startPage + 10 - 1;
+			}
+			
+			System.out.println(list);
+			
+			map.put("list", list);
+			map.put("page", page);
+			map.put("listCount", listCount);
+			map.put("startPage", startPage);
+			map.put("endPage", endPage);
+			map.put("maxPage", maxPage);
+			
+			return map;
+		}
+
+		//리뷰 수정페이지 호출
+		@Override
+		public ReviewVo reviewModify(int review_no) {
+			ReviewVo reviewVo = reviewMapper.selectReviewModify(review_no);
+			return reviewVo;
+		}
+
+		//리뷰 수정 저장
+		@Override
+		public void reviewModifyDo(ReviewVo reviewVo) {
+			reviewMapper.updateReviewModifyDo(reviewVo);
+			
+		}
+		
+		//리뷰 삭제
+		@Override
+		public void reviewDelete(int review_no) {
+			reviewMapper.deleteReviewDelete(review_no);
+			
+		}
 
 }

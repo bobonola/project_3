@@ -43,6 +43,13 @@ public class CartServiceImpl implements CartService {
 	public void cartAllDelete() {
 		cartMapper.deleteCartAllDelete();
 	}
+	
+	//장바구니 물건 추가
+	@Override
+	public void cartInsert(CartVo cartVo) {
+		cartMapper.cartInsertDo(cartVo);
+			
+	}
 
 
 }
