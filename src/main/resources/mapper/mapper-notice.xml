@@ -5,7 +5,6 @@
   
 <mapper namespace="com.site.mapper.NoticeMapper">
 
-
 	<!-- 전체리스트 호출 -->
 	<select id="selectNoticeList" resultType ="com.site.vo.NoticeVo">
 		<![CDATA[
