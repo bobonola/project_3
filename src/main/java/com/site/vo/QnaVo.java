@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class QnaVo {
+	
 	private int qna_no;				// qna 번호
 	private String email;			// user email
 	private String qna_title;		// qna 제목
@@ -21,4 +22,5 @@ public class QnaVo {
 	private int qna_indent;			// qna 답글indent
 	private int qna_secret_code;	// qna 비밀글코드
 	private String qna_name;		// qna 작성자
+	
 }

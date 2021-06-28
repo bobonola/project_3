@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductVo {
+	
 	private int product_no;					// 상품번호
 	private String st_no;					// 스타일번호
 	private String product_name;			// 상품명

@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReviewVo {
+	
 	private int review_no;
 	private String email;
 	private int product_no;
