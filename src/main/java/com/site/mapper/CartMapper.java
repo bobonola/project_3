@@ -12,11 +12,10 @@ public interface CartMapper {
 	// 장바구니 리스트 호출
 	List<CartVo> selectCartList();
 	// 장바구니 삭제
-	void deleteCartDelete(int product_no);
+	void deleteCartDelete(int cart_no);
 	// 장바구니 전체삭제
 	void deleteCartAllDelete();
-	
-	//장바구니 물건 추가
+	// 장바구니 추가
 	void cartInsertDo(CartVo cartVo);
 
 }
