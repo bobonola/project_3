@@ -3,13 +3,16 @@ package com.site.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.site.service.UserService;
@@ -21,42 +24,75 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping("/login")		// 로그인
+	
+	@RequestMapping("/main")
+	public String main() {
+		return "/main";
+	}
+	
+	@RequestMapping("/login")
 	public String login() {
 		return "/login";
 	}
 	
-	@RequestMapping("/logout")		// 로그아웃
+	@RequestMapping("/join")
+	public String join() {
+		return "/joinform";
+	}
+	
+	@GetMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		return "/index";
+		return "/main";
 	}
 	
-	@RequestMapping(value="/login_ajax")	// 로그인
+	
+	@RequestMapping(value="/login_ajax")
 	@ResponseBody
-	public Map<String, Object> login_ajax(UserVo userVo,
-			HttpServletRequest request,
-			Model model) {
+	public Map<String,Object> login_ajax(UserVo userVo,
+								HttpServletRequest request,
+								Model model) {
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		UserVo uVo = userService.login(userVo);
-		map.put("uVo", uVo);
-		
-		if(uVo == null) {
+		Map<String,Object> map=new HashMap<String, Object>();
+		UserVo uVo = userService.login(userVo); //전체리스트 가져오기
+		map.put("uVo",uVo);
+		if(uVo==null) {
 			map.put("flag", "fail");
 			map.put("msg", "이메일과 패스워드가 일치하지 않습니다.");
-		} else {
+		}else {
 			map.put("flag", "success");
 			map.put("msg", "로그인 성공!");
 			HttpSession session = request.getSession();
-			session.setAttribute("session_flag", "success");
+			session.setAttribute("session_flag","success");
 			session.setAttribute("session_email", uVo.getEmail());
 			session.setAttribute("session_admin_code", uVo.getAdmin_code());
 			session.setAttribute("name", uVo.getName());
 		}
-		
 		return map;
 	}
 	
+	@RequestMapping("/joinDo")
+	public String joinDo(UserVo userVo) {
+		userService.insertUser(userVo);
+		return "/main";
+	}
+	
+	//이메일 중복체크
+	
+	@RequestMapping(value="/emailChk", method = RequestMethod.POST)
+	@ResponseBody
+	public String emailChkPOST(String email) throws Exception{
+		System.out.println("emailChk() 진입");
+		int result = userService.emailCheck(email);
+		System.out.println("결과값 = " + result);
+		if(result !=0) {
+			return "fail";
+		}else {
+			return "success";
+		}
+	}
+	
+	
+
 }

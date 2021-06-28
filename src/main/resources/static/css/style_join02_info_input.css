@@ -3,10 +3,7 @@
 * { margin: 0px; padding: 0px;}
 ul, ol{ list-style-type: none; }
 
-@charset "UTF-8";
 
-* { margin: 0px; padding: 0px;}
-ul, ol{ list-style-type: none; }
 
 /* header */
 #nav_up {
@@ -791,6 +788,16 @@ input[type="checkbox"]:not(old):checked + label {
 	border: 1px solid #fff;
 }
 
+	/* 중복아이디 존재하지 않는경우 */
+	.email_input_re_1{
+		color : green;
+		display : none;
+	}
+	/* 중복아이디 존재하는 경우 */
+	.email_input_re_2{
+		color : red;
+		display : none;
+	}
 
 
 

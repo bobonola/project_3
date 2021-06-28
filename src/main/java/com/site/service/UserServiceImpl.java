@@ -12,9 +12,25 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserMapper userMapper;
 
-	@Override		// 사용자 로그인
+	@Override
 	public UserVo login(UserVo userVo) {
 		return userMapper.selectLogin(userVo);
 	}
+
+	@Override
+	public void insertUser(UserVo userVo) {
+		userMapper.insertUserDo(userVo);
+	
+	}
+
+	@Override
+	public int emailCheck(String email) throws Exception {
+		
+		return userMapper.emailCheck(email);
+	}
+
+
+
+
 
 }

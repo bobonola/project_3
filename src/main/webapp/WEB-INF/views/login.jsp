@@ -24,7 +24,7 @@
     			 success:function(data){
     				 alert(data.msg);
     				 if(data.flag=="success"){
-    				    location.href="./index";
+    				    location.href="./main";
     				 }else{
     					 $("#email").val(""); //공백처리 
     					 $("#password").val("");
