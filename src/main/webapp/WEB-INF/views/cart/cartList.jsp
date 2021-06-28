@@ -49,65 +49,58 @@
 <!--//익스레이어팝업-->
 <!--IE 6,7,8 사용자에게 브라우저 업데이터 설명 Div 관련 스크립트-->
 <script type="text/javascript">	
-	function button_event1(no) {
-		if (confirm("삭제 하시겠습니까?") == true) { //확인
-			window.location = "./cartDelete?product_no=" + no;
-		} else { //취소
+	
+	function selected_delete(cart_no) {
+		if(confirm("삭제 하시겠습니까?") == true) {
+			window.location = "./cartDelete?cart_no=" + cart_no;
+		} else {
 			return;
 		}
 	}
 	
-	function button_event2() {
-		if (confirm("삭제 하시겠습니까?") == true) {
+	function all_delete() {
+		if(confirm("삭제 하시겠습니까?") == true) {
 			window.location = "./cartAllDelete";
 		} else {
 			return;
 		}
 	}
 	
-	function button_event3(email) {
-		alert("결제창으로 이동합니다!");
+	function all_pay(email) {
+		alert("결제창으로 이동합니다.");
 		window.location = "/pay/payment?email=" + email;
 	}
 	
-	$( document ).ready(function() {
-	    //console.log( "ready!" );
-	    
-	    $('#checkbox_${cartVo.product_no}').click(function(){
-			var checked = $('#ck1').is(':checked');
-			$('#ck1').prop('checked',!checked);
+	function selected_pay(email, cart_no) {
+		alert("결제창으로 이동합니다.");
+		window.location = "/pay/payment?email=" + email + "&cart_no=" + cart_no;
+	}
+	
+	$(document).ready(function() {
+		$('#checkbox_${cartVo.cart_no}').click(function() {
+			var checked = $('#checkbox_${cartVo.cart_no}').is(':checked');
+			$('#checkbox_${cartVo.cart_no}').prop('checked', !checked);
 		});
-	    
-	    $('#allChk').click(function(){
-			var checked = $('#allChk').is(':checked');
+		
+		$('#allCheck').click(function() {
+			var checked = $('#allCheck').is(':checked');
 			
-			if(checked){
-				//alert("checkbox");
-				$('input:checkbox').prop('checked',true);
+			if(checked) {
+				$('input:checkbox').prop('checked', true);
 			}
 		});
-	    
-	    sum_total();
-	    
-	  
+		
+		sum_total();
 	});
 	
 	function sum_total() {
 		var select_obj = 0;
-		  
-	    $('input[type="checkbox"]:checked').each(function (index) {
-	        
-	        select_obj += parseInt( $(this).val());
-	    });
-	    
-	   // alert(select_obj);
-	    
-	    //alert($('#sum_total_price').text());
-	    
-	    $('#sum_total_price').text(select_obj);
-	
+		$('input[type="checkbox"]:checked').each(function(index) {
+			select_obj += parseInt($(this).val());
+		});
+		
+		$('#sum_total_price').text(select_obj);
 	}
-	
 	
 </script>
 
@@ -115,9 +108,7 @@
 <div id="wrap">
 
 	<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
-<c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
-
-
+	<c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 	
 
 	<!-- container -->
@@ -125,7 +116,7 @@
 
 		<div id="location">
 			<ol>
-				<li><a href="#">HOME</a></li>
+				<li><a href="../index">HOME</a></li>
 				<li><a href="#">MY PAGE</a></li>
 				<li class="last">장바구니</li>
 			</ol>
@@ -177,40 +168,47 @@
 							<col width="14%" class="tnone" />
 							</colgroup>
 							<thead>
-								<th scope="col"><input type="checkbox" id="allChk" onchange="sum_total()" value="0"/></th>			
+								<th scope="col"><input type="checkbox" id="allCheck" onchange="sum_total()" value="0" /></th>			
 								<th scope="col">상품명</th>
-								<th scope="col" class="tnone">가격/포인트</th>
+								<th scope="col" class="tnone">가격</th>
 								<th scope="col">수량</th>
 								<th scope="col">합계</th>
 								<th scope="col" class="tnone">주문</th>
 							</thead>
 							<tbody>
-							<c:set var="sum" value="0" />
+								<c:set var="sum" value="0" />
 								<c:forEach var="cartVo" items="${map.list }">
-									<c:if test="${session_email == cartVo.email}">
+									<c:if test="${session_email == cartVo.email }">
 										<tr>
-											
-											<td><input type="checkbox" id="checkbox_${cartVo.product_no }" value="${cartVo.product_total_price}" onchange="sum_total()" /></td>
+											<td>
+												<input type="checkbox" id="checkbox_${cartVo.cart_no }" 
+												value="${cartVo.product_total_price }" onchange="sum_total()">
+											</td>
 											<td class="left">
-												<p class="img"><img src="..${cartVo.product_main_image }" alt="상품" width="66" height="66" /></p>
-		
+												<p class="img">
+													<img src="..${cartVo.product_main_image }" alt="상품" width="66" height="66" />
+												</p>
 												<ul class="goods">
 													<li>
-														<a href="#">${cartVo.product_name }</a>
+														<a href="../view">${cartVo.product_name }</a>
 													</li>
 												</ul>
 											</td>
-											<td class="tnone"><fmt:formatNumber value="${cartVo.product_price}" pattern="#,###"/> 원<br/></td>
-											<td>${cartVo.product_count }</td>
-											<td><fmt:formatNumber value="${cartVo.product_total_price}" pattern="#,###"/> 원</td>
 											<td class="tnone">
-												<ul class="order">	
-													<li><a href="#" class="obtnMini iw70">바로구매</a></li>
-													<li><a onclick="button_event1(${cartVo.product_no})" href="#" class="nbtnMini iw70">상품삭제</a></li>
+												<fmt:formatNumber value="${cartVo.product_price }" pattern="#,###" />원 <br />
+											</td>
+											<td>${cartVo.product_count }</td>
+											<td>
+												<fmt:formatNumber value="${cartVo.product_total_price }" pattern="#,###" />원 <br />
+											</td>
+											<td class="tnone">
+												<ul class="order">
+													<li><a onclick="selected_pay('${session_email }', ${cartVo.cart_no })" href="#" class="obtnMini iw70">바로구매</a></li>
+													<li><a onclick="selected_delete(${cartVo.cart_no})" href="#" class="obtnMini iw70">상품삭제</a></li>
 												</ul>
 											</td>
 										</tr>
-										<c:set var="sum" value="${sum + (cartVo.product_total_price)}" />
+										<c:set var="sum" value="${sum + (cartVo.product_total_price) }" />
 									</c:if>
 								</c:forEach>
 							</tbody>
@@ -220,8 +218,8 @@
 					<div class="btnArea">
 						<div class="bRight">
 							<ul>
-								<li><a onclick="button_event2()" href="#" class="selectbtn">전체삭제</a></li>
-								<li><a onclick="button_event3('${session_email}')" href="#" class="selectbtn">전체구매</a></li>
+								<li><a onclick="all_delete()" href="#" class="selectbtn">전체삭제</a></li>
+								<li><a onclick="all_pay('${session_email}')" href="#" class="selectbtn">전체구매</a></li>
 							</ul>
 						</div>
 					</div>
@@ -232,16 +230,11 @@
 					<div class="amount">
 						<h4>총 주문금액</h4>
 						<ul class="info">
-							
 						</ul>
 						<ul class="total">
 							<li class="txt"><strong>결제 예정 금액</strong></li>
-							<c:if test="${100000 lt sum }">
-								<li class="money"><span id="sum_total_price"><fmt:formatNumber value="${sum}" pattern="#,###" /></span> 원</li>
-							</c:if>
-							<c:if test="${100000 ge sum }">
-								<li class="money"><span id="sum_total_price"><fmt:formatNumber value="${sum + 3000}" pattern="#,###" /></span> 원</li>
-							</c:if>
+							<li class="money"><span id="sum_total_price"><fmt:formatNumber value="${sum}" pattern="#,###" /></span> 원</li>
+							
 						</ul>
 					</div>
 					<!-- //총 주문금액 -->
