@@ -28,8 +28,8 @@ public class CartController {
 	}
 	
 	@RequestMapping("/cart/cartDelete")		// 장바구니 선택 삭제
-	public String cartDelete(@RequestParam("product_no")int product_no) {
-		cartService.cartDelete(product_no);
+	public String cartDelete(@RequestParam("cart_no")int cart_no) {
+		cartService.cartDelete(cart_no);
 		return "redirect:/cart/cartList";
 	}
 	
@@ -39,7 +39,7 @@ public class CartController {
 		return "redirect:/cart/cartList";
 	}
 	
-	@RequestMapping("/pay/payment")
+	@RequestMapping("/pay/payment")			// 결제창 리스트
 	public String payment(Model model) {
 		Map<String, Object> map = null;
 		

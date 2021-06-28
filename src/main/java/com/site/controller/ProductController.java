@@ -29,7 +29,6 @@ public class ProductController {
 	@Autowired
 	CartService cartService;
 	
-	
 	// 메인페이지 호출
 	@RequestMapping("/index")		
 	public String index(@RequestParam(value="page", defaultValue="1")int page,
@@ -51,35 +50,31 @@ public class ProductController {
 	}
 	
 	// 상세뷰페이지 호출
-		@RequestMapping("/view")		
-		public String view(@RequestParam("product_no")int product_no, 
-				Model model,
-				@RequestParam(value="page", defaultValue="1")int page) {
-			Map<String, Object> map = productService.productView(product_no);
-			
-			//상품 정보 호출
-			model.addAttribute("map", map);
-			
-			//리뷰 정보 받아오기.
-			Map<String, Object> review_map = reviewService.reviewList(page, product_no);
-			model.addAttribute("review_map", review_map);
-			
-			return "/view";
-		}
+	@RequestMapping("/view")		
+	public String detail(@RequestParam("product_no")int product_no, 
+			@RequestParam(value="page", defaultValue="1")int page,
+			Model model) {
+		Map<String, Object> map = productService.productView(product_no);	
 		
-		//장바구니 쓰기저장 호출
-		@RequestMapping("/cart/cartInsert") 
-		public String cartInsert(CartVo cartVo) {
-			// 데이터, 파일첨부에서 넘어온 파일명을 매개변수로 보냄.
-			System.out.println("cartVo : " + cartVo);
-			
-			cartService.cartInsert(cartVo);
-			
-			return "redirect:/cart/cartList";
-		}
+		// 상품 정보 호출
+		model.addAttribute("map", map);
+		
+		// 리뷰 정보 받아오기
+		Map<String, Object> review_map = reviewService.reviewList(page, product_no);
+		model.addAttribute("review_map", review_map);
+		
+		return "/view";
+	}
 	
-	
-	
+	// 장바구니 저장
+	@RequestMapping("/cart/cartInsert")
+	public String cartInsert(CartVo cartVo) {
+		System.out.println("cartVo : " + cartVo);
+		
+		cartService.cartInsert(cartVo);
+		
+		return "redirect:/cart/cartList";
+	}
 	
 	
 	

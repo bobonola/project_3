@@ -57,8 +57,8 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("/noticeWriteDo") //쓰기저장 호출
-	public String noticeWriteDo(NoticeVo noticeVo,@RequestPart MultipartFile file) {
-		noticeService.noticeWriteDo(noticeVo,file);
+	public String noticeWriteDo(NoticeVo noticeVo, @RequestPart MultipartFile file) {
+		noticeService.noticeWriteDo(noticeVo, file);
 		return "redirect:/notice/noticeList";
 	}
 	
@@ -77,7 +77,7 @@ public class NoticeController {
 	
 	@RequestMapping("/noticeModifyDo") //수정페이지 호출
 	public String modifyDo(NoticeVo noticeVo, @RequestPart MultipartFile file) {
-		noticeService.noticeModifyDo(noticeVo,file);
+		noticeService.noticeModifyDo(noticeVo, file);
 		return "redirect:/notice/noticeList?notice_no=" + noticeVo.getNotice_no();
 	}
 	
