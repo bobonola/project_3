@@ -32,35 +32,52 @@ public class MemberController {
 		return "/pg/payment";
 	}
 	
-	@GetMapping("/pg/join")
+	@GetMapping("/join/join")
 	public String join() {
-		return "/pg/join";
+		return "/join/join";
 	}
 	
-	@GetMapping("/pg/join_email")
+	@GetMapping("/join/join_email")
 	public String join_email() {
-		return "/pg/join_email";
+		return "/join/join_email";
 	}
 	
-	@GetMapping("/pg/join_profile")
+	@GetMapping("/join/join_profile")
 	public String join_profile() {
-		return "/pg/join_profile";
+		return "/join/join_profile";
 	}
 	
-	@GetMapping("/pg/join_paymethod")
+	@GetMapping("/join/join_paymethod")
 	public String join_paymethod() {
-		return "/pg/join_paymethod";
+		return "/join/join_paymethod";
 	}
 	
-	@GetMapping("/pg/detail")
+	@GetMapping("/join/join_password_card")
+	public String join_password_card() {
+		return "/join/join_password_card";
+	}
+	
+	@GetMapping("/join/join_password_account")
+	public String join_password_account() {
+		return "/join/join_password_account";
+	}
+	
+	@GetMapping("/join/join_success")
+	public String join_success() {
+		return "/join/join_success";
+	}
+
+	@GetMapping("/test/detail")
 	public String detail() {
 		return "/pg/detail";
 	}
 	
-	@GetMapping("/pg/detailtest")
+	@GetMapping("/test/detailtest")
 	public String detailtest() {
 		return "/pg/detailtest";
 	}
+	
+
 	
 //	@RequestMapping(value="/login_ajax")
 //	@ResponseBody
