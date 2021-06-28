@@ -57,7 +57,7 @@
       <hr>
       <div class="button-wrapper">
         <button type="submit" class="write">수정완료</button>
-        <button type="button" class="cancel" onclick="javascript:location.href='qnaList'">취소</button>
+        <button type="button" class="cancel" onclick="javascript:location.href='./qnaList'">취소</button>
       </div>
     </form>
 

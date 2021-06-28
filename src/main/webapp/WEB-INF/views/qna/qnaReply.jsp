@@ -76,7 +76,7 @@ ${qnaVo.qna_content }
       <hr>
       <div class="button-wrapper">
         <button type="submit" class="write">답변완료</button>
-        <button type="button" class="cancel" onclick="javascript:location.href='qnaList'">취소</button>
+        <button type="button" class="cancel" onclick="javascript:location.href='./qnaList'">취소</button>
       </div>
     </form>
 
