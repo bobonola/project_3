@@ -14,15 +14,15 @@
 <body>
 	<div id="nav_up">
 		<ul>
-			<li><a href="/qna/qnaList">QNA</a></li>
+			<li><a href="../qna/qnaList">QNA</a></li>
 			<li>기프트카드 등록</li>
 			<c:choose>
 				<c:when test="${session_flag == null || session_flag == 'fail' }">
-					<li><a href="/join">회원가입&nbsp;</a>|</li>
-					<li><a href="/login">로그인&nbsp;</a>|</li> 
+					<li><a href="../user/joinForm">회원가입&nbsp;</a>|</li>
+					<li><a href="../user/login">로그인&nbsp;</a>|</li> 
 				</c:when>
 				<c:otherwise>
-					<li><a href="/logout">로그아웃</a></li>
+					<li><a href="../user/logout">로그아웃</a></li>
 			 	</c:otherwise>	
 			</c:choose>
 		</ul>
