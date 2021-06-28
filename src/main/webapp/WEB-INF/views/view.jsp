@@ -48,7 +48,12 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-
+/* 
+   자바스크립트의 onload와 같은 기능
+   모든 html 페이지가 화면에 뿌려지고 나서 저 ready안에 서술된 이벤트들이 동작준비를 하는것
+   줄여서 $(function(){ }); 사용가능
+   https://roqkffhwk.tistory.com/1 요기서 자세한거 확인하기
+*/	
 });
 </script>
 
@@ -95,7 +100,7 @@ $(document).ready(function() {
  <script type="text/javascript">
     function reviewDelete_check(review_no, product_no){
     	if(confirm("삭제하시겠습니까?")){
-    		location.href="./reviewDelete?review_no=" + review_no +"&product_no=" + product_no;
+    		location.href="./review/reviewDelete?review_no=" + review_no +"&product_no=" + product_no;
     		
     	}else{
     		return false;
@@ -206,6 +211,15 @@ $(document).ready(function() {
 								</form>
 								<!-- //판매중 -->
 
+								<!-- 판매중지 -->
+								<!-- <div class="endbtn" style="display:none;">
+						<ul>
+							<li><a href="#">판매중지</a></li>
+							<li><a href="#">SOLD OUT</a></li>
+						</ul>
+					</div> -->
+								<!-- //판매중지 -->
+
 							</div>
 							<!-- //info -->
 
@@ -232,6 +246,10 @@ $(document).ready(function() {
 
 							<!-- detail info -->
 							<div class="detailInfo disnone" align="center">
+
+								<!-- 상세 큰사진 올리는부분(무단도용방지 사진 가져오는법) : 가져오고 싶은 사진있는곳으로가서 F12 -> 사진부분 검사 -> 
+							img alt src =""의 ""안의주소 복사하기 -> 붙여넣기 -> 그럼 사진 저장 안해도 알아서 불러옴, 저작권조심 연습할때만 하기 -->
+								<!-- <img src="https://image.a-rt.com/art/editor/202106/1623126029958.jpg" class="web" alt="제품상세 정보" /> -->
 
 								<img src="${map.productVo.product_main_image }" class="web" alt="제품상세 정보" /> 
 								<img src="${map.productVo.product_image1 }" class="web" alt="제품상세 정보" /> 
@@ -303,8 +321,9 @@ $(document).ready(function() {
 							<!-- goods review -->
 							<div class="goodsReview disnone">
 								<div class="headTitle">
+									<!-- product_no를 가지고 rewrite로 가기위해서 번호를 담아감-->
 									<p class="btn">
-										<a href="./reviewWrite?product_no=${ map.productVo.product_no }">구매 후기 작성</a>
+										<a href="./review/reviewWrite?product_no=${ map.productVo.product_no }">구매 후기 작성</a>
 									</p>
 								</div>
 								<br> <br> <br>
@@ -325,7 +344,7 @@ $(document).ready(function() {
 														<p>${reviewVo.review_date}</p>
 														<p>
 															<c:forEach begin="1" end="${reviewVo.review_ratings}">
-														        <img alt="별점" src="/images/product_images/ico_star.gif" class="rating">
+														        <img alt="별점" src="../images/product_images/ico_star.gif" class="rating">
 														     </c:forEach>
 														</p>
 													</div>
@@ -335,7 +354,7 @@ $(document).ready(function() {
 													<div class="bodyArea">${reviewVo.review_content}</div>
 													<div class="modify">
     													<c:if test="${session_email == reviewVo.email }">
-														<a href="/reviewModify?review_no=${reviewVo.review_no }&product_no=${reviewVo.product_no}">수정</a> 
+														<a href="/review/reviewModify?review_no=${reviewVo.review_no }&product_no=${reviewVo.product_no}">수정</a> 
 														<a href="#" onclick="reviewDelete_check(${reviewVo.review_no }, ${reviewVo.product_no})">삭제</a>
 														</c:if>
 													</div>
