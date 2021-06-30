@@ -1,5 +1,5 @@
 /*********** LAYOUT **********/
-#container{position:relative; max-width:900px; padding:46px 0 0 0; margin:0 auto; *zoom:1;}
+#container{position:relative; max-width:900px; padding:20px 0 0 0; margin:0 auto; *zoom:1;}
 #container:after {content:""; display:block; clear:both;}
 #outbox{width:100%; margin:20px 0 0 0; overflow:hidden;}
 

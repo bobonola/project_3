@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<link rel="stylesheet" type="text/css" href="../css/content.css?v=Y" />
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Jua&display=swap');
 </style>
     <meta charset="UTF-8">
-    <title>login</title>
+    <title>Join2</title>
     <style>
         *{
             margin: 0;
@@ -29,7 +29,7 @@
             position: relative;
             box-sizing: border-box;
             height: auto;
-            padding: 62px 0 30px;
+            padding: 14px 0 30px;
             width: 768px;
             margin: 0 auto;
         }
@@ -40,7 +40,7 @@
             width: auto;
             height: auto;
             margin: 0 auto;
-            font-size: 85px;
+            font-size: 40px;
             font-family: 'Fredoka One', cursive;
         }
         #container{
@@ -58,7 +58,7 @@
         .input_row{
             position: relative;
             height: 29px;
-            margin: 5px 0 30px;
+            margin: 30px 0 30px;
             padding: 10px 35px 10px 15px;
             border: solid 1px #dadada;
             background: #fff;
@@ -83,12 +83,16 @@
             background: #fff;
             appearance: none;
         }
-  
-        #join{
-        	text-align:right;
-        	font-family: 'Noto Sans KR', sans-serif;
-        	font-size : 12px;
-        	text-decoration:none;
+       
+        .content_notice{
+       		font-family: 'Noto Sans KR', sans-serif;
+       		padding-top:2px;
+        }
+        #notice_main{
+        	font-size:40px
+        }
+        #notice_sub{
+        	font-size:25px
         }
         .btn_login {
 			display: block;
@@ -107,13 +111,26 @@
 			border-radius: 15px;
 			text-decoration: none
 		}
+		.loading{
+		    width:100%;
+		    height:100%;
+		    position:fixed;
+		    left:0px;
+		    top:0px;
+		    background:#fff;
+		    z-index:1000; /* 이 값으로 레이어의 위치를 조정합니다. */
+		}
     </style>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script>
+	    $(window).load(function(){
+	        $(".loading").fadeOut();
+	    });
     </script>
 
 </head>
 <body>
+<div class="loading"></div>
 <div id="wrap">
     <div id="header">
         <div id="h_logo">
@@ -123,24 +140,39 @@
     <div id="container">
         <div id="content">
             <div style="margin-bottom: 7px"></div>
-            	<a id="join" href="http://localhost:8000/join/join">회원이 아니신가요?</a>
+            <div class ="content_notice" id="notice_main">프로필 설정</div>
+            <div class ="content_notice" id="notice_sub">정확한 정보를 입력해주세요.</div>
             <form action="" method="get">
                 <fieldset style="border: 0">
                     <div class="id_area">
                         <div class="input_row" id="id_area">
                             <span class="input_box">
-                                <input style = "font-family: 'Noto Sans KR', sans-serif" type="text" name="user_id" id="user_id" class="int" placeholder="이메일">
+                                <input style = "font-family: 'Noto Sans KR', sans-serif" type="text" name="user_id" id="user_id" class="int" placeholder=이름>
                             </span>
                         </div>
                     </div>
-                    <div class="pw_area">
-                        <div class="input_row" id="pw_area">
+                    <div class="id_area">
+                        <div class="input_row" id="id_area">
                             <span class="input_box">
-                                <input style = "font-family: 'Noto Sans KR', sans-serif" type="password" name="user_pwd" id="user_pwd" class="int" placeholder="비밀번호">
+                                <input style = "font-family: 'Noto Sans KR', sans-serif" type="text" name="user_id" id="user_id" class="int" placeholder="비밀번호">
                             </span>
                         </div>
                     </div>
-                    <a href="http://localhost:8000/pg/payment" class="btn_login" type="button">결제하기</a>
+                    <div class="id_area">
+                        <div class="input_row" id="id_area">
+                            <span class="input_box">
+                                <input style = "font-family: 'Noto Sans KR', sans-serif" type="text" name="user_id" id="user_id" class="int" placeholder="비밀번호 확인">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="id_area">
+                        <div class="input_row" id="id_area">
+                            <span class="input_box">
+                                <input style = "font-family: 'Noto Sans KR', sans-serif" type="text" name="user_id" id="user_id" class="int" placeholder="전화번호">
+                            </span>
+                        </div>
+                    </div>
+                    <a href="http://localhost:8000/join/join_paymethod" class="btn_login" type="button">다음</a>
                     <!-- <button class="btn_login" type="button" onclick="login_ajax()">결제하기</button> -->
                 </fieldset>
             </form>
