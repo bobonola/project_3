@@ -20,7 +20,7 @@
 				<li><a href="/login">로그인&nbsp;</a>|</li> 
 			</c:when>
 			<c:otherwise>
-				<li><a href="/userModify">회원정보수정&nbsp;</a>|</li>
+				<li><a href="./userModify?email=${session_email }">회원정보수정</a></li>
 				<li><a href="/logout">로그아웃</a></li>
 			</c:otherwise>	
 		</c:choose>

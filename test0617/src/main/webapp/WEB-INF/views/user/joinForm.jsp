@@ -17,9 +17,7 @@
 <script type="text/javascript">
  	function form_check() {
 
- 		alert($("#birth").val());
- 		
-		if($("#email").val().length==0){
+ 		if($("#email").val().length==0){
 			$("#email").focus();
 			return null;
 			

@@ -23,10 +23,21 @@ public class UserServiceImpl implements UserService {
 	
 	}
 
-	@Override
+	@Override //이메일 중복체크
 	public int emailCheck(String email) throws Exception {
 		
 		return userMapper.emailCheck(email);
+	}
+
+	@Override //회원정보수정 호출
+	public UserVo userModify(String email) {
+		UserVo userVo = userMapper.selectUserModify(email);
+		return userVo;
+	}
+
+	@Override //회원정보수정 저장
+	public void modifyUser(UserVo userVo) {
+		userMapper.updateUserModifyDo(userVo);
 	}
 
 

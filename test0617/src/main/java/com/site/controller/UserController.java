@@ -31,6 +31,10 @@ public class UserController {
 	public String main() {
 		return "/main";
 	}
+	@RequestMapping("/index")
+	public String index() {
+		return "/index";
+	}
 	
 	@RequestMapping("/login")
 	public String login() {
@@ -39,7 +43,7 @@ public class UserController {
 	
 	@RequestMapping("/join")
 	public String join() {
-		return "/user/joinform";
+		return "/user/joinForm";
 	}
 	
 	@GetMapping("/logout")
@@ -95,12 +99,18 @@ public class UserController {
 	
 	//회원정보수정 페이지호출
 	
-//	@RequestMapping("/userModify")
-//	public String userModify(@RequestParam("user_no") int user_no,Model model) {
-//		UserVo userVo = userService.userModify(user_no);
-//		model.addAttribute(userVo);
-//		return "/user/userModify";
-//	}
+	@RequestMapping("/userModify")
+	public String modify(@RequestParam("email") String email,Model model) {
+		UserVo userVo = userService.userModify(email);
+		model.addAttribute(userVo);
+		return "/user/userModify";
+	}
+	
+	@RequestMapping("/userModifyDo")
+	public String modifyDo(UserVo userVo) {
+		userService.modifyUser(userVo);
+		return "redirect:/main";
+	}
 
 	
 	

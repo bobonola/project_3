@@ -14,4 +14,8 @@ public interface UserMapper {
 	
 	public int emailCheck(String email);
 
+	UserVo selectUserModify(String email);
+
+	void updateUserModifyDo(UserVo userVo);
+
 }

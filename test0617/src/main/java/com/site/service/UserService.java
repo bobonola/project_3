@@ -12,6 +12,10 @@ public interface UserService {
 	void insertUser(UserVo userVo);
 
 	int emailCheck(String email) throws Exception;
+
+	UserVo userModify(String email);
+
+	void modifyUser(UserVo userVo);
 		
 	
 	

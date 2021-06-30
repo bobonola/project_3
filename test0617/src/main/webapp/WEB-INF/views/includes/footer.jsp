@@ -14,29 +14,27 @@
 	<footer>
 		<div>
 			<div>
-				<a href="#"></a> <span>© COOKIT ALL RIGHTS RESERVED</span>
+				<a href="#"></a> <span>© RUNNER'Z ALL RIGHTS RESERVED</span>
 			</div>
 			<div>
 				<ul>
-					<li>이용약관</li>
-					<li class="foot_li">개인정보처리 방침</li>
-					<li>법적고지</li>
-					<li class="foot_end">사업자정보 확인</li>
+					<li></li>
+					<li class="foot_li"></li>
+					<li></li>
+					<li class="foot_end"></li>
 				</ul>
 				<div>
-					<p>씨제이제일제당(주)대표이사 : 손경식,강신호,신현재 ㅣ 사업자등록번호 : 104-86-09535</p>
-					<p>주소 : 서울 중구 동호로 330 CJ제일제당 센터 (우) 04560 ㅣ 통신판매업신고 중구 제 07767호
-						ㅣ 개인정보보호책임자 : 조영민</p>
-					<p>이메일 : cjon@cj.net ㅣ 호스팅제공자 : CJ올리브네트웍스㈜</p>
+					<p>RUNNER'Z(주)대표 : 김천규 ㅣ 사업자등록번호 : 123-45-678910</p>
+					<p>주소 : 서울특별시 구로구 디지털로34길 27 대륭포스트타워3차 1106호 (우) 08378 </p>
+					<p>이메일 : admin@runnerz.com </p>
 					<p>
-						고객님은 안전거래를 위해 현금등으로 결제시 LG U+ 전자 결제의 매매보호(에스크로) 서비스를 이용하실 수 있습니다.
-						<a href="#">가입 사실 확인</a>
+						고객님은 안전거래를 위해 자사 자체제작 PG서비스를 통해 안전하게 구매가능합니다.
+						
 					</p>
 				</div>
 			</div>
 			<div>
-				<span>CJ그룹계열사 바로가기 ▽</span> <span>고객행복센터 1668-1920</span> <a
-					href="#">1:1 문의</a>
+				<span>▼▼  고객센터 연락처 ▼▼      1688-1688</span> 
 			</div>
 		</div>
 	</footer>
