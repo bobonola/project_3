@@ -19,5 +19,7 @@ public interface ProductMapper {
 	int selectProductSearchCount(String search);
 	// 상세뷰페이지 호출
 	ProductVo selectProductView(int product_no);
+	// 상품등록
+	void insertProductInsert(ProductVo productVo);
 	
 }
