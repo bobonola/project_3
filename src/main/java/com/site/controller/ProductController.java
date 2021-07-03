@@ -1,7 +1,13 @@
 package com.site.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
@@ -10,12 +16,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.site.service.CartService;
 import com.site.service.ProductService;
 import com.site.service.ReviewService;
 import com.site.vo.CartVo;
+import com.site.vo.ProductVo;
 
 @Controller
 public class ProductController {
@@ -50,7 +58,7 @@ public class ProductController {
 	}
 	
 	// 상세뷰페이지 호출
-	@RequestMapping("/view")		
+	@RequestMapping("/product/productView")		
 	public String detail(@RequestParam("product_no")int product_no, 
 			@RequestParam(value="page", defaultValue="1")int page,
 			Model model) {
@@ -63,7 +71,7 @@ public class ProductController {
 		Map<String, Object> review_map = reviewService.reviewList(page, product_no);
 		model.addAttribute("review_map", review_map);
 		
-		return "/view";
+		return "/product/productView";
 	}
 	
 	// 장바구니 저장
@@ -76,6 +84,19 @@ public class ProductController {
 		return "redirect:/cart/cartList";
 	}
 	
+	// 상품 등록페이지 호출 - 관리자
+	@RequestMapping("/product/productInsert")
+	public String productInsert() {
+		return "/product/productInsert";
+	}
+	
+	
+	// 상품 등록 - 관리자
+	@RequestMapping("/product/productInsertDo")
+	public String productInsertDo(ProductVo productVo, @RequestPart List<MultipartFile> files) throws Exception { 
+        productService.productInsertDo(productVo, files);	
+		return "redirect:/index";
+	}
 	
 	
 }

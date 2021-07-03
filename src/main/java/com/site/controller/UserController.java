@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,18 +23,19 @@ import com.site.service.UserService;
 import com.site.vo.UserVo;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 	
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping("/user/login")	// 로그인
+	@RequestMapping("/login")	// 로그인
 	public String login() {
 		return "/user/login";
 	}
 
 	
-	@GetMapping("/user/logout")		// 로그아웃
+	@GetMapping("/logout")		// 로그아웃
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
@@ -41,7 +43,7 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping(value="/user/login_ajax")		// 로그인 호출
+	@RequestMapping(value="/login_ajax")		// 로그인 호출
 	@ResponseBody
 	public Map<String,Object> login_ajax(UserVo userVo,
 								HttpServletRequest request,
@@ -65,18 +67,18 @@ public class UserController {
 		return map;
 	}
 	
-	@RequestMapping("/user/joinForm")		// 회원가입 폼 페이지 호출
+	@RequestMapping("/joinForm")		// 회원가입 폼 페이지 호출
 	public String joinForm() {
 		return "/user/joinForm";
 	}
 	
-	@RequestMapping("/user/joinDo")			// 회원가입
+	@RequestMapping("/joinDo")			// 회원가입
 	public String joinDo(UserVo userVo) {
 		userService.insertUser(userVo);
-		return "rediect:/index";
+		return "redirect:/index";
 	}
 	
-	@RequestMapping(value="/user/emailChk", method = RequestMethod.POST)		// 이메일 중복체크
+	@RequestMapping(value="/emailChk", method = RequestMethod.POST)		// 이메일 중복체크
 	@ResponseBody
 	public String emailChkPOST(String email) throws Exception {
 		int result = userService.emailCheck(email);
@@ -87,13 +89,13 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping("/user/emailPasswordSearch")			// 이메일&패스워드 찾기페이지 호출
+	@RequestMapping("/emailPasswordSearch")			// 이메일&패스워드 찾기페이지 호출
 	public String emailPasswordSearch() {
 		return "/user/emailPasswordSearch";
 	}
 	
 	
-	@RequestMapping(value="/user/search_email")			// 이메일 찾기
+	@RequestMapping(value="/search_email")			// 이메일 찾기
 	@ResponseBody
 	public Map<String, Object> search_email(UserVo userVo,
 			HttpServletRequest request,
@@ -119,12 +121,12 @@ public class UserController {
 		return map;
 	}
 	
-	@RequestMapping("/user/emailSearchSuccess")			// 이메일 찾기 성공페이지 호출
+	@RequestMapping("/emailSearchSuccess")			// 이메일 찾기 성공페이지 호출
 	public String emailSearchSuccess() {
 		return "/user/emailSearchSuccess";
 	}
 	
-	@RequestMapping(value="/user/search_password")		// 비밀번호 찾기
+	@RequestMapping(value="/search_password")		// 비밀번호 찾기
 	@ResponseBody
 	public Map<String, Object> search_password(UserVo userVo,
 			HttpServletRequest request,
@@ -176,14 +178,95 @@ public class UserController {
 		return map;
 	}
 	
-	@RequestMapping("/user/passwordSearchSuccess")			// 비밀번호 찾기 성공페이지 호출
+	@RequestMapping("/passwordSearchSuccess")			// 비밀번호 찾기 성공페이지 호출
 	public String passwordSearchSuccess() {
 		return "/user/passwordSearchSuccess";
 	}
 	
-	@RequestMapping("/user/adminList")			// 관리자 리스트페이지 호출
+	@RequestMapping("/adminList")			// 관리자 리스트페이지 호출
 	public String adminList() {
 		return "/user/adminList";
 	}
+	
+	@RequestMapping("/userList")			// 회원 전체리스트 호출
+	public String userList(@RequestParam(value="page", defaultValue="1") int page,
+			@RequestParam @Nullable String category,
+			@RequestParam @Nullable String search,
+			Model model) {
+		
+		Map<String, Object> map = null;
+		
+		if(category == null || category == "" || search == null || search == "") {
+			map = userService.userList(page);
+		} else {
+			map = userService.userListSearch(page, category, search);
+		}
+		
+		model.addAttribute("map", map);
+		
+		return "/user/userList";
+	}
+	
+	
+	//회원정보수정 페이지호출
+	@RequestMapping("/userModify")
+	public String modify(@RequestParam("email") String email,Model model) {
+		UserVo userVo = userService.userModify(email);
+		model.addAttribute(userVo);
+		return "/user/userModify";
+	}
+	
+	// 회원정보 수정저장
+	@RequestMapping("/userModifyDo")
+	public String modifyDo(UserVo userVo) {
+		userService.modifyUser(userVo);
+		return "redirect:/index";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
