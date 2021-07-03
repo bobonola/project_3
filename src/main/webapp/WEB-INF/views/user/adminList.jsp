@@ -6,6 +6,13 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+	<c:if test="${session_flag == null || session_flag == 'fail' || session_admin_code == 1 }">
+	   <script type="text/javascript">
+	      alert("접근권한이 없습니다.");
+	      window.location = "../index";
+	   </script>
+	   <%-- <c:redirect url="../index" /> --%>
+	</c:if>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
@@ -51,8 +58,8 @@
 
   <nav>
     <ul>
-      <li><span class="nav1">&emsp;<a href="#"></span> 회원관리</a></li>
-      <li><span class="nav2">&emsp;<a href="#"></span> 상품관리</a></li>
+      <li><span class="nav1">&emsp;<a href="./userList"></span> 회원관리</a></li>
+      <li><span class="nav2">&emsp;<a href="../product/productInsert"></span> 상품등록</a></li>
       <li><span class="nav3">&emsp;<a href="../notice/noticeList"></span> 공지사항</a></li>
       <li><span class="nav4">&emsp;<a href="../qna/qnaList"></span> QNA</a></li>
     </ul>

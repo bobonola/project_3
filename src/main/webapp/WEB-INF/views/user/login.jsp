@@ -24,7 +24,7 @@
     			 success:function(data){
     				 alert(data.msg);
     				 if(data.flag=="success"){
-    				    location.href="/index";
+    				    location.href="../index";
     				 }else{
     					 $("#email").val(""); //공백처리 
     					 $("#password").val("");
@@ -40,21 +40,23 @@
    
 </head>
 <body>
-<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 <c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 	<section>
-    <h1>로그인</h1>
+    <h1 id="log">로그인</h1>
 
 	<form action="" method="post">
-      <div class="email_area">
+	<h3 class="input_title" data-v-38b8e602>이메일 주소</h3>
+      <div class="input_item" data-v-83b8e602>
         <input type="text" name="email" id="email" class="int" size="45" placeholder="회원가입하신 email을 입력하세요">
       </div>
-      <div class="password_area">
+      
+    <h3 class="input_title" data-v-38b8e602>비밀번호</h3>
+      <div class="input_item" data-v-38b8e602>
         <input type="password" name="password" id="password" class="int" size="45" placeholder="비밀번호를 입력하세요">
       </div>
       <button type="button" onclick="login_ajax()">로그인</button>
     </form>
-	<a href="./emailPasswordSearch">이메일/비밀번호찾기&nbsp;</a>
+	<a href="./emailPasswordSearch" id="e_search">이메일/비밀번호찾기&nbsp;</a>
 
 
   </section>
