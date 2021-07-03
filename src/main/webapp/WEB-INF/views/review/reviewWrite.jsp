@@ -28,7 +28,7 @@
 		<h1>구매후기 작성</h1>
 		<hr>
 		<!-- enctype="multipart/form-data" : 이걸 써줘야 파일이 업로드된다. 꼭 필요함! -->	
-		<form action="./rewriteInsert" name="reviewWrite" method="post" enctype="multipart/form-data">
+		<form action="./reviewWriteDo" name="reviewWrite" method="post" enctype="multipart/form-data">
 		<table>
 				<colgroup>
 					<col width="15%">
@@ -95,13 +95,29 @@
 			</table>
 			<hr>
 			<div class="button-wrapper">
-				<button type="submit" class="write">작성완료</button>
-				<button type="button" class="cancel"
-					onclick="javascript:location.href='../view'">취소</button>
+				<input type="button" class="write" value="작성완료" onclick="checkfield()">
+				<input type="button" class="cancel" onclick="history.back(-1);" value="취소" >
 			</div>
 		</form>
 
 	</section>
 
 </body>
+<script>
+/* 유효성검사 */
+function checkfield(){
+ 
+	 if(document.reviewWrite.review_title.value==""){ 	//review_title값이 없을 경우
+	 	alert("제목을 입력하세요");        	 			//메세지 경고창을 띄운 후
+	 	document.reviewWrite.review_title.focus();     	// id 텍스트박스에 커서를 위치
+	 	exit;
+	 }else if(document.reviewWrite.review_content.value==""){
+	 	alert("내용을 입력하세요");
+	 	document.reviewWrite.review_content.focus();
+	 	exit;
+	 }
+	 
+ document.reviewWrite.submit();
+}
+</script>
 </html>
