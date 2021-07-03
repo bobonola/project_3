@@ -12,72 +12,83 @@
 		<link rel="stylesheet" type="text/css" href="css/style_main.css">
 		<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-  		<link rel="stylesheet" href="css/style.css">
-  		<link rel="stylesheet" href="css/notice_list.css">
+  		<link rel="stylesheet" href="css/page.css">
   		<link rel="stylesheet" type="text/css" href="/css/reset.css?v=Y" />
 		<link rel="stylesheet" type="text/css" href="/css/layout.css?v=Y" />
 		<link rel="stylesheet" type="text/css" href="/css/content.css?v=Y" />
 	</head>
+	<style>
+img#sold_out {
+    position: relative;
+    opacity: 0.5;
+    padding: 27px 0;
+    padding-bottom: 91px;
+}
+img#main_img {
+    position: absolute;
+}
+	
+	</style>
 	<body>
-	 	<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 		<c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 	 	<section>
-	 		<div class="wrapper">
-	 		
-		      <form action="./index" name="search" method="post">
-		
-		        <div class="title">
-		          <input type="text" size="16" name="search" id="search" value="${map.search }">
-		        </div>
-		  
-		        <button type="submit"><i class="fas fa-search"></i></button>
-		      </form>
-		    </div>
-	 		
-	 		<div class="tabCategory">
-				 
-			</div>
-	 		<div id="best">
-	 		
-	 		<h2>상품 리스트</h2>
-	 		
-	 			<ul>
+	 		<div id="top_img"></div>
+			<br>
+			<div id="best">
+			
+		 		<div class="wrapper">
+		 		<h2>NEW ARRIVALS</h2> <br>
+		 		
+			      <form action="./index" name="search" method="post" align="center">
+			
+			        <div class="main_search">
+			          <input type="text" size="16" name="search" id="search" value="${map.search }">
+			        </div>
+			      </form>
+			      <br>
+			      <br>
+			      
+			      <form action="./index" method="post">
+			        <select name="sort" id="category">
+			          <option value="productDateDesc" ${(map.sort eq 'productDateDesc')? 'selected':'' }>신상품순</option>
+			          <option value="productPriceAsc" ${(map.sort eq 'productPriceAsc')? 'selected':'' }>낮은가격순</option>
+			          <option value="productPriceDesc" ${(map.sort eq 'productPriceDesc')? 'selected':'' }>높은가격순</option>
+			          <option value="productSales" ${(map.sort eq 'productSales')? 'selected':'' }>판매량순</option>
+			          <option value="productRatings" ${(map.sort eq 'productRatings')? 'selected':'' }>평점순</option>
+			        </select>		  
+			        <button type="submit">
+			        	<i class="fas fa-search">선택하기</i>
+			        </button>
+				  </form>
+			      
+			      
+			    </div>
+			    
+			    <ul class="main_show">
 	 				<c:forEach var="productVo" items="${map.list }">
 	 				
 		 				<li>
-		 					<a href="./view?product_no=${productVo.product_no }">
-			 					<img alt="" src="${productVo.product_main_image }">
-			 					<span id="best_top">BEST<br>${productVo.product_no }</span>
-			 				</a>
-			 				<a href="./view?product_no=${prodcutVo.product_no }">
-			 					<span>${productVo.product_name }</span>
-			 					<span>
-			 						<fmt:formatNumber value="${productVo.product_price}" pattern="#,###"/> 원
-			 					</span>
+			 					<c:if test="${productVo.product_total_stock == 0}">
+			 						<img id="main_img" alt="" src="${productVo.product_main_image }">
+			 						<img id="sold_out" alt="" src="../images/ico/sold_out2.PNG">
+			 					</c:if>
+			 					<c:if test="${productVo.product_total_stock != 0}">
+			 						<a href="./product/productView?product_no=${productVo.product_no }">
+			 							<img alt="" src="${productVo.product_main_image }">
+			 							<span id="best_top">BEST<br>${productVo.product_no }</span>
+			 							<span>${productVo.product_name }</span> <br><br>
+					 					<span>
+					 						<fmt:formatNumber value="${productVo.product_price}" pattern="#,###"/> 원
+					 					</span>
+			 						</a>
+			 					</c:if>
+
+			 					
+			 					<br />
 	 						</a>	
 		 				</li>
 	 				</c:forEach>
-	 			</ul>
-	 			
-	 			<div class="cateRight">
-					
-	 		<form action="./index" method="post">
-					        <select name="sort" id="category">
-					          <option value="productDateDesc" ${(map.sort eq 'productDateDesc')? 'selected':'' }>신상품순</option>
-					          <option value="productPriceAsc" ${(map.sort eq 'productPriceAsc')? 'selected':'' }>낮은가격순</option>
-					          <option value="productPriceDesc" ${(map.sort eq 'productPriceDesc')? 'selected':'' }>높은가격순</option>
-					          <option value="productSales" ${(map.sort eq 'productSales')? 'selected':'' }>판매량순</option>
-					        </select>		  
-					        <button type="submit"><i class="fas fa-search">선택하기</i></button>
-					    </form>
-				
-					<%-- <ul>
-						<li class="first"><a href="./index2?page=${nowPage}&search=${map.search}&sort=product_sales" class="on">판매량순</a></li>
-						<li><a href="./index2?page=${nowPage}&search=${map.search}&sort=product_date_desc">신상품순</a></li>
-						<li><a href="./index2?page=${nowPage}&search=${map.search}&sort=product_price_desc">높은 가격순</a></li>
-						<li class="last"><a href="./index2?page=${nowPage}&search=${map.search}&sort=product_price_asc">낮은 가격순</a></li>
-					</ul> --%>
-				</div>
+	 			</ul><br><br>
 	 			
 	 			<!-- 하단 넘버링 -->
 		    <ul class="page-num">
@@ -112,7 +123,8 @@
 		      <a href="./index?page=${map.maxPage }&search=${map.search}&sort=${map.sort}"><li class="last"></li></a>
 		    </ul>
 		    <!-- 하단 넘버링 끝 -->	
-	 		</div>
+	 			
+		</div>
 	 		
 	 	</section>
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
