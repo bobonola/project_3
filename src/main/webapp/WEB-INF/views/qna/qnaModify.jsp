@@ -13,7 +13,6 @@
   <link rel="stylesheet" href="../css/write.css">
 </head>
 <body>
-<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 <c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 <section>
     <h1>QNA 글 수정</h1>

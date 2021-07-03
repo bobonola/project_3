@@ -15,10 +15,9 @@
   <link rel="stylesheet" href="../css/notice_list.css">
 </head>
 <body>
-<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 <c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 <section>
-    <h1>QNA 게시판</h1>
+    <h1 id="notice_h1">QNA 게시판</h1>
     <div class="wrapper">
       <form action="./qnaList" name="search" method="post">
         <select name="category" id="category">
@@ -60,43 +59,81 @@
 	        <td class="table-title">
 	        <!-- content_view?번호를 전달 -->
 	        <c:choose>
-	        
+	        	<%-- 비밀글 코드 1인 경우 : 오픈글 --%>
 		        <c:when test="${qnaVo.qna_secret_code == 1 }">
-				    <a href="./qnaView?qna_no=${qnaVo.qna_no }">
+				    <a href="./qnaView?qna_no=${qnaVo.qna_no }&qna_original_name=${qnaVo.qna_original_name }">
 				        <c:forEach begin="1" end="${qnaVo.qna_indent}">
 				        <img alt="" src="../images/icon_reply.png"></c:forEach>
 					    ${qnaVo.qna_title }
 				    </a>
 			    </c:when>
+			    
+			    <%-- 비밀글 코드 1이 아닌 경우 : 비밀글 --%>
 			    <c:otherwise>
+			    	
+			    	<%-- 미로그인 시 : 볼 수 없음 --%>
+			    	<c:if test="${session_flag == null || session_flag == 'fail' }">
+			    		<c:if test="${qnaVo.qna_indent == 0 }">
+				    		<img alt="" src="../images/ico/ico_lock.gif">&nbsp;&nbsp; 비밀글입니다.
+				    	</c:if>
+				    		
+				    	<c:if test="${qnaVo.qna_indent != 0 }">	
+				    		<c:forEach begin="1" end="${qnaVo.qna_indent}">
+					        	<img alt="" src="../images/icon_reply.png">		
+					        </c:forEach>
+					        <img alt="" src="../images/ico/ico_lock.gif">&nbsp;&nbsp; [답변] 비밀글입니다.
+				        </c:if>
+			    	</c:if>
+			    	
+			    	<%-- 관리자 코드 1(일반유저)인 경우--%>
 			    	<c:if test="${session_admin_code == 1 }">
+			    		
+			    		<%-- 세션의 이메일과 작성한 이메일이 일치 : 볼 수 있음 --%>
 			    		<c:if test="${session_email == qnaVo.email }">
-			    			<a href="./qnaView?qna_no=${qnaVo.qna_no }">
+			    			<a href="./qnaView?qna_no=${qnaVo.qna_no }&qna_original_name=${qnaVo.qna_original_name }">
 						        <c:forEach begin="1" end="${qnaVo.qna_indent}">
 						        <img alt="" src="../images/icon_reply.png"></c:forEach>
 							    ${qnaVo.qna_title }
 						    </a>
 			    		</c:if>
-			    		<c:if test="${session_email != qnaVo.email }">
+			    		
+			    		<%-- 세션의 이메일과 작성한 이메일이 불일치 : 볼 수 없음 --%>
+			    		<c:if test="${session_email != qnaVo.email}">
+			    			
 				    		<c:if test="${qnaVo.qna_indent == 0 }">
 				    			<img alt="" src="../images/ico/ico_lock.gif">&nbsp;&nbsp; 비밀글입니다.
 				    		</c:if>
+				    		
 				    		<c:if test="${qnaVo.qna_indent != 0 }">
+				    			<c:if test="${qnaVo.qna_original_name != name }">
 				    			<c:forEach begin="1" end="${qnaVo.qna_indent}">
 					        		<img alt="" src="../images/icon_reply.png">		
 					        	</c:forEach>
 					        	<img alt="" src="../images/ico/ico_lock.gif">&nbsp;&nbsp; [답변] 비밀글입니다.
+				    			</c:if>
+				    			
+				    			<c:if test="${qnaVo.qna_original_name == name }">
+				    			 <a href="./qnaView?qna_no=${qnaVo.qna_no }&qna_original_name=${qnaVo.qna_original_name }">
+						        <c:forEach begin="1" end="${qnaVo.qna_indent}">
+						        <img alt="" src="../images/icon_reply.png"></c:forEach>
+							    ${qnaVo.qna_title }
+						    </a>
+				    			</c:if>
 				        	</c:if>
 			    		</c:if>
 			    	</c:if>
+			    	
+			    	<%-- 관리자 코드 2(관리자)인 경우 --%>
 			    	<c:if test="${session_admin_code == 2 }">
-			    		<a href="./qnaView?qna_no=${qnaVo.qna_no }">
+			    		<a href="./qnaView?qna_no=${qnaVo.qna_no }&qna_original_name=${qnaVo.qna_original_name }">
 						        <c:forEach begin="1" end="${qnaVo.qna_indent}">
 						        <img alt="" src="../images/icon_reply.png"></c:forEach>
 							    ${qnaVo.qna_title }
 						    </a>
 			    	</c:if>
+			    	
 			    </c:otherwise>
+			    
 		    </c:choose>
 	        </td>
 	        <td>

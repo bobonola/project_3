@@ -23,7 +23,6 @@
   </script>
 </head>
 <body>
-<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 <c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 <section>
 	 <input type="hidden" name="qna_secret_code" value="${map.qnaVo.qna_secret_code }">
@@ -66,7 +65,7 @@
     	</c:if>
     </c:if>
     <c:if test="${session_admin_code == 2 }">    	
-    	<a href="./qnaReply?qna_no=${map.qnaVo.qna_no}&qna_secret_code=${map.qnaVo.qna_secret_code}"><div class="list">답변달기</div></a>
+    	<a href="./qnaReply?qna_no=${map.qnaVo.qna_no}&qna_secret_code=${map.qnaVo.qna_secret_code}&qna_original_name=${map.qnaVo.qna_original_name }"><div class="list">답변달기</div></a>
     </c:if>
   </section>
   <c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>

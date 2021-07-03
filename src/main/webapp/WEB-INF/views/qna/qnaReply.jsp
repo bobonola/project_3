@@ -22,7 +22,6 @@
 	  
 </head>
 <body>
-<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 <c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 <section>
     <h1>QNA 답글</h1>
@@ -34,6 +33,8 @@
       <input type="hidden" name="qna_group" value="${qnaVo.qna_group }">
       <input type="hidden" name="qna_step" value="${qnaVo.qna_step }">
       <input type="hidden" name="qna_indent" value="${qnaVo.qna_indent }">
+      <input type="hidden" name="qna_original_name" value="${qnaVo.qna_original_name }">
+      
         <colgroup>
           <col width="15%">
           <col width="85%">
@@ -41,7 +42,8 @@
         <tr>
           <th>작성자</th>
           <td>
-            <input type="text" name="email" value="${session_email }">
+            <input type="text" name="qna_name" value="${name }">
+            <input type="hidden" name="email" value="${session_email }">
           </td>
         </tr>
         <tr>
