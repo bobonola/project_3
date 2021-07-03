@@ -14,23 +14,30 @@
 	<nav>
 		<h1></h1>
 		<ul>
-			<li><a href="../notice/noticeList"><span>공지사항</span></a></li>
-			<li>2</li>
-			<li>3</li>
-			<li>4</li>
-			<li>5</li>
+			<li><a href="../notice/noticeList" id="nav_a"><span>공지사항</span></a></li>
+			<li><a href="../qna/qnaList" id="nav_a">QNA</a></li>
+			<c:choose>
+				<c:when test="${session_flag == null || session_flag == 'fail' }">
+					<li><a href="../user/joinForm" id="nav_a"><span>회원가입</span></a></li>
+					<li><a href="../user/login" id="nav_a"><span>로그인</span></a></li> 
+				</c:when>
+				<c:otherwise>
+					<li><a href="../user/userModify?email=${session_email }" id="nav_a">회원정보수정</a></li>
+					<li><a href="../user/logout" id="nav_a"><span>로그아웃</span></a></li>
+				</c:otherwise>	
+			</c:choose>
 		</ul>
 		<ul>
-		<c:choose>
-		<c:when test="${session_admin_code == 2 }">
-			<li><a href="../user/adminList"><span>관리자페이지</span></a></li>
-		</c:when>
-		<c:otherwise>
-			<li><a href="../cart/cartList"><span>장바구니</span></a></li>
-		</c:otherwise>
-		</c:choose>
+			<c:choose>
+				<c:when test="${session_admin_code == 2 }">
+					<li ><a id="admin_icon"  href="../user/adminList"><span>관리자</span></a></li>
+				</c:when>
+				<c:otherwise>
+					<li><a href="../cart/cartList" id="nav_a"><span>장바구니</span></a></li>
+				</c:otherwise>
+			</c:choose>
 		</ul>
-
+	   
 	</nav>
 
 </body>
