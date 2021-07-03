@@ -19,8 +19,8 @@
 #left #title2 span{display:block; font-size:14px; color:#888; font-weight:600; line-height:2;}
 #left ul li{width:100%; height:29px; border-bottom:1px #d9d9d9 solid; padding:5px 0;}
 #left ul li a{display:block; height:29px; line-height:29px; padding:0 0 0 10px; color:#666; font-size:15px; font-weight:600;}
-#left ul li a.hover{background:url('../images/bg/bg_left.png') 163px 8px #f7703c no-repeat; color:#fff;}
-#left ul li a:hover{background:url('../images/bg/bg_left.png') 163px 8px #f7703c no-repeat; color:#fff;}
+#left ul li a.hover{background:url('../images/bg/bg_left.png') 163px 8px #444 no-repeat; color:#fff;}
+#left ul li a:hover{background:url('../images/bg/bg_left.png') 163px 8px #444 no-repeat; color:#fff;}
 #left ul li.last{border:0;}
 
 /** CONTENTS **/
@@ -70,10 +70,10 @@
 #pDetail .imgSlide{float:left; margin:0 40px 0 0;}
 #pDetail .imgSlide .img{position:relative; width:348px; height:348px; border:1px #dedede solid; overflow:hidden;}
 #pDetail .imgSlide .img ul{position:relative; left:0; top:0;}
-#pDetail .imgSlide .img ul li{float:left; padding:33px 0; background:#fff;}
+#pDetail .imgSlide .img ul li{float:left; padding:0; background:#fff;}
 #pDetail .imgSlide .thum{width:100%; margin:10px 0 0 0; overflow:hidden;}
 #pDetail .imgSlide .thum ul li{float:left; width:57px; height:57px; background:url('../images/bg/bg_thum_off.gif') left top no-repeat; margin:0 10px 0 0; padding:3px 0 0 3px; cursor:pointer;}
-#pDetail .imgSlide .thum ul li img{width:54px; height:44px; padding:5px 0 0 0;}
+#pDetail .imgSlide .thum ul li img{width:54px; height:44px; padding:0 0 0 0;}
 #pDetail .imgSlide .thum ul li.hover{background:url('../images/bg/bg_thum_on.gif') left top no-repeat;}
 #pDetail .imgSlide .thum ul li:hover{background:url('../images/bg/bg_thum_on.gif') left top no-repeat;}
 
@@ -208,7 +208,7 @@
 #mypage h3.dep input{width:13px;height:13px;margin:5px 0 2px 5px;padding:0;}
 #mypage h3.diviLeft{float:left; width:50%; padding:40px 0 15px 0;}
 #mypage h3 span{font-size:13px; color:#888; font-weight:normal; padding:0 0 0 5px;}
-#mypage .myInfo{width:100%; border:3px #f7703c solid; padding:20px 0; margin:30px 0; background:#f9f9f9; overflow:hidden; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
+#mypage .myInfo{width:100%; border:3px #444 solid; padding:20px 0; margin:30px 0; background:#f9f9f9; overflow:hidden; box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box;}
 #mypage .myInfo ul{margin:0 0 0 20px;}
 #mypage .myInfo ul li{float:left; width:16%; height:48px; border-right:1px #d9d9d9 solid; font-size:12px; font-weight:600; text-align:center; line-height:1.9;}
 #mypage .myInfo ul li.last{border:0;}
@@ -646,12 +646,13 @@
 .passType{width:189px; height:38px; line-height:38px; padding:0 0 0 9px; border:1px #d9d9d9 solid; font-size:14px; font-weight:600; color:#888; background:url('../images/bg/bg_password.gif') left top #fff no-repeat;}
 .ordererType{width:189px; height:38px; line-height:38px; padding:0 0 0 9px; border:1px #d9d9d9 solid; font-size:14px; font-weight:600; color:#888; background:url('../images/bg/bg_orderer.gif') left top #fff no-repeat;}
 .ordernumType{width:189px; height:38px; line-height:38px; padding:0 0 0 9px; border:1px #d9d9d9 solid; font-size:14px; font-weight:600; color:#888; background:url('../images/bg/bg_ordernum.gif') left top #fff no-repeat;}
-.nameType{width:189px; height:38px; line-height:38px; padding:0 0 0 9px; border:1px #d9d9d9 solid; font-size:14px; font-weight:600; color:#888; background:url('../images/bg/bg_name.PNG') left top #fff no-repeat;}
-.emailType{width:189px; height:38px; line-height:38px; padding:0 0 0 9px; border:1px #d9d9d9 solid; font-size:14px; font-weight:600; color:#888; background:url('../images/bg/bg_email.PNG') left top #fff no-repeat;}
-.phoneType{width:189px; height:38px; line-height:38px; padding:0 0 0 9px; border:1px #d9d9d9 solid; font-size:14px; font-weight:600; color:#888; background:url('../images/bg/bg_phone.PNG') left top #fff no-repeat;}
+.nameType{width:189px; height:38px; line-height:38px; padding:0 0 0 9px; border:1px #d9d9d9 solid; font-size:14px; font-weight:600; color:#888; }
+.emailType{width:189px; height:38px; line-height:38px; padding:0 0 0 9px; border:1px #d9d9d9 solid; font-size:14px; font-weight:600; color:#888; }
 .addressType{width:480px; height:18px; line-height:18px; background:#fff; border:1px #d9d9d9 solid; padding:0 0 0 5px; font-size:12px;}
 .addressType2{width:665px; height:18px; line-height:18px; background:#fff; border:1px #d9d9d9 solid; padding:0 0 0 5px; font-size:12px;}
 .searchInput{width:134px; height:18px; line-height:18px; background:#fff; border:1px #c0c0c0 solid; padding:0 0 0 5px; font-size:12px; margin:0 4px 0 0;}
+.phoneType{width:189px; height:38px; line-height:38px; padding:0 0 0 9px; border:1px #d9d9d9 solid; font-size:14px; font-weight:600; color:#888; }
+
 
 .wlong{width:95%; height:18px; line-height:18px; background:#fff; border:1px #d9d9d9 solid; padding:0 5px; font-size:12px;}
 .w348{width:343px; height:18px; line-height:18px; background:#fff; border:1px #c0c0c0 solid; padding:0 0 0 5px; font-size:12px;}
@@ -738,15 +739,15 @@
 .cartarea{width:510px; margin:30px auto 0;}
 .cartarea li{float:left; width:160px; padding:0 5px;}
 .cartarea li a{display:block; width:100%; font-size:16px; color:#fff; text-align:center; font-weight:600; padding:16px 0; line-height:1.2;}
-.cartarea li a.ty1{background:#f7703c;}
-.cartarea li a.ty2{background:#5b524d;}
+.cartarea li a.ty1{background:#444;}
+.cartarea li a.ty2{background:#444;}
 .cartarea li a.ty3{width:158px; color:#666; background:#fff; border:1px #d3d3d3 solid; padding:15px 0;}
 
 .infobtn{width:100%; margin:44px 0 0 0;}
 .infobtn li{float:left; width:140px; padding:0 5px 0 0;}
 .infobtn li.last{padding:0;}
 .infobtn li a{display:block; width:100%; font-size:16px; color:#fff; text-align:center; font-weight:600; padding:16px 0; line-height:1.2;}
-.infobtn li a.ty1{background:#f7703c;}
+.infobtn li a.ty1{background:#444;}
 .infobtn li a.ty2{background:#5b524d;}
 .infobtn li a.ty3{width:138px; color:#666; background:#fff; border:1px #d3d3d3 solid; padding:15px 0;}
 
@@ -790,7 +791,7 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
 
 
 /* web check */
-.web{width:auto; padding:5px;}
+.web{width:600px; padding:5px;}
 .mobile{display:none;}
 
 
@@ -842,6 +843,7 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
 #detailContent .relationList ul li img{width:119px;}
 .accordion{width:auto; margin:0 20px;}
 
+#Slide{width:298px; height:298px;}
 
 /* BTNAREA */
 .infobtn{margin:13px 0 0 0;}
@@ -1331,4 +1333,54 @@ span.searchStyleSelectBox.changed{background-color: #fff;}
 /*구매후기 버튼*/
 #reWrite{width:10px;}
 
+
 }
+/*view -> review의 별 크기표시*/
+img.rating{
+	width:10px;
+}
+
+
+/*메인화면 상품상자*/
+#best ul.main_show{
+    box-sizing: border-box; width: 1221px; height: 1124px; list-style-type: none; 
+	 margin-top:-64px 0 0 -41px;
+}
+  
+#best ul.main_show li {
+    width: 366px; height: 468px; float: left; margin-top:72px; margin-right:38px;
+}
+
+#best ul.main_show li> a:nth-child(1) span:nth-child(2){
+	display: block; width:48px; height: 48px; 
+	background: #202020; font-size: 16px; font-weight: 600; color:#fff; padding-top:11px; box-sizing: border-box;
+	position: relative; top:-360px; left:10px; text-align: center;
+	
+}
+
+#best ul.main_show li> a::nth-child(2){display: block; width: 310px; height: 60px;}
+
+#best ul.main_show:nth-child(2) li>a:nth-child(2) span:nth-child(1){ font-size: 17px; display: block;
+	width:366px; height: 24px; font-weight: 500; margin-top:10px; color:#101010;}
+	
+#best ul.main_show:nth-child(2) li>a:nth-child(2) span:nth-child(2){ font-size: 18px; display: inline-block; 
+	width:270px; height: 30px; font-weight: 700; margin-top:10px; color:#101010; }
+
+#best ul.main_show:nth-child(2) li>a:nth-child(2) span:nth-child(2) span{ font-size: 16px; display: inline-block; 
+	width:52px; height: 24px; font-weight: 500; margin-top:10px; color:#606060; padding-left:3px;}
+	
+#best ul.main_show:nth-child(2) li>a:nth-child(3){ display: inline-block; width:40px; height: 40px; 
+	background: url("../images/ico_set.png") no-repeat -45px -190px; background-size: 800px 800px; 
+	position: relative; left:325px; top:-29px;}
+
+ 
+div#container_search{
+	position: relative;
+    max-width: 900px;
+    padding: 46px 0 40px 40px;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+} 
+

@@ -44,23 +44,29 @@ fieldset{margin:0;padding:0;border:0 none;}
 legend, caption, .skip{position:absolute; left:-9999px; width:0; height:0; font-size:0; line-height:0; overflow:hidden;}
 caption{position:static;}
 
-html, body,input, button{font-size:12px; color:#333; font-family:'Nanum Gothic';} 
+html, body, input, button{font-size:15px; color:#333; font-family:'Nanum Gothic';} 
 
 #reWrite{font-size:15px; color:#333; font-family:'Nanum Gothic';
 		 width:850px; height:50px; margin-top: -7px; margin-bottom: 23px; 
 		 font-weight:900;}
 
+#button_id{width:81px; height:76px;}
+
 #search{width:500px;
 		height:25px;
 		padding: 0px;
-		margin: 30px 0px 0px 0px;}
+		margin: 30px 0px 0px 0px;
+		background-image : url('/images/ico/ico_address.gif'); 
+		background-size: 22px;
+ 		background-position:top right; 
+		background-repeat:no-repeat;}
 
 #fas fa-search{width:30px;
 			   hight:30px;
 			   margin:auto;
 			   padding:auto;}
 
-a {color:#a7a7a7; text-decoration:none;}
+/* a {color:#a7a7a7; text-decoration:none;} */
 a:hover {color:#a7a7a7; text-decoration:none;}
 img,input{vertical-align:top;}
 label{vertical-align:middle; font-size:14px; cursor:pointer;}
@@ -70,4 +76,5 @@ textarea {border:1px solid #dcdcdc; color:#888; font-size:13px; line-height:18px
 
 
 /* html5 reset */
-header, footer, nav,  section, article, aside, hgroup, details, menu, figure, figcaption, canvas{display:block; margin:0; padding:0; border:0; font-size:100%; font:inherit; vertical-align:baseline;}
+header, footer,  section, article, aside, hgroup, details, menu, figure, figcaption, canvas
+{display:block; margin:0; padding:0; border:0; font-size:100%; font:inherit; vertical-align:baseline;}

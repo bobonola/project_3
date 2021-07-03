@@ -250,7 +250,7 @@ h4>span {
 	border-bottom: 1px solid rgb(230, 230, 230);
 }
 input[type="text"] {
-	height: 26px;
+	height: 30px;
 }
 input[type="password"] {
 	height: 26px;
@@ -275,7 +275,7 @@ dd span {
 	padding-top: 16px;
 }
 #join_name_dl input {
-	width: 276px;
+	width: 150px;
 }
 
 #join_id_dl dt{
@@ -325,7 +325,6 @@ dd span {
 	width: 276px;
 }
 #join_pw1_dl span {
-	display: block;
 	margin-top: 2px;
 }
 
@@ -358,7 +357,7 @@ dd span {
 	padding-top: 16px;
 }
 #join_mail_dl dd input:nth-child(1) {
-	width: 130px;
+	width: 150px;
 }
 #join_mail_dl dd span {
 	font-size: 15px;
@@ -385,7 +384,7 @@ dd span {
 	padding-top: 16px;
 }
 #join_tell_dl dd input {
-	width: 75px;
+	width: 130px;
 	text-align: center;
 }
 
@@ -529,7 +528,7 @@ input[type="checkbox"]:not(old):checked + label {
 	width: 80px; height: 30px;	
 }
 #join_address_dl dd>input:nth-child(5) {
-	width: 755px; height: 30px;
+	width: 570px; height: 30px;
 	margin-top: 5px;	
 }
 #join_address_dl dd>input:nth-child(6) {
@@ -788,13 +787,33 @@ input[type="checkbox"]:not(old):checked + label {
 	border: 1px solid #fff;
 }
 
-	/* 중복아이디 존재하지 않는경우 */
+	/* 중복이메일 존재하지 않는경우 */
 	.email_input_re_1{
 		color : green;
 		display : none;
 	}
-	/* 중복아이디 존재하는 경우 */
+	/* 중복이메일 존재하는 경우 */
 	.email_input_re_2{
 		color : red;
 		display : none;
 	}
+	/* 사용불가능한 이메일 형식*/
+	.email_input_re_3{
+		color : red;
+		display : none;
+	}	
+	/* 사용가능한 이메일 형식*/
+	.email_input_re_4{
+		color : green;
+		display : none;
+	}
+
+
+
+
+
+
+
+
+
+

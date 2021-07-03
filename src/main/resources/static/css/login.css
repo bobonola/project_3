@@ -4,11 +4,13 @@ section {
   width: 450px;
 }
 
-h1 {
+h1#log {
   font-size: 32px;
   margin: 50px 0 50px 0;
   text-align: center;
 }
+
+a#e_search{text-decoration:none; color: blue; }
 
 #category ul {
   width: 100%;
@@ -50,12 +52,19 @@ h1 {
 
 
 input {
-  position: relative;
-  top: 5px;
-  left: 12px;
+ /*  position: relative;
+  top: -5px;
+  left: 7px;
 
   font-size: 16px;
-  border: none;
+  
+   */
+    left: 19px;
+    position: relative;
+    margin-bottom: 8px;
+    padding: 7px 35px 10px 11px;
+    border: 2px solid #ccc;
+    background: #fff;
 }
 
 input:active,
@@ -182,3 +191,21 @@ button {
   background: url(https://www.cjcookit.com/cjkit/web/images/common/ico_set.png) no-repeat -635px 0;
   background-size: 800px 800px;
 }
+
+.input_title[data-v-38b8e602] {
+    font-size: 13px;
+    letter-spacing: -.07px;
+    line-height: 30px;
+}
+
+.input_item[data-v-38b8e602] {
+    position: relative;
+}
+
+.input_box[data-v-38b8e602] {
+    position: relative;
+    padding: 10px 0 14px;
+}
+
+
+
