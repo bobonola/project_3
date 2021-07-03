@@ -26,7 +26,6 @@
 </head>
 
 <body>
-  <c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 <c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 
   <section>
@@ -44,7 +43,7 @@
       </tr>     
       <tr>
         <td class="article">
-          <img src="http://localhost:8000/noticeUpload/${map.noticeVo.notice_image }" alt="" width="80%"></td>
+          <img src="/${map.noticeVo.notice_image }" alt="" width="80%"></td>
       </tr>
 
 

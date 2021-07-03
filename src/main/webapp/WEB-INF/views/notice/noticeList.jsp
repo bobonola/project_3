@@ -16,11 +16,10 @@
   <link rel="stylesheet" href="../css/notice_list.css">
 </head>
 <body>
-<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 <c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 
   <section>
-    <h1>NOTICE</h1>
+    <h1 id="notice_h1">NOTICE</h1>
 
    <table>
       <colgroup>
