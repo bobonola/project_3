@@ -14,10 +14,9 @@
 				SELECT ROWNUM AS RNUM, A.*
 				FROM
 				(
-					SELECT Q.*, U.NAME AS QNA_NAME
-					FROM   QNA Q, USERS U
-                    WHERE Q.EMAIL = U.EMAIL
-					ORDER BY Q.QNA_GROUP DESC, Q.QNA_STEP
+					SELECT *
+					FROM   QNA
+					ORDER BY QNA_GROUP DESC, QNA_STEP
 				) A
 			)
 			WHERE RNUM >= #{startRow}
@@ -40,13 +39,12 @@
 				SELECT ROWNUM AS RNUM, A.*
 				FROM
 				(
-					SELECT Q.*, U.NAME AS QNA_NAME
-					FROM   QNA Q, USERS U
-                    WHERE Q.EMAIL = U.EMAIL
-                    AND   (U.NAME LIKE '%' || #{search} || '%'
-                    OR     Q.QNA_TITLE LIKE '%' || #{search} || '%'
-                    OR     Q.QNA_CONTENT LIKE '%' || #{search} || '%')
-					ORDER BY Q.QNA_GROUP DESC, Q.QNA_STEP
+					SELECT *
+					FROM   QNA
+                    WHERE (QNA_NAME LIKE '%' || #{search} || '%'
+                    OR     QNA_TITLE LIKE '%' || #{search} || '%'
+                    OR     QNA_CONTENT LIKE '%' || #{search} || '%')
+					ORDER BY QNA_GROUP DESC, QNA_STEP
 				) A
 			)
 			WHERE RNUM >= #{startRow}
@@ -58,11 +56,10 @@
 	<select id="selectQnaSearchAllCount" resultType="int">
 		<![CDATA[   
 	      SELECT COUNT(*)
-	      FROM   QNA Q, USERS U
-	      WHERE  Q.EMAIL = U.EMAIL
-	      AND    (Q.QNA_TITLE LIKE '%' || #{search} || '%'
-	      OR	  Q.QNA_CONTENT LIKE '%' || #{search} || '%'
-	      OR	  U.NAME LIKE '%' || #{search} || '%')
+	      FROM   QNA
+	      WHERE  (QNA_TITLE LIKE '%' || #{search} || '%'
+	      OR	  QNA_CONTENT LIKE '%' || #{search} || '%'
+	      OR	  QNA_NAME LIKE '%' || #{search} || '%')
 	    ]]>
 	</select>
 	
@@ -75,29 +72,28 @@
 				SELECT ROWNUM AS RNUM, A.*
 				FROM
 				(
-					SELECT Q.*, U.NAME AS QNA_NAME
-					FROM   QNA Q, USERS U
-					WHERE  Q.EMAIL = U.EMAIL
+					SELECT *
+					FROM   QNA
 		]]>
 		<choose>
 			<when test="category=='qna_title'">		<!-- 제목별 검색 -->
 				<![CDATA[			
-					AND Q.QNA_TITLE LIKE '%' || #{search} || '%'
+					WHERE QNA_TITLE LIKE '%' || #{search} || '%'
 			    ]]>
 	    	</when>
 	    	<when test="category=='qna_content'">	<!-- 내용별 검색 -->
 				<![CDATA[		
-					AND Q.QNA_CONTENT LIKE '%' || #{search} || '%'
+					WHERE QNA_CONTENT LIKE '%' || #{search} || '%'
 			    ]]>
 	    	</when>
 	    	<when test="category=='qna_name'">		<!-- 이름별 검색 -->
 				<![CDATA[
-					AND U.NAME LIKE '%' || #{search} || '%'	
+					WHERE QNA_NAME LIKE '%' || #{search} || '%'	
 			    ]]>
 	    	</when>
 	    </choose>
 	    	<![CDATA[
-	    			ORDER BY Q.QNA_GROUP DESC, Q.QNA_STEP
+	    			ORDER BY QNA_GROUP DESC, QNA_STEP
 	    			) A
 				)
 			WHERE RNUM >= #{startRow}
@@ -109,23 +105,22 @@
 	<select id="selectQnaSearchCount" resultType="int">
 		<![CDATA[   
 			SELECT COUNT(*)
-			FROM   QNA Q, USERS U
-			WHERE  Q.EMAIL = U.EMAIL
+			FROM   QNA
 	    ]]>
 	    <choose>
 			<when test="category=='qna_title'">		<!-- 제목별 검색 --> 
 				<![CDATA[ 
-					AND Q.QNA_TITLE LIKE '%' || #{search} || '%'
+					WHERE QNA_TITLE LIKE '%' || #{search} || '%'
 		    	]]>
 	    	</when>
 	    	<when test="category=='qna_content'">	<!-- 내용별 검색 --> 
 				<![CDATA[ 
-					AND Q.QNA_CONTENT LIKE '%' || #{search} || '%'
+					WHERE QNA_CONTENT LIKE '%' || #{search} || '%'
 		    	]]>
 	    	</when>
 	    	<when test="category=='qna_name'">		<!-- 이름별 검색 --> 
 				<![CDATA[ 
-					AND U.NAME LIKE '%' || #{search} || '%'
+					WHERE QNA_NAME LIKE '%' || #{search} || '%'
 		    	]]>
 	    	</when>
 	    </choose>
@@ -133,11 +128,11 @@
 	
 	<!-- qna 쓰기 저장 -->
 	<insert id="insertQnaWriteDo"> 
-	   INSERT INTO QNA
-	   VALUES
-	   (SEQ_QNA_NO.NEXTVAL, #{email}, #{qna_title},
+	   INSERT INTO QNA 
+	    VALUES
+	   (SEQ_QNA_NO.NEXTVAL, #{email}, #{qna_name}, #{qna_title},
 	   #{qna_content}, SYSDATE, 0, SEQ_QNA_NO.CURRVAL,
-	   0, 0, #{qna_secret_code})
+	   0, 0, #{qna_secret_code}, #{qna_name})
 	</insert>
 	
 	<!-- 조회수 1 증가 -->
@@ -150,10 +145,9 @@
 	<!-- 뷰페이지 호출 -->
 	<select id="selectQnaView" resultType="com.site.vo.QnaVo">
 		<![CDATA[	
-			SELECT Q.*, U.NAME AS QNA_NAME
-			FROM   QNA Q, USERS U
-			WHERE  Q.EMAIL = U.EMAIL
-			AND	   Q.QNA_NO = #{qna_no}
+			SELECT *
+			FROM   QNA
+			WHERE  QNA_NO = #{qna_no}
 	    ]]>
 	</select>
 	
@@ -247,14 +241,14 @@
 	<insert id="insertQnaReplyDo">
 		INSERT INTO QNA
 		VALUES
-		(SEQ_QNA_NO.NEXTVAL, #{email}, 
+		(SEQ_QNA_NO.NEXTVAL, #{email}, #{qna_name},
 		#{qna_title}, #{qna_content}, 
 		SYSDATE, 0, #{qna_group}, 
-		#{qna_step} + 1, #{qna_indent} + 1, #{qna_secret_code})		
+		#{qna_step} + 1, #{qna_indent} + 1, #{qna_secret_code}, #{qna_original_name})		
 	</insert>
 	
 	<!-- qna step 1 증가 -->
-	<update id="insertQnaReplyDoPlus">
+	<update id="updateQnaReplyDoPlus">
 	   UPDATE QNA
 	   SET	  QNA_STEP = QNA_STEP + 1
 	   WHERE  QNA_GROUP = #{qna_group}
