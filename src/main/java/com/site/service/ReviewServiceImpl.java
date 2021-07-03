@@ -1,6 +1,7 @@
 package com.site.service;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.site.mapper.ReviewMapper;
+import com.site.vo.ProductVo;
 import com.site.vo.ReviewVo;
 
 @Service
@@ -19,34 +21,32 @@ public class ReviewServiceImpl implements ReviewService {
 	ReviewMapper reviewMapper;
 
 	@Override // 리뷰 쓰기 저장
-	public void reviewWirteDo(ReviewVo reviewVo, MultipartFile file) {
+	public void reviewWriteDo(ReviewVo reviewVo, ProductVo productVo, MultipartFile file) {
 
-		// 파일저장위치
-		String fileUrl = "D:/workspace3/shop/src/main/resources/static/upload/";
+		// 파일저장위 치
+		String fileUrl = "D:/workspace3/project_3/src/main/resources/static/";
 
-		// 파일이름 중복방지를 위한 파일명 변경
-		long time = System.currentTimeMillis(); // 숫자형태로 시간을 표현해줘요. return타입이 long임
-		String uploadFileName = time + "_" + file.getOriginalFilename(); // 파일이름 -> 시간_파일이름으로 나옴
+		//
+		String fileName=file.getOriginalFilename();
+		
+		//
+		String uploadFileName="";
+		//만약 fileName이 공백이 아니라면
+		if (!fileName.equals("")) {
+			long time = System.currentTimeMillis();
+			uploadFileName = "/images/reviewUpload/" + time + "_" + fileName;
+			File f = new File(fileUrl + uploadFileName);
+			System.out.println(uploadFileName);
 
-		// 파일저장 - io를 import해서 자동으로 디렉토리 없으면 만들어서 저장시킴
-		File f = new File(fileUrl + uploadFileName);
-		System.out.println("DB저장 전 uploadFileName : " + uploadFileName);
+			try {
+				file.transferTo(f);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
-		// 파일전송 - 예외처리 필요, 에러나서 다운될까봐, 예외처리는 마음대로 불가능, 피치못할 사정으로 생긴 에러만 예외처리할것.
-
-		try {
-			file.transferTo(f);
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
-
-		// 파일이름을 VO에 저장
 		reviewVo.setReview_image(uploadFileName);
-
-		// DB저장
 		reviewMapper.insertReviewWrite(reviewVo);
-
-		System.out.println("DB저장 후 uploadFileName : " + reviewVo.getEmail());
 	}
 
 	// 리뷰 리스트
@@ -96,9 +96,35 @@ public class ReviewServiceImpl implements ReviewService {
 
 	// 리뷰 수정 저장
 	@Override
-	public void reviewModifyDo(ReviewVo reviewVo) {
+	public void reviewModifyDo(ReviewVo reviewVo, MultipartFile file) {
+		//파일 사이즈가 0이 아닌경우 (파일이 변경 된 경우)
+		//기존의 파일이름 변경해서 -> boardMapper.updateBoardModifyDo(mvc_board);의 ()안에 넣어줌
+		if (file.getSize() != 0) {
+			
+			//파일 저장위치
+			String fileUrl = "C:/Users/user/eclipse-workspace/shop2/src/main/resources/static/upload/";
+			
+			// 파일이름 중복방지를 위한 파일명 변경
+			long time = System.currentTimeMillis(); 
+			String uploadFileName = time + "_" + file.getOriginalFilename();
+			
+			// 파일저장 - io를 import해서 자동으로 디렉토리 없으면 만들어서 저장시킴
+			File f = new File(fileUrl + uploadFileName);
+			System.out.println("DB저장 전 uploadFileName : " + uploadFileName);
+			
+			try {
+				file.transferTo(f);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			// 파일이름을 VO에 저장
+			reviewVo.setReview_image(uploadFileName);
+			
+		}
+		
+		//파일변경된거 아니면 그대로 진행
 		reviewMapper.updateReviewModifyDo(reviewVo);
-
 	}
 
 	// 리뷰 삭제

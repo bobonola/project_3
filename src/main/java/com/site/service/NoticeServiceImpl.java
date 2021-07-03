@@ -60,9 +60,9 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override //글쓰기
 	public void noticeWriteDo(NoticeVo noticeVo, MultipartFile file) {
 
-		String fileUrl = "C:/Users/Koreavc/git/shoppingmall/test0617/src/main/resources/static/noticeUpload/";	
+		String fileUrl = "D:/workspace3/project_3/src/main/resources/static/";	
 		long time = System.currentTimeMillis();
-		String uploadImage = time + "_" + file.getOriginalFilename();
+		String uploadImage = "images/noticeUpload/" + time + "_" + file.getOriginalFilename();
 		File f = new File(fileUrl + uploadImage);
 		
 		try {

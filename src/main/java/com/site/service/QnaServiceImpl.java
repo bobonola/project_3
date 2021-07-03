@@ -135,8 +135,8 @@ public class QnaServiceImpl implements QnaService {
 
 	@Override		// 답글 저장
 	public void qnaReplyDo(QnaVo qnaVo) {
-		qnaMapper.insertQnaReplyDoPlus(qnaVo);
 		qnaMapper.insertQnaReplyDo(qnaVo);
+		qnaMapper.updateQnaReplyDoPlus(qnaVo);
 	}
 
 }

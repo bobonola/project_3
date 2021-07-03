@@ -1,5 +1,6 @@
 package com.site.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -17,5 +18,8 @@ public interface ProductService {
 	
 	// 상세뷰페이지 호출
 	Map<String, Object> productView(int product_no);
+
+	// 상품등록
+	void productInsertDo(ProductVo productVo, List<MultipartFile> files);
 
 }
