@@ -5,12 +5,14 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.pg.data.BankVO;
 import org.pg.data.CertifyVO;
+import org.pg.data.MallVO;
 import org.pg.data.PaymentWayVO;
 import org.pg.data.UserVO;
 
 @Mapper
 public interface ProcessMapper
 {
+	MallVO getMall( String mall_code );
 
 	UserVO getUser( String id );
 
@@ -30,5 +32,9 @@ public interface ProcessMapper
 	List<PaymentWayVO> getPaymentWays( String id );
 
 	List<BankVO> getBanks();
+
+	void insertNewPaymentWay( PaymentWayVO paymentInfo );
+
+	PaymentWayVO getPaymentWayByPayment_number( String payment_number );
 
 }

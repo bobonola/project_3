@@ -21,18 +21,22 @@ public interface ProcessService
 	Map<String, Object> joinProcess( Map<String,Object> map, HttpSession session );
 
 	// 새로운 거래 수단 등록.
-	Map<String, Object> newPaymentWay( PaymentWayVO paymentInfo, String year, String month );
-
-
-	String getCertifyingCode( String email );
-	
-	void inputCodeToDB(String email, String code);
+	void newPaymentWay( PaymentWayVO paymentInfo);
 
 	Map<String, Object> emailCheck( Map<String, Object> input );
 
 	Map<String, Object> getPaymentInfos( String id );
 
 	List<BankVO> getBanks();
+
+	boolean newPaymentWayCheck( String payment_number );
+
+	Map<String, Object> emailConfirm( String email );
+
+	void open( HttpSession session, long total_price, String mall_code, String mall_account );
+
+	String encryption( Map<String, Object> input );
+
 
 
 }

@@ -2,14 +2,42 @@
  * 
  */
 
-function success() {
-	let mall = "${sessionScope.mallAddress}";
-	location.href = mall + '?message=success';
+function test() {
+	let item = document.getElementById('bank_name').value;
+	alert(item);
+	return null;
 }
 
-function fail() {
-	let mall = "${sessionScope.mallAddress}";
-	location.href = mall + '?message=failed';
+
+function success(data) {
+	let form = document.getElementById('form');
+	sendData = {
+		"payment_number": data
+	};
+
+	$.ajax({
+		url: "/newPaymentWayCheck",
+		method: "post",
+		contentType: "application/json;charset=UTF-8",
+		data: JSON.stringify(sendData),
+		success: function(data) {
+			if (data) {
+				alert("새 결제 수단이 등록되었습니다.");
+				form.submit();
+			}
+			else {
+				alert('이미 존재하는 번호입니다.');
+				return false;
+			}
+
+		}
+
+	});
+}
+
+function fail(data) {
+	alert(data);
+	return false;
 }
 
 function disconnect(bankURL) {
@@ -24,43 +52,70 @@ function disconnect(bankURL) {
 	})
 }
 
+
+
 function paymentway_check() {
-	let bankURL = "http://localhost:8081/banking";
+	let bankURL;
 	let tempMeans = document.getElementsByClassName('on')[0].innerText;
 	let payment_number = "";
 	let means = "";
 	let password = "";
 	let cvc = "";
-	let bankCode = document.getElementById('bank').value;
+	let bankName = document.getElementById('bank_name').value;
 	let pg_code = document.getElementById('pg_code').value;
-	let end_date = document.getElementById('end_date').value;
-	end_date = end_date.split("/");
-	let end_year = end_date[1];
-	let end_month = end_date[0];
-	switch (bankCode) {
-		case "bankA":
-			bankURL = "http://localhost:8081/connect";
+	let end_date;
+	let end_year = "-1";
+	let end_month = "-1";
+	switch (bankName) {
+		case "농협":
+			bankURL = "http://localhost:8081";
 			break;
 	}
 	if (tempMeans == "카드") {
 		means = 'card';
 		payment_number = document.getElementsByName('payment_number')[0].value;
-		password = document.getElementsByName('password')[0].value;
+		password = document.getElementsByName('payment_password')[0].value;
 		cvc = document.getElementById("cvc").value;
 		end_date = document.getElementById('end_date').value;
+		end_date = end_date.split("/");
+		end_year = "20" + end_date[1];
+		end_month = end_date[0];
+
 	} else {
 		means = 'account';
 		payment_number = document.getElementsByName('payment_number')[1].value;
-		password = document.getElementsByName('password')[1].value;
+		password = document.getElementsByName('payment_password')[1].value;
 	}
 
+	let dataEncrypting = {
+		"data": password
+	};
+	
+	let encrypted_password;
+
+	$.ajax({
+		url: "/encryption",
+		type: "post",
+		contentType: "application/json;charset=UTF-8",
+		data: JSON.stringify(dataEncrypting),
+		success: function(receiveData) {
+			encrypted_password = receiveData;
+		},
+		error: function() {
+			encrypted_password = null;
+		}
+	});
+
+	document.getElementById('end_year').value = end_year;
+	document.getElementById('end_month').value = end_month;
+	document.getElementById('means').value = means;
 	let sendData = {
 		"messageType": "paymentWayCheck",
 		"pg_code": pg_code,
 		"mall_ID": "Joongang",
 		"means": means,
 		"payment_number": payment_number,
-		"payment_password": password,
+		"payment_password": encrypted_password,
 		"end_month": end_month,
 		"end_year": end_year,
 		"CVC": cvc
@@ -74,27 +129,30 @@ function paymentway_check() {
 		success: function(data) {
 			if (data.messageType == "success") {
 				disconnect(bankURL);
-				success();
+				success(payment_number);
 			}
 			else {
-				fail();
+				fail("오류가 발생했습니다: " + data.messageType);
+				return false;
 			}
 		}
 	}).fail(function() {
 		alert('오류가 발생했습니다.');
-		
+
 	})
 }
 
 
 function payment_ajax() {
-	let bankURL = "http://localhost:8081/banking";
+	let bankURL = "http://localhost:8081";
 	let pg_code = document.getElementById('pg_code').value;
+	let mall_account = document.getElementById('mall_account').value;
 
 	let sendData = {
 		"messageType": "connect",
 		"pg_code": pg_code,
-		"mall_ID": "Joongang"
+		"mall_ID": "Joongang",
+		"mall_account": mall_account
 	};
 
 
@@ -105,7 +163,6 @@ function payment_ajax() {
 		contentType: "application/json; charset=UTF-8",
 		success: function(data) {
 			if (data.messageType == "success") {
-				alert('통신 성공');
 				paymentway_check();
 			}
 			else {

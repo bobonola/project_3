@@ -40,7 +40,7 @@ public class TestController
 	{
 		Map<String, Object> input = new HashMap<>();
 		input.put( "mall_code", "19721121" );
-		Map<String, Object> result = receiveService.connectionCheck( input, session );
+		Map<String, Object> result = receiveService.connectionCheck( input );
 
 		String message = (String)result.get( "messageType" );
 
@@ -60,7 +60,7 @@ public class TestController
 	{
 		Map<String, Object> input = new HashMap<>();
 		input.put( "mall_code", "19460314" );
-		Map<String, Object> result = receiveService.connectionCheck( input, session );
+		Map<String, Object> result = receiveService.connectionCheck( input );
 
 		ModelAndView mav = new ModelAndView();
 		mav.addObject( "map", result );

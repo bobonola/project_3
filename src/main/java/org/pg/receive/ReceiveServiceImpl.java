@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.pg.data.CommunicationMessage;
 import org.pg.data.MallVO;
 import org.pg.data.PGException;
+import org.pg.process.ProcessMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +16,10 @@ public class ReceiveServiceImpl implements ReceiveService
 {
 
 	@Autowired
-	private ReceiveMapper mapper;
+	private ProcessMapper mapper;
 
 	@Override
-	public Map<String, Object> connectionCheck( Map<String, Object> input,
-			HttpSession session )
+	public Map<String, Object> connectionCheck( Map<String, Object> input)
 	{
 		Map<String, Object> result = new HashMap<>();
 		PGException exception = null;
@@ -27,36 +27,35 @@ public class ReceiveServiceImpl implements ReceiveService
 
 		try
 		{
-			String message = (String)result.get( "messageType" );
+			if ( input == null || input.size() == 0 )
+			{
+				exception = new PGException( "No Input Data" );
+				throw exception;
+			}
+			String message = input.get( "messageType" ).toString();
 
 			if ( message.equals( CommunicationMessage.connect ) == false )
 			{
-				exception = new PGException( "잘못된 접근입니다." );
+				exception = new PGException( "Invalid Access." );
 				throw exception;
 			}
 
-			if ( input == null )
-			{
-				exception = new PGException( "입력된 데이터가 없습니다." );
-				throw exception;
-			}
-			mall_code = (String)input.get( "mall_code" );
+			mall_code = input.get( "mall_code" ).toString();
 
 			if ( mall_code == null )
 			{
-				exception = new PGException( "업체 코드가 없습니다." );
+				exception = new PGException( "No Mall Code" );
 				throw exception;
 			}
 			MallVO mallInfo = mapper.getMall( mall_code );
 
 			if ( mallInfo == null )
 			{
-				exception = new PGException( "등록되지 않은 업체입니다." );
+				exception = new PGException( "Unregistrated Mall" );
 				throw exception;
 			}
 
 			result.put( "messageType", CommunicationMessage.success );
-			session.setAttribute( "mall_name", input.get( "mall_name" ) );
 		}
 		catch( PGException e )
 		{
@@ -67,7 +66,7 @@ public class ReceiveServiceImpl implements ReceiveService
 		catch( Exception e )
 		{
 			result.put( "messageType", CommunicationMessage.error );
-			result.put( "message", "예상치 못한 오류가 발생했습니다.: " + e.getMessage() );
+			result.put( "message", "Unexpected error.: " + e.getMessage() );
 			e.printStackTrace();
 			return result;
 		}

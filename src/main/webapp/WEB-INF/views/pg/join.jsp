@@ -140,7 +140,7 @@ body {
 			{
 				if (data.check == true)
 				{
-					location.href="/codeGenerate";
+					location.href="/emailConfirm";
 				} else
 				{
 					alert(data.message);

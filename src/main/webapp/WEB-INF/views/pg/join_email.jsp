@@ -104,6 +104,10 @@ body {
 	font-size: 20px
 }
 
+#notice_sub p {
+	font-size:16px;
+}
+
 .btn_login {
 	display: block;
 	width: 100%;
@@ -144,7 +148,7 @@ body {
 					location.href = "/join_profile";
 				} else
 				{
-					alert('인증 코드가 일치하지 않습니다.');
+					alert(data.message);
 					return false;
 				}
 			},
@@ -168,7 +172,8 @@ body {
 				<div style="margin-bottom: 7px"></div>
 				<div class="content_notice" id="notice_main">이메일 인증하기</div>
 				<div class="content_notice" id="notice_sub">
-					작성해주신 메일로 발송된 인증코드를 입력해주세요.
+					작성해주신 메일로 발송된 인증코드를 입력해주세요.<br> 5분이 지나면 코드가 무효화됩니다.
+					<p>코드를 보낸 시각: ${map.startTime}</p>
 				</div>
 				<form action="/emailCheck" method="post">
 					<fieldset style="border: 0">

@@ -11,10 +11,7 @@ import org.pg.email.EmailComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -23,14 +20,35 @@ public class ProcessController
 	@Autowired
 	ProcessService service;
 
-	@Autowired
-	EmailComponent emailComponent;
+	@RequestMapping( "" )
+	public String open( HttpSession session, @RequestParam long total_price,
+			@RequestParam String mall_code,@RequestParam String mall_account )
+	{
+		service.open( session, total_price, mall_code,mall_account );
+		return "redirect:/login";
+	}
 
 	// 로그인 페이지 띄우기
 	@RequestMapping( "/login" )
-	public String login()
+	public String login( HttpSession session )
 	{
-		return "/pg/login.jsp";
+		String id = (String)session.getAttribute( "id" );
+		String email = (String)session.getAttribute( "email" );
+		if ( id == null || email == null )
+		{
+			return "/pg/login.jsp";
+		}
+		else
+		{
+			return "/pg/payment.jsp";
+		}
+	}
+
+	@RequestMapping( "/logout" )
+	public String logout( HttpSession session )
+	{
+		session.invalidate();
+		return "redirect:/login";
 	}
 
 	// 로그인 체크 결과 돌려주기
@@ -65,23 +83,14 @@ public class ProcessController
 		return result;
 	}
 
-	@RequestMapping( "/codeGenerate" )
-	public String codeGenerate( HttpSession session )
+	// 인증용 이메일 전송 및 페이지 넘기기
+	@RequestMapping( "/emailConfirm" )
+	public String emailConfirm( HttpSession session, Model m )
 	{
 		String email = (String)session.getAttribute( "email" );
 
-		String code = service.getCertifyingCode( email );
-		emailComponent.sendMail( email, "Payment's 인증 메일입니다.", code );
-		service.inputCodeToDB( email, code );
-
-		return "forward:/emailConfirm";
-	}
-
-	// 인증용 이메일 전송 및 페이지 넘기기
-	@RequestMapping( "/emailConfirm" )
-	public String emailConfirm()
-	{
-
+		Map<String, Object> map = service.emailConfirm( email );
+		m.addAttribute( "map", map );
 		return "/pg/join_email.jsp";
 	}
 
@@ -104,8 +113,8 @@ public class ProcessController
 	// 정보 확인 및 가입 처리.
 	@RequestMapping( "/joinProcess" )
 	@ResponseBody
-	public Map<String, Object> joinProcess( @RequestBody Map<String, Object> map,
-			HttpSession session )
+	public Map<String, Object> joinProcess(
+			@RequestParam( required = false ) Map<String, Object> map, HttpSession session )
 	{
 		Map<String, Object> result = service.joinProcess( map, session );
 
@@ -122,21 +131,30 @@ public class ProcessController
 
 	// 새로운 거래 수단 입력 페이지 띄우기
 	@RequestMapping( "/newPaymentWay" )
-	public String newPaymentWays(Model m)
+	public String newPaymentWays( Model m )
 	{
-		List<BankVO> list=service.getBanks();
+		List<BankVO> list = service.getBanks();
 		m.addAttribute( "banks", list );
-		m.addAttribute( "pg_code",PG_Code.value );
+		m.addAttribute( "pg_code", PG_Code.value );
 		return "/pg/join_paymethod.jsp";
 	}
 
-	@RequestMapping( "/newPaymentWayAdd" )
-	public String newPaymentWayAdd( PaymentWayVO paymentInfo, Model m,
-			@RequestParam( "year" ) String year, @RequestParam( "month" ) String month )
+	@RequestMapping( "/newPaymentWayCheck" )
+	@ResponseBody
+	public boolean newPaymentWayCheck( @RequestBody Map<String, Object> input )
 	{
-		Map<String, Object> result = service.newPaymentWay( paymentInfo, year, month );
-		m.addAttribute( "map", result );
-		return "";
+		String payment_number = (String)input.get( "payment_number" );
+		boolean result = service.newPaymentWayCheck( payment_number );
+
+		return result;
+	}
+
+	@RequestMapping( "/newPaymentWayAdd" )
+	public String newPaymentWayAdd( PaymentWayVO paymentInfo )
+	{
+		service.newPaymentWay( paymentInfo );
+
+		return "redirect:/payment";
 	}
 
 	@RequestMapping( "/payment" )
@@ -149,5 +167,13 @@ public class ProcessController
 		mav.addObject( "map", map );
 
 		return mav;
+	}
+	
+	@RequestMapping("/encryption")
+	@ResponseBody
+	public String encryption(@RequestBody Map<String,Object> input) {
+		String result=service.encryption(input);
+		
+		return result;
 	}
 }

@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
+<c:if test="${not empty sessionScope.id}">
+	<script>
+		location.href = "/payment";
+	</script>
+</c:if>
 <head>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
@@ -119,29 +125,35 @@ body {
 </style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-	function login_ajax() {
-		
+	function login_ajax()
+	{
+
 		var id = document.getElementById('user_id');
 		var pw = document.getElementById('user_pwd');
 		var sendData = {
-			"id" : id.value, "pw" : pw.value
+			"id" : id.value,
+			"pw" : pw.value
 		};
 
 		$.ajax({
-			url : "/loginCheck", 
-			method : "post", 
+			url : "/loginCheck",
+			method : "post",
 			data : JSON.stringify(sendData),
-			contentType: "application/json; charset=UTF-8",
-			success : function(data) {
-				if(data.check==true){
+			contentType : "application/json; charset=UTF-8",
+			success : function(data)
+			{
+				if (data.check == true)
+				{
 					location.href = '/payment';
-				}
-				else{
-					alert("로그인 실패: "+data.message);
+				} else
+				{
+					alert("로그인 실패: " + data.message);
 					return false;
 				}
-				
-			}, error : function() {
+
+			},
+			error : function()
+			{
 				alert('로그인에 실패했습니다.');
 				return false;
 			}
@@ -177,7 +189,7 @@ body {
 								</span>
 							</div>
 						</div>
-<!-- 						<a href="#" class="btn_login" type="button" onclick="login_ajax()">결제하기</a> -->
+						<!-- 						<a href="#" class="btn_login" type="button" onclick="login_ajax()">결제하기</a> -->
 						<button class="btn_login" type="button" onclick="login_ajax()">결제하기</button>
 					</fieldset>
 				</form>

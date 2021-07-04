@@ -2,6 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
+<c:if test="${empty sessionScope.id }">
+	<script>
+		alert("잘못된 접근입니다.");
+		location.href = "/login";
+	</script>
+</c:if>
 <head>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
@@ -142,6 +148,26 @@ body {
 	text-decoration: none
 }
 
+.btn_choose {
+	display: block;
+	width: 100%;
+	height: 51px;
+	margin: 13px 0 35px;
+	padding-top: 1px;
+	padding-left: 9px;
+	border: solid 1px #e7e7e7;
+	px: white;
+	text-align: center;
+	color: #000;
+	font-size: 17px;
+	font-weight: 700;
+	line-height: 55px;
+	cursor: pointer;
+	border-radius: 15px;
+	text-decoration: none;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 .detailTab ul li {
 	width: 50%;
 }
@@ -155,7 +181,8 @@ body {
 
 </head>
 <body>
-<input type='hidden' id='pg_code' value="${pg_code }">
+	<input type='hidden' id='pg_code' value="${pg_code }">
+	<input type='hidden' id='mall_account' value="${sessionScope.mall_account }">
 	<div id="wrap">
 		<div id="header">
 			<div id="h_logo">PayMent's</div>
@@ -166,7 +193,9 @@ body {
 				<!-- 				<div class="content_notice" id="notice_main">계정이 생성되었습니다.</div> -->
 				<div class="content_notice" id="notice_sub">카드나 계좌를 등록하여 쇼핑을 즐겨보세요.</div>
 				<!-- tab -->
+				
 				<div class="detailTab">
+				
 					<ul>
 						<li class="dep">
 							<a href="javascript:;" onclick="return false;" id="detailInfo">카드</a>
@@ -187,24 +216,25 @@ body {
 
 
 				<!-- detail info -->
-				<div class="detailInfo disnone">
-					<form action="" method="post">
+				<form action="/newPaymentWayAdd" method="post" id='form'>
+					<input type='hidden' name='userID' value='${sessionScope.id }'>
+					<input type='hidden' name='means' id='means' value='card'>
+					<input type='hidden' name='end_year' id='end_year'>
+					<input type='hidden' name='end_month' id='end_month'>
+
+					<select class="btn_choose" name="bank_name" id="bank_name">
+						<c:forEach items="${banks }" var="bank">
+							<option value="${bank.bank_name }">💰&nbsp;${bank.bank_name }</option>
+						</c:forEach>
+					</select>
+
+					<div class="detailInfo disnone">
 						<img id="card_images"
 							src="https://png.pngtree.com/png-vector/20190507/ourmid/pngtree-vector-credit-card-icon-png-image_1025464.jpg" />
+
 						<fieldset style="border: 0">
-							<div class="id_area">
-								<div class="input_row" id="id_area">
-									<span class="input_box">
-<!-- 										<select> -->
-<%-- 											<c:forEach var="bank" items=""> --%>
-<!-- 												<option></option> -->
-<%-- 											</c:forEach> --%>
-<!-- 										</select> -->
-										<input style="font-family: 'Noto Sans KR', sans-serif" type="text" name="bank" id="bank"
-											class="int" placeholder=카드사>
-									</span>
-								</div>
-							</div>
+
+
 							<div class="id_area">
 								<div class="input_row" id="card_number_area">
 									<span class="input_box">
@@ -216,8 +246,8 @@ body {
 							<div class="id_area">
 								<div class="input_row" id="end_date_area">
 									<span class="input_box">
-										<input style="font-family: 'Noto Sans KR', sans-serif" type="text" name="end_date"
-											id="end_date" class="int" placeholder="만료일(MM/YY)">
+										<input style="font-family: 'Noto Sans KR', sans-serif" type="text" id="end_date"
+											class="int" placeholder="만료일(MM/YY)">
 									</span>
 								</div>
 							</div>
@@ -232,31 +262,21 @@ body {
 							<div class="id_area">
 								<div class="input_row" id="transaction_password_area">
 									<span class="input_box">
-										<input style="font-family: 'Noto Sans KR', sans-serif" type="password" name="password"
-											id="transaction_password" class="int" placeholder="결제 비밀번호">
+										<input style="font-family: 'Noto Sans KR', sans-serif" type="password"
+											name="payment_password" id="transaction_password" class="int" placeholder="결제 비밀번호">
 									</span>
 								</div>
 							</div>
-							<!-- 							<a href="http://localhost:8000/pg/payment" class="btn_login" type="button">다음</a> -->
-							<button class="btn_login" type="button" onclick="payment_ajax()">결제하기</button>
-						</fieldset>
-					</form>
-				</div>
-				<!-- detail info -->
 
-				<!-- goods relation -->
-				<div class="goodsRelation disnone">
-					<form action="" method="post">
+						</fieldset>
+					</div>
+					<!-- detail info -->
+
+					<!-- goods relation -->
+					<div class="goodsRelation disnone">
 						<img id="account_images" src="../images/pg/account.png" />
 						<fieldset style="border: 0">
-							<div class="id_area">
-								<div class="input_row" id="id_area">
-									<span class="input_box">
-										<input style="font-family: 'Noto Sans KR', sans-serif" type="text" name="bank" id="bank"
-											class="int" placeholder=은행>
-									</span>
-								</div>
-							</div>
+
 
 							<div class="id_area">
 								<div class="input_row" id="account_number_area">
@@ -269,19 +289,19 @@ body {
 							<div class="id_area">
 								<div class="input_row" id="password_area">
 									<span class="input_box">
-										<input style="font-family: 'Noto Sans KR', sans-serif" type="password" name="password"
-											id="password" class="int" placeholder=계좌비밀번호>
+										<input style="font-family: 'Noto Sans KR', sans-serif" type="password"
+											name="payment_password" id="password" class="int" placeholder=계좌비밀번호>
 									</span>
 								</div>
 							</div>
 
-							<!-- 							<a href="http://localhost:8000/pg/payment" class="btn_login" type="button">다음</a> -->
-							<button class="btn_login" type="button" onclick="payment_ajax()">등록하기</button>
-						</fieldset>
-					</form>
-				</div>
-				<!-- detail info -->
 
+						</fieldset>
+					</div>
+					<!-- 							<a href="http://localhost:8000/pg/payment" class="btn_login" type="button">다음</a> -->
+					<input class="btn_login" type="button" onclick="payment_ajax()" value="등록하기">
+
+				</form>
 			</div>
 		</div>
 	</div>

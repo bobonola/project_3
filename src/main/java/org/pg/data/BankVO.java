@@ -7,5 +7,5 @@ import lombok.*;
 @AllArgsConstructor
 public class BankVO
 {
-	private String bank_code,bank_name,icon_path;
+	private String url,bank_name;
 }
