@@ -8,7 +8,7 @@ public class Index
 {
 	
 	
-	@RequestMapping("")
+	@RequestMapping("/index")
 	public String index() {
 		return "/index.jsp";
 	}

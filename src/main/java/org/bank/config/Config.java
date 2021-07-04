@@ -17,7 +17,7 @@ public class Config implements WebMvcConfigurer
 	public void addCorsMappings( CorsRegistry registry )
 	{
 		CorsRegistration temp = registry.addMapping( "/**" );
-		temp.allowedOrigins( "http://localhost:8081" );
+		temp.allowedOrigins( "http://localhost:8080" );
 	}
 
 	@Bean

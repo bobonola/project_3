@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CardVO
 {
-	private String card_number,account_number,userID,cvs;
+	private String card_number,account_number,userID,cvc;
 	private Timestamp end_date;
 }

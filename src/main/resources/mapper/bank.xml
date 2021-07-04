@@ -65,5 +65,12 @@
 	where account_number=#{mall_account_number}
 	]]>
 	</update>
+	
+	<select id="getPG" resultType="org.bank.data.PGVO">
+	<![CDATA[
+	select *
+	from paygates
+	]]>
+	</select>
 
 </mapper>
