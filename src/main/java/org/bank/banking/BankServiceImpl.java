@@ -357,6 +357,7 @@ public class BankServiceImpl implements BankService
 				userPassword = userInfo.getPassword();
 				break;
 		}
+		System.out.println( payment_password );
 
 		boolean result = payment_password.equals( userPassword );
 
