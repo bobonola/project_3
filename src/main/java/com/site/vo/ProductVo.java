@@ -25,6 +25,7 @@ public class ProductVo {
 	private String product_description;		// 상품설명
 	private int product_total_stock;		// 상품재고총합계
 	private int product_size;
+	private int product_stock;
 	private int product_size_230;			// 상품사이즈230재고
 	private int product_size_240;			// 상품사이즈240재고
 	private int product_size_250;			// 상품사이즈250재고
