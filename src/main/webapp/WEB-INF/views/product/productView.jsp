@@ -61,7 +61,7 @@
 <body>
 	<section class="content">
 		<c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
-		<br> <br> <br> <br> <br>
+
 
 		<br>
 		<div id="allwrap">
@@ -128,29 +128,35 @@
 												</div>
 											</li>
 											<br>
-											
-											<li>
+									
 												<%-- 사이즈 선택 시작 --%>
 												<div class="stit">사이즈</div> &emsp; 
 												<select name="product_size" id="product_size" style="width:185px; cursor:pointer">
-													<option value="" selected="selected">&nbsp;▼▼▼▼사이즈 선택▼▼▼▼&nbsp;</option>
-													<option value="${map.productVo.product_size_230 }">&nbsp;size 230&emsp;&emsp;&emsp;&emsp;</option>	
-													<option value="${map.productVo.product_size_240 }">&nbsp;size 240&emsp;&emsp;&emsp;&emsp;</option>	
-													<option value="${map.productVo.product_size_250 }">&nbsp;size 250&emsp;&emsp;&emsp;&emsp;</option>	
-													<option value="${map.productVo.product_size_260 }">&nbsp;size 260&emsp;&emsp;&emsp;&emsp;</option>	
-													<option value="${map.productVo.product_size_270 }">&nbsp;size 270&emsp;&emsp;&emsp;&emsp;</option>	
-													<option value="${map.productVo.product_size_280 }">&nbsp;size 280&emsp;&emsp;&emsp;&emsp;</option>	
-													<option value="${map.productVo.product_size_290 }">&nbsp;size 290&emsp;&emsp;&emsp;&emsp;</option>	
-													<option value="${map.productVo.product_size_300 }">&nbsp;size 300&emsp;&emsp;&emsp;&emsp;</option>	
+													<option value="" selected="selected">&nbsp;▼▼▼▼재고▼▼▼▼&nbsp;</option>
+													<option value="230">&nbsp;size 230&emsp;&emsp;&emsp;&emsp;</option>	
+													<option value="240">&nbsp;size 240&emsp;&emsp;&emsp;&emsp;</option>	
+													<option value="250">&nbsp;size 250&emsp;&emsp;&emsp;&emsp;</option>	
+													<option value="260">&nbsp;size 260&emsp;&emsp;&emsp;&emsp;</option>	
+													<option value="270">&nbsp;size 270&emsp;&emsp;&emsp;&emsp;</option>	
+													<option value="280">&nbsp;size 280&emsp;&emsp;&emsp;&emsp;</option>	
+													<option value="290">&nbsp;size 290&emsp;&emsp;&emsp;&emsp;</option>	
+													<option value="300">&nbsp;size 300&emsp;&emsp;&emsp;&emsp;</option>	
 												</select>
+												
 												<%-- 사이즈 선택 끝 --%>
+											<li>
+												<input id="230" type='hidden' value="${map.productVo.product_size_230 }">
+												<input id="240" type='hidden' value="${map.productVo.product_size_240 }">
+												<input id="250" type='hidden' value="${map.productVo.product_size_250 }">
+												<input id="260" type='hidden' value="${map.productVo.product_size_260 }">
+												<input id="270" type='hidden' value="${map.productVo.product_size_270 }">
+												<input id="280" type='hidden' value="${map.productVo.product_size_280 }">
+												<input id="290" type='hidden' value="${map.productVo.product_size_290 }">
+												<input id="300" type='hidden' value="${map.productVo.product_size_300 }">
 											</li>
 											<br>
 											
-											<li>
-												<div class="stit"><h3><strong>재 고 </strong></h3></div> &emsp;
-													&emsp;<strong id="product_stock_2"/> 
-											</li>
+											
 											
 											<li>
 											
@@ -159,7 +165,7 @@
 													<div class="num" id="size_amount">
 														&emsp; <select name="product_count" id="product_count">
 															<option value="0">0</option>
-														</select>&nbsp;개
+														</select>&nbsp;개 
 													</div>
 											
 											</li>
@@ -182,15 +188,16 @@
 
 								<div class="infobtn">
 									<ul>
-										<input name="product_no" type="hidden" value="${ map.productVo.product_no}">
-										<input name="email" type="hidden" value="${ session_email}">		
-								
-										<c:if test="${session_flag == null || session_flag == ''}">
-											<li><a onclick="#" class="ty1">바로 <span>구매하기</span></a></li>
+										<c:if test="${session_admin_code == 1 }">
+											<input name="product_no" type="hidden" value="${ map.productVo.product_no}">
+											<input name="email" type="hidden" value="${ session_email}">		
+											<input name="product_size" type="hidden" value="${ map.productVo.product_size}">
 											<li><button onclick="#" type="submit" class="btn btn-primary">장바구니에담기</button></li>
 										</c:if>
 										
-
+										<c:if test="${session_flag == null || session_flag == '' }">
+											<li><a class="ty1" href="../user/login">로그인 하러 가기</a></li>
+										</c:if>
 										
 									</ul>
 								</div>
@@ -235,8 +242,7 @@
 								<img src="${map.productVo.product_image5 }" class="web" alt="제품상세 정보" />
 
 								<div class="checkInfoDiv">
-									<table
-										summary="제품의 정보를 알 수 있는 표로 제품명, 내용량, 제조원, 포장재질, 유통기한, 고객상담실, 식품의 유형, 유통전문판매원, 영양성분, 원재료명 및 함량, 업소명 및 소재지 순으로 나열되어 있습니다."
+									<table summary="제품의 정보를 알 수 있는 표로 제품명, 내용량, 제조원, 포장재질, 유통기한, 고객상담실, 식품의 유형, 유통전문판매원, 영양성분, 원재료명 및 함량, 업소명 및 소재지 순으로 나열되어 있습니다."
 										class="checkTable" border="1" cellspacing="0">
 										<caption>제품의 정보</caption>
 										<colgroup>
@@ -247,108 +253,104 @@
 										</colgroup>
 										<tbody>
 											<tr>
-												<th scope="row" class="info"><span>제조명</span></th>
-												<td>원두커피백</td>
-												<th scope="row" class="info"><span>내용량</u></span></th>
-												<td>일회용 원두커피 티백</td>
+												<th scope="row" class="info"><span>제품명</span></th>
+												<td>신발</td>
+												<th scope="row" class="info"><span>제조년월</u></span></th>
+												<td>2020/02/05</td>
 											</tr>
 
 											<tr>
-												<th scope="row" class="info"><span>제조원</span></th>
-												<td>JARDIN</td>
-												<th scope="row" class="info"><span>포장재질</span></th>
-												<td>폴리에틸렌(내면)</td>
+												<th scope="row" class="info"><span>용도</span></th>
+												<td>러닝</td>
+												<th scope="row" class="info"><span>재질</span></th>
+												<td>겉감: 100% 폴리에스터, 안감: 100% 폴리에스터</td>
 											</tr>
 
 											<tr>
-												<th scope="row" class="info"><span>유통기한</span></th>
-												<td>제조일로부터 OO개월</td>
+												<th scope="row" class="info"><span>원산지</span></th>
+												<td>중국</td>
 												<th scope="row" class="info"><span>고객<u>상담실</u></span></th>
-												<td>02-546-3881</td>
+												<td>1688-1688</td>
 											</tr>
 
 											<tr>
-												<th scope="row" class="info"><span>식품의 <u>유형</u></span></th>
-												<td>인스턴트 커피</td>
-												<th scope="row" class="info"><span>유통전문<u>판매원</u></span></th>
-												<td></td>
+												<th scope="row" class="info"><span>제조자/수입자</span></th>
+												<td colspan="3">아디다스코리아/RUNNER'Z</td>
 											</tr>
 
 											<tr>
-												<th scope="row" class="info"><span>영양성분</span></th>
-												<td colspan="3">인스턴트 커피, 합성 헤이즐넛향</td>
-											</tr>
-
-											<tr>
-												<th scope="row" class="info"><span>원재료명 <u>및 함량</u></span></th>
-												<td colspan="3">열량 95kcal, 탄수화물 16g, 당류 11g, 단백질 1g, 지방 2.9g, 포화지방 2.8, 트랜스지방 0g, 콜레스테롤 0mg</td>
+												<th scope="row" class="info"><span>안전품질표시</u></span></th>
+												<td colspan="3">"안전기준에서 정한 유해물질 안전요건에 적합한 제품임"</td>
 											</tr>
 
 											<tr>
 												<th scope="row" class="info"><span>업소명 <u>및 소재지</u></span></th>
-												<td colspan="3">서울시 강남구 논현동 4-21번지 영 빌딩 (주)쟈뎅</td>
+												<td colspan="3">서울시 구로디지털로  디지털로34길 27 대륭포스트타워3차 1106호 (주)RUNNER'Z </td>
 											</tr>
 										</tbody>
 									</table>
 								</div>
 							</div>
+                     <!-- detail info -->
+							</div>
 							<!-- detail info -->
 
-							<!-- goods review -->
-							<div class="goodsReview disnone">
-								<div class="headTitle">
-									<!-- product_no를 가지고 rewrite로 가기위해서 번호를 담아감-->
-									<p class="btn">
-										<a href="../review/reviewWrite?product_no=${ map.productVo.product_no }">구매 후기 작성</a>
-									</p>
-								</div>
-								<br> <br> <br>
-								<!-- 내용부분 -->
+							 <!-- goods review -->
+		                    <div class="goodsReview disnone">
+		                       <div class="headTitle">
+		                          <!-- product_no를 가지고 rewrite로 가기위해서 번호를 담아감-->
+		                          <p class="btn">
+		                             <a href="../review/reviewWrite?product_no=${ map.productVo.product_no }">구매 후기 작성</a>
+		                          </p>
+		                       </div>
+		                       <br> <br> <br>
+		                       <!-- 내용부분 -->
+		
+		                       <div class="accordion">
+		                          <ul>
+		                             <!-- 반복 -->
+		                             <c:forEach var="reviewVo" items="${review_map.list }"> <!-- 위치 잘 보기 -->
+		
+		                                <li>
+		                                   <div class="headArea">
+		                                      <div class="subject">
+		                                         <a href="javascript:;" class="accbtn">${reviewVo.review_title}</a>
+		                                      </div>
+		                                      <div class="writer">${reviewVo.email}</div>
+		                                      <div class="day">
+		                                         <p>${reviewVo.review_date}</p>
+		                                         <p>
+		                                            <c:forEach begin="1" end="${reviewVo.review_ratings}">
+		                                                 <img alt="별점" src="../images/product_images/ico_star.gif" class="rating">
+		                                              </c:forEach>
+		                                         </p>
+		                                      </div>
+		                                   </div>
+		
+		                                   <div class="hideArea">
+		                                      <div class="bodyArea">
+		                                         <c:if test="${not empty reviewVo.review_image}">
+		                                            <img src="${reviewVo.review_image}"><br><br>
+		                                         </c:if>
+		                                         ${reviewVo.review_content}
+		                                      </div>
+		                                      
+		                                      <div class="modify">
+		                                          <c:if test="${session_email == reviewVo.email }">
+		                                         <a href="/review/reviewModify?review_no=${reviewVo.review_no }&product_no=${reviewVo.product_no}">수정</a> 
+		                                         <a href="#" onclick="reviewDelete_check(${reviewVo.review_no }, ${reviewVo.product_no})">삭제</a>
+		                                         </c:if>
+		                                      </div>
+		
+		                                   </div>
+		                                </li>
+		                             </c:forEach>
+		                          </ul>
+		                       </div>
+		                     </div>
+		                       <!-- //반복 -->
 
-								<div class="accordion">
-									<ul>
-										<!-- 반복 -->
-										<c:forEach var="reviewVo" items="${review_map.list }"> <!-- 위치 잘 보기 -->
-
-											<li>
-												<div class="headArea">
-													<div class="subject">
-														<a href="javascript:;" class="accbtn">${reviewVo.review_title}</a>
-													</div>
-													<div class="writer">${reviewVo.email}</div>
-													<div class="day">
-														<p>${reviewVo.review_date}</p>
-														<p>
-															<c:forEach begin="1" end="${reviewVo.review_ratings}">
-														        <img alt="별점" src="../images/product_images/ico_star.gif" class="rating">
-														     </c:forEach>
-														</p>
-													</div>
-												</div>
-
-												<div class="hideArea">
-													<div class="bodyArea">
-														<c:if test="${not empty reviewVo.review_image}">
-															<img src="${reviewVo.review_image}"><br><br>
-														</c:if>
-														${reviewVo.review_content}
-													</div>
-													
-													<div class="modify">
-    													<c:if test="${session_email == reviewVo.email }">
-														<a href="/review/reviewModify?review_no=${reviewVo.review_no }&product_no=${reviewVo.product_no}">수정</a> 
-														<a href="#" onclick="reviewDelete_check(${reviewVo.review_no }, ${reviewVo.product_no})">삭제</a>
-														</c:if>
-													</div>
-
-												</div>
-											</li>
-										</c:forEach>
-									</ul>
-								</div>
-								<!-- //반복 -->
-
-							<!-- //goods review -->
+                     <!-- //goods review -->
 
 							<!-- goods notice -->
 							<div class="goodsNotice disnone">
@@ -491,9 +493,13 @@
 <script type="text/javascript">
 $(document).ready(function() {
 		
+	
 	// product_size 선택 시 재고에 맞게 다음 product_count select box 변화
 	$("#product_size").change(function() {
-		var amount = $("#product_size option:selected").attr("value");
+// 		var amount = $("#product_stock option:selected").attr("value");
+var size= $("#product_size option:selected").attr("value");
+
+var amount=document.getElementById(size).value;
 		$("#product_stock_2").text(amount + " 개");
 		var html = "";
 		for(var i = 0; i <= amount; i++) {
