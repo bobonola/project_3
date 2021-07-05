@@ -55,7 +55,8 @@
     		return false;
     	}
     }
-    function cartCheck(){
+    
+	function cartCheck(){
     	
     	
     	$('#cartCheck').submit();
@@ -195,7 +196,7 @@
 								</div>
 								</table>
 
-								<div class="infobtn"> 
+								<div class="infobtn">
 									<ul>
 										<c:if test="${session_admin_code == 1 }">
 											<input name="product_count" type="hidden" value="${session_product_count}">
@@ -524,12 +525,6 @@ var amount=document.getElementById(size).value;
 		var price="${map.productVo.product_price}"; //물품가격을 변수에 담음, vo에있는것 그대로 불러옴 왜냐면 
 													//fmt가 String로만 뜨기 때문에 실행하면 NaN이라는 것만 뜸
 		var aaaa = product * (price); //총 금액 구하기
-		var prodCount = $("#product_count").val();
-		if (prodCount == 0){
-			joindisable();
-		}else{
-			joinanable();
-		}
 		/* alert(aaaa); */
 		$('#total').text(aaaa+"원");
 	});
@@ -627,6 +622,8 @@ var amount=document.getElementById(size).value;
 	relationChk();
 
 });
+
+
 //장바구니버튼 활성화
 function joinanable() {
 	$('#cartButton').prop("disabled", false);
@@ -637,7 +634,6 @@ function joindisable() {
 	$('#cartButton').prop("disabled", true);
 	$('#cartButton').val("담기불가");
 }
-
 
 </script>
 

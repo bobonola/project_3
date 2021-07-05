@@ -52,17 +52,17 @@
 <!--IE 6,7,8 사용자에게 브라우저 업데이터 설명 Div 관련 스크립트-->
 <script type="text/javascript">	
 	
-	function selected_delete(cart_no) {
+	function selected_delete(email, cart_no) {
 		if(confirm("삭제 하시겠습니까?") == true) {
-			window.location = "./cartDelete?cart_no=" + cart_no;
+			window.location = "./cartDelete?email="+email+"&cart_no=" + cart_no;
 		} else {
 			return;
 		}
 	}
 	
-	function all_delete() {
+	function all_delete(email) {
 		if(confirm("삭제 하시겠습니까?") == true) {
-			window.location = "./cartAllDelete";
+			window.location = "./cartAllDelete?email="+email;
 		} else {
 			return;
 		}
@@ -70,12 +70,12 @@
 	
 	function all_pay(email) {
 		alert("결제창으로 이동합니다.");
-		window.location = "/pay/payment?email=" + email;
+		window.location = "../pay/allPayment?email=" + email;
 	}
 	
 	function selected_pay(email, cart_no) {
 		alert("결제창으로 이동합니다.");
-		window.location = "/pay/payment?email=" + email + "&cart_no=" + cart_no;
+		window.location = "../pay/selectedPayment?email=" + email + "&cart_no=" + cart_no;
 	}
 	
 	$(document).ready(function() {
@@ -158,7 +158,7 @@
 							<col width="14%" class="tnone" />
 							</colgroup>
 							<thead>
-								<th scope="col"><input type="checkbox" id="allCheck" onchange="sum_total()" value="0" /></th>			
+								<th scope="col">No.</th>			
 								<th scope="col">상품명</th>
 								<th scope="col" class="tnone">가격</th>
 								<th scope="col">수량</th>
@@ -196,7 +196,7 @@
 											<td class="tnone">
 												<ul class="order">
 													<li><a onclick="selected_pay('${session_email }', ${cartVo.cart_no })" href="#" class="obtnMini iw70">바로구매</a></li>
-													<li><a onclick="selected_delete(${cartVo.cart_no})" href="#" class="obtnMini iw70">상품삭제</a></li>
+													<li><a onclick="selected_delete('${session_email}', ${cartVo.cart_no})" href="#" class="obtnMini iw70">상품삭제</a></li>
 												</ul>
 											</td>
 										</tr>
@@ -210,7 +210,7 @@
 					<div class="btnArea">
 						<div class="bRight">
 							<ul>
-								<li><a onclick="all_delete()" href="#" class="selectbtn">전체삭제</a></li>
+								<li><a onclick="all_delete('${session_email}')" href="#" class="selectbtn">전체삭제</a></li>
 								<li><a onclick="all_pay('${session_email}')" href="#" class="selectbtn">전체구매</a></li>
 							</ul>
 						</div>

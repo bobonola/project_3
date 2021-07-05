@@ -12,7 +12,7 @@
 <body>
 
 	<nav>
-		<h1></h1>
+		<h1><a href="../index" id="indexIcon"></a></h1>
 		<ul>
 			<li><a href="../notice/noticeList" id="nav_a"><span>공지사항</span></a></li>
 			<li><a href="../qna/qnaList" id="nav_a">QNA</a></li>

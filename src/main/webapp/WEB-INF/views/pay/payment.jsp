@@ -23,6 +23,7 @@
 <script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="../js/idangerous.swiper-2.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery.anchor.js"></script>
+<script type="text/javascript" src="../js/payment.js"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="../js/html5.js"></script>
 <script type="text/javascript" src="../js/respond.min.js"></script>
@@ -94,72 +95,6 @@ $(document).ready(function() {
 	<c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 
 
-	<!-- GNB -->
-	<div id="gnb">
-		
-		<div id="top">
-			<ul>
-				<li class="brand t1"><a href="#" id="topNavi1">JARDIN’s BRAND</a>
-					<ul id="topSubm1">
-						<li><a href="#">클래스</a></li>
-						<li><a href="#">홈스타일 카페모리</a></li>
-						<li><a href="#">드립커피백</a></li>
-						<li><a href="#">카페리얼 커피</a></li>
-						<li><a href="#">오리지널커피백</a></li>
-						<li><a href="#">카페리얼 음료</a></li>
-						<li><a href="#">마일드커피백</a></li>
-						<li><a href="#">워터커피</a></li>
-						<li><a href="#">카페포드</a></li>
-						<li><a href="#">모히또파티</a></li>
-						<li><a href="#">테이크아웃 카페모리</a></li>
-						<li><a href="#">포타제</a></li>
-					</ul>
-				</li>
-				<li class="t2"><a href="#" id="topNavi2">원두</a>
-					<ul id="topSubm2">
-						<li><a href="#">클래스</a></li>
-						<li><a href="#">로스터리샵</a></li>
-						<li><a href="#">커피휘엘</a></li>
-						<li><a href="#">산지별 생두</a></li>
-					</ul>
-				</li>
-				<li class="t1"><a href="#" id="topNavi3">원두커피백</a>
-					<ul id="topSubm3">
-						<li><a href="#">드립커피 로스트</a></li>
-						<li><a href="#">오리지널커피백</a></li>
-						<li><a href="#">마일드커피백</a></li>
-					</ul>
-				</li>
-				<li class="t2"><a href="#" id="topNavi4">인스턴트</a>
-					<ul id="topSubm4">
-						<li><a href="#">까페모리</a></li>
-						<li><a href="#">홈스타일카페모리</a></li>
-						<li><a href="#">포타제</a></li>
-					</ul>
-				</li>
-				<li class="t1"><a href="#" id="topNavi5">음료</a>
-					<ul id="topSubm5">
-						<li><a href="#">까페리얼</a></li>
-						<li><a href="#">워터커피</a></li>
-						<li><a href="#">모히또</a></li>
-					</ul>
-				</li>
-				<li class="t2"><a href="#" id="topNavi6">커피용품</a>
-					<ul id="topSubm6">
-						<li><a href="#">종이컵</a></li>
-						<li><a href="#">커피필터</a></li>
-						<li><a href="#">머신 등</a></li>
-					</ul>
-				</li>
-				<li class="t1"><a href="#" id="topNavi7">선물세트</a></li>
-				<li class="t2"><a href="#" id="topNavi8">대량구매</a></li>
-			</ul>
-		</div>
-
-		<script type="text/javascript">initTopMenu();</script>
-	</div>
-	<!-- //GNB -->
-
 	<!-- container -->
 	<div id="container">
 
@@ -211,9 +146,10 @@ $(document).ready(function() {
 										<fmt:formatNumber value="${cartVo.product_price}" pattern="#,###"/> 원
 									</td>
 									<td>${cartVo.product_count } 개</td>
-									<td>${cartVo.product_total_price } 원</td>
+									<td><fmt:formatNumber value="${sum}" pattern="#,###" /> 원</td>
 								</tr>
 								<c:set var="sum" value="${sum + (cartVo.product_total_price)}" />
+								<input type="hidden" value="${sum }">
 								</c:forEach>
 							</tbody>
 						</table>
@@ -247,12 +183,7 @@ $(document).ready(function() {
 
 			<!-- 주문자 주소 입력 -->
 					<h3 class="diviLeft">주문자 주소 입력</h3>
-					<div class="diviRight">
-						<ul>
-							<li>수정 내용을 회원정보에도 반영합니다.&nbsp;&nbsp;</li>
-							<li><a href="#">회원정보반영</a></li>
-						</ul>
-					</div>
+
 
 					<div class="checkDiv">
 						<table summary="주문자 주소를 입력할 수 있는 란으로 이름, 주소, 이메일, 휴대폰 번호, 전화번호 순으로 입력 하실수 있습니다." class="checkTable" border="1" cellspacing="0">
@@ -264,19 +195,17 @@ $(document).ready(function() {
 							<tbody>
 								<tr>
 									<th scope="row"><span>이름</span></th>
-									<td><input type="text" class="w134" value="홍길동" /></td>
+									<td><input type="text" id="name" class="name" value="${name }" readonly/></td>
 								</tr>
 
 								<tr>
 									<th scope="row"><span>주소</span></th>
 									<td>
 										<ul class="pta">
-											<li>
-												<input type="text" class="w134" />&nbsp;
-											</li>
-											<li><a href="../member/zip.html" class="addressBtn"><span>우편번호 찾기</span></a></li>
-											<li class="pt5"><input type="text" class="addressType2" /></li>
-											<li class="pt5"><input type="text" class="addressType2" /></li>
+
+											<li><input type="text" class="zipcode" name="zipcode" value="${session_zipcode }" readonly></li>
+											<li class="pt5"><input type="text" name="address1" class="address1" value="${session_address1 }" readonly></li>
+											<li class="pt5"><input type="text" name="address2" class="address2" value="${session_address2 }" readonly/></li>
 										</ul>
 									</td>
 								</tr>
@@ -284,29 +213,8 @@ $(document).ready(function() {
 									<th scope="row"><span>이메일</span></th>
 									<td>
 										<ul class="pta">
-											<li><input type="text" class="w134" /></li>
-											<li><span class="valign">&nbsp;@&nbsp;</span></li>
-											<li class="r10"><input type="text" class="w134" /></li>
-											<li>
-												<select id="emailList">
-													<option value="#" selected="selected">직접입력</option>
-													<option value="naver.com">naver.com</option>
-													<option value="daum.net">daum.net</option>
-													<option value="hanmail.net">hanmail.net</option>
-													<option value="nate.com">nate.com</option>    
-													<option value="yahoo.co.kr">yahoo.co.kr</option>    
-													<option value="paran.com">paran.com</option>    
-													<option value="empal.com">empal.com</option>    
-													<option value="hotmail.com">hotmail.com</option>    
-													<option value="korea.com">korea.com</option>    
-													<option value="lycos.co.kr">lycos.co.kr</option>    
-													<option value="dreamwiz.com">dreamwiz.com</option>    
-													<option value="hanafos.com">hanafos.com</option>    
-													<option value="chol.com">chol.com</option>    
-													<option value="gmail.com">gmail.com</option>    
-													<option value="empas.com">empas.com</option>
-												</select>&nbsp;&nbsp;&nbsp;
-											</li>
+											<li><input type="text" class="email" name="email" value="${session_email }" readonly/></li>
+
 										</ul>
 									</td>
 								</tr>
@@ -314,213 +222,7 @@ $(document).ready(function() {
 									<th scope="row"><span>휴대폰 번호</span></th>
 									<td>
 										<ul class="pta">
-											<li>
-												<select>
-													<option value="010" selected="selected">010</option>
-													<option value="011">011</option>
-													<option value="016">016</option>
-													<option value="017">017</option>
-													<option value="018">018</option>    
-													<option value="019">019</option>    
-												</select>
-											</li>
-											<li>&nbsp;<span class="valign">-</span>&nbsp;</li>
-											<li><input type="text" class="w74" maxlength="4" /> <span class="valign">-</span>&nbsp;</li>
-											<li class="r10"><input type="text" class="w74" maxlength="4" /></li>
-										</ul>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row"><span>전화번호</span></th>
-									<td>
-										<ul class="pta">
-											<li>
-												<select>
-													<option value="02" selected="selected">02</option>
-													<option value="031">031</option>
-													<option value="032">032</option>
-													<option value="033">033</option>
-													<option value="041">041</option>
-													<option value="042">042</option>
-													<option value="043">043</option>
-													<option value="051">051</option>
-													<option value="052">052</option>
-													<option value="053">053</option>
-													<option value="054">054</option>
-													<option value="055">055</option>
-													<option value="061">061</option>
-													<option value="062">062</option>
-													<option value="063">063</option>
-													<option value="064">064</option>
-													<option value="070">070</option>
-												</select>
-											</li>
-											<li>&nbsp;<span class="valign">-</span>&nbsp;</li>
-											<li><input type="text" class="w74" maxlength="4" /> <span class="valign">-</span>&nbsp;</li>
-											<li><input type="text" class="w74" maxlength="4" /></li>
-										</ul>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row"><span>비밀번호</span></th>
-									<td><input type="password" class="w134" /></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-			<!-- //주문자 주소 입력 -->
-
-
-			<!-- 수취자 주소 입력 -->
-					<h3 class="dep">
-						수취자 주소 입력
-						
-						<input type="checkbox" id="infosame"/>
-						<label for="infosame">회원정보와 동일</label>
-					</h3>
-					<div class="checkDiv">
-						<table summary="수취자 주소를 입력할 수 있는 란으로 이름, 주소, 이메일, 휴대폰 번호, 전화번호 순으로 입력 하실수 있습니다." class="checkTable" border="1" cellspacing="0">
-							<caption>수취자 주소 입력</caption>
-							<colgroup>
-							<col width="22%" class="tw30" />
-							<col width="*" />
-							</colgroup>
-							<tbody>
-								<tr>
-									<th scope="row"><span>이름</span></th>
-									<td><input type="text" class="w134" value="홍길동" /></td>
-								</tr>
-
-								<tr>
-									<th scope="row"><span>주소</span></th>
-									<td>
-										<ul class="pta">
-											<li>
-												<input type="text" class="w134" />&nbsp;
-											</li>
-											<li><a href="../member/zip.html" class="addressBtn"><span>우편번호 찾기</span></a></li>
-											<li class="pt5"><input type="text" class="addressType2" /></li>
-											<li class="pt5"><input type="text" class="addressType2" /></li>
-										</ul>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row"><span>휴대폰 번호</span></th>
-									<td>
-										<ul class="pta">
-											<li>
-												<select>
-													<option value="010" selected="selected">010</option>
-													<option value="011">011</option>
-													<option value="016">016</option>
-													<option value="017">017</option>
-													<option value="018">018</option>    
-													<option value="019">019</option>    
-												</select>
-											</li>
-											<li>&nbsp;<span class="valign">-</span>&nbsp;</li>
-											<li><input type="text" class="w74" maxlength="4" /> <span class="valign">-</span>&nbsp;</li>
-											<li class="r10"><input type="text" class="w74" maxlength="4" /></li>
-										</ul>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row"><span>전화번호</span></th>
-									<td>
-										<ul class="pta">
-											<li>
-												<select>
-													<option value="02" selected="selected">02</option>
-													<option value="031">031</option>
-													<option value="032">032</option>
-													<option value="033">033</option>
-													<option value="041">041</option>
-													<option value="042">042</option>
-													<option value="043">043</option>
-													<option value="051">051</option>
-													<option value="052">052</option>
-													<option value="053">053</option>
-													<option value="054">054</option>
-													<option value="055">055</option>
-													<option value="061">061</option>
-													<option value="062">062</option>
-													<option value="063">063</option>
-													<option value="064">064</option>
-													<option value="070">070</option>
-												</select>
-											</li>
-											<li>&nbsp;<span class="valign">-</span>&nbsp;</li>
-											<li><input type="text" class="w74" maxlength="4" /> <span class="valign">-</span>&nbsp;</li>
-											<li><input type="text" class="w74" maxlength="4" /></li>
-										</ul>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row"><span>배송시 <u>요구사항</u></span></th>
-									<td><textarea class="demandtta"></textarea></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-			<!-- //수취자 주소 입력 -->
-
-
-			<!-- 쿠폰 및 포인트 사용 -->
-					<h3 class="dep">쿠폰 및 포인트 사용</h3>
-					<div class="checkDiv">
-						<table summary="쿠폰 및 포인트를 입력 또는 확인 할 수 있는 란으로 총 주문금액, 배송비, 쿠폰할인, 포인트 사용, 총 결제금액 순으로 입력 또는 확인 하실수 있습니다." class="checkTable" border="1" cellspacing="0">
-							<caption>쿠폰 및 포인트 사용</caption>
-							<colgroup>
-							<col width="22%" class="tw30" />
-							<col width="*" />
-							</colgroup>
-							<tbody>
-								<tr>
-									<th scope="row"><span>총 주문금액</span></th>
-									<td>1,132,310 원</td>
-								</tr>
-								<tr>
-									<th scope="row"><span>배송비</span></th>
-									<td>2,500 원 (선불)</td>
-								</tr>
-								<tr>
-									<th scope="row"><span>쿠폰 할인</span></th>
-									<td>
-										<ul class="pta">
-											<li class="r10">
-												<input type="text" class="w134" />&nbsp;&nbsp;
-												<span class="valign"><strong>원</strong></span>
-											</li>
-											<li class="r10"><span class="valign">( 보유 쿠폰 내역 : 7장 )&nbsp;</span></li>
-											<li><a href="coupon_list.html" class="nbtn">쿠폰목록</a></li>
-										</ul>
-									</td>
-								</tr>
-
-								<!-- 회원 일시 -->
-								<tr>
-									<th scope="row"><span>포인트 사용</span></th>
-									<td>
-										<ul class="pta">
-											<li class="r10">
-												<input type="text" class="w134" />&nbsp;&nbsp;
-												<span class="valign"><strong>Point</strong></span>
-											</li>
-											<li>
-												<span class="valign">( 사용 가능 포인트 : </span>
-												<span class="orange">15,000</span>
-												<span class="valign"> Point)</span>
-											</li>
-										</ul>
-									</td>
-								</tr>
-								<!-- //회원 일시 -->
-								
-								<tr>
-									<th scope="row"><span>총 결제금액</span></th>
-									<td>
-										<ul class="pta">
-											<li><span class="valign"><strong>1,133,810 원</strong> (총주문금액 1,132,310원 + 배송비 2500원 - 포인트 1,000 = 1,133,801원)</li>
+											<li class="r10"><input type="text" class="phone_no" value=${session_phone_no } readonly/></li>
 										</ul>
 									</td>
 								</tr>
@@ -528,8 +230,8 @@ $(document).ready(function() {
 							</tbody>
 						</table>
 					</div>
-			<!-- //쿠폰 및 포인트 사용 -->
-			
+
+
 
 			<!-- 총 주문금액 -->
 					<div class="amount">
@@ -542,21 +244,15 @@ $(document).ready(function() {
 						<ul class="info">
 							<li>
 								<span class="title">상품 합계금액</span>
-								<span class="won"><strong>1,132,310</strong> 원</span>
+								<span class="won"><strong><fmt:formatNumber value="${sum}" pattern="#,###" /></strong> 원</span>
 							</li>
 							<li>
 								<span class="title">배송비</span>
-								<span class="won"><strong>2,500</strong> 원</span>
-							</li>
-
-							<!-- 회원 일때만 -->
-							<li>
-								<span class="title">포인트 할인</span>
-								<span class="won"><strong>- 1,000</strong> P</span>
+								<span class="won"><strong>0</strong> 원</span>
 							</li>
 							<li>
 								<span class="title">쿠폰 할인</span>
-								<span class="won"><strong>- 1,000</strong> 원</span>
+								<span class="won"><strong>0</strong> 원</span>
 							</li>
 							<!-- //회원 일떄만 -->
 						</ul>
@@ -567,7 +263,7 @@ $(document).ready(function() {
 							<!-- //회원 일때만 -->
 
 							<li class="txt"><strong>결제 예정 금액</strong></li>
-							<li class="money"><span>1,134,810</span> 원</li>
+							<li class="money"><span><fmt:formatNumber value="${sum}" pattern="#,###" /></span> 원</li>
 						</ul>
 					</div>
 			<!-- //총 주문금액 -->
@@ -851,6 +547,7 @@ $(function(){
 </script>
 
 
+
 		</div>
 	</div>
 	<!-- //container -->
@@ -865,4 +562,5 @@ $(function(){
 </div>
 </div>
 </body>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </html>
