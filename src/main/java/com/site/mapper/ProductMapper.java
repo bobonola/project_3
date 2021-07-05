@@ -19,7 +19,9 @@ public interface ProductMapper {
 	int selectProductSearchCount(String search);
 	// 상세뷰페이지 호출
 	ProductVo selectProductView(int product_no);
-	// 상품등록
+	// 상품등록 - 관리자
 	void insertProductInsert(ProductVo productVo);
+	// 상품 수정페이지 호출 - 관리자
+	ProductVo selectProductModify(int product_no);
 	
 }
