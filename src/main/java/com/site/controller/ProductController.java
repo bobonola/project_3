@@ -24,6 +24,7 @@ import com.site.service.ProductService;
 import com.site.service.ReviewService;
 import com.site.vo.CartVo;
 import com.site.vo.ProductVo;
+import com.site.vo.QnaVo;
 
 @Controller
 public class ProductController {
@@ -80,7 +81,7 @@ public class ProductController {
 		System.out.println("cartVo : " + cartVo);
 		
 		cartService.cartInsert(cartVo);
-		
+		System.out.println("controller : " + cartVo.getProduct_size());
 		return "redirect:/cart/cartList";
 	}
 	
@@ -96,6 +97,14 @@ public class ProductController {
 	public String productInsertDo(ProductVo productVo, @RequestPart List<MultipartFile> files) throws Exception { 
         productService.productInsertDo(productVo, files);	
 		return "redirect:/index";
+	}
+	
+	// 상품 수정페이지 호출 - 관리자
+	@RequestMapping("/product/productModify")	
+	public String productModify(@RequestParam("product_no")int product_no, Model model) {
+		ProductVo productVo = productService.productModify(product_no);
+		model.addAttribute(productVo);
+		return "/product/productModify";
 	}
 	
 	
