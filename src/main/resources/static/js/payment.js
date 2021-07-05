@@ -9,7 +9,7 @@ window.onload=function(){
 function pgOpen(mall_code) {
 	let total_price = "10";
 	let mall_account = "1922-1944-1946-2014";
-	let url = "http://localhost:8080?total_price=" + total_price + "&mall_code=" + mall_code;
+	let url = "http://localhost:8082?total_price=" + total_price + "&mall_code=" + mall_code;
 	url = url + "&mall_account=" + mall_account;
 
 	window.open(url, "Payment's", "top=100px, left=100px, height=800px, width=770px");
@@ -18,8 +18,8 @@ function pgOpen(mall_code) {
 
 }
 function paymentToPG() {
-	let url = 'http://localhost:8080/connect';
-	let mall_code = "19721121";
+	let url = 'http://localhost:8082/connect';
+	let mall_code = "-1";
 
 	sendData = {
 		"messageType": 'connect',
