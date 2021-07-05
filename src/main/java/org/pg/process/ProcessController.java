@@ -22,9 +22,9 @@ public class ProcessController
 
 	@RequestMapping( "" )
 	public String open( HttpSession session, @RequestParam long total_price,
-			@RequestParam String mall_code,@RequestParam String mall_account )
+			@RequestParam String mall_code, @RequestParam String mall_account )
 	{
-		service.open( session, total_price, mall_code,mall_account );
+		service.open( session, total_price, mall_code, mall_account );
 		return "redirect:/login";
 	}
 
@@ -113,8 +113,8 @@ public class ProcessController
 	// 정보 확인 및 가입 처리.
 	@RequestMapping( "/joinProcess" )
 	@ResponseBody
-	public Map<String, Object> joinProcess(
-			@RequestBody Map<String, Object> map, HttpSession session )
+	public Map<String, Object> joinProcess( @RequestBody Map<String, Object> map,
+			HttpSession session )
 	{
 		Map<String, Object> result = service.joinProcess( map, session );
 
@@ -164,23 +164,25 @@ public class ProcessController
 
 		String id = (String)session.getAttribute( "id" );
 		Map<String, Object> map = service.getPaymentInfos( id );
-		map.put("pg_code",PG_Code.value);
+		map.put( "pg_code", PG_Code.value );
 		mav.addObject( "map", map );
-		
-		Object flag=map.get( "emptyFlag" );
-		
-		if(flag==null||flag.equals( "false" )) {
-			mav.setViewName( "redirect:/newPaymentWay");
+
+		Object flag = map.get( "emptyFlag" );
+
+		if ( flag == null || flag.equals( "false" ) )
+		{
+			mav.setViewName( "redirect:/newPaymentWay" );
 		}
 
 		return mav;
 	}
-	
-	@RequestMapping("/encryption")
+
+	@RequestMapping( "/encryption" )
 	@ResponseBody
-	public String encryption(@RequestBody Map<String,Object> input) {
-		String result=service.encryption(input);
-		
+	public String encryption( @RequestBody Map<String, Object> input )
+	{
+		String result = service.encryption( input );
+
 		return result;
 	}
 }

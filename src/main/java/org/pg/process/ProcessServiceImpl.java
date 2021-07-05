@@ -212,7 +212,7 @@ public class ProcessServiceImpl implements ProcessService
 			}
 
 			// 비밀번호 체크
-			String password = (String)map.get( "password" );
+			String password = (String)map.get( "payment_password" );
 			String password_confirm = (String)map.get( "password_confirm" );
 			if ( password == null || password.equals( "" ) )
 			{
