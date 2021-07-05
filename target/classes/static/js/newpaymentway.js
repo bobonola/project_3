@@ -90,8 +90,8 @@ function paymentway_check() {
 	let dataEncrypting = {
 		"data": password
 	};
-	
-	let encrypted_password;
+
+	var encrypted_password;
 
 	$.ajax({
 		url: "/encryption",
@@ -100,46 +100,48 @@ function paymentway_check() {
 		data: JSON.stringify(dataEncrypting),
 		success: function(receiveData) {
 			encrypted_password = receiveData;
+			document.getElementById('end_year').value = end_year;
+			document.getElementById('end_month').value = end_month;
+			document.getElementById('means').value = means;
+			let sendData = {
+				"messageType": "paymentWayCheck",
+				"pg_code": pg_code,
+				"mall_ID": "Joongang",
+				"means": means,
+				"payment_number": payment_number,
+				"payment_password": encrypted_password,
+				"end_month": end_month,
+				"end_year": end_year,
+				"CVC": cvc
+			};
+
+			$.ajax({
+				url: bankURL,
+				method: "post",
+				contentType: "application/json;charset=UTF-8",
+				data: JSON.stringify(sendData),
+				success: function(data) {
+					if (data.messageType == "success") {
+						disconnect(bankURL);
+						success(payment_number);
+					}
+					else {
+						fail("오류가 발생했습니다: " + data.messageType);
+						return false;
+					}
+				}
+			}).fail(function() {
+				alert('오류가 발생했습니다.');
+
+			})
 		},
 		error: function() {
 			encrypted_password = null;
 		}
 	});
 
-	document.getElementById('end_year').value = end_year;
-	document.getElementById('end_month').value = end_month;
-	document.getElementById('means').value = means;
-	let sendData = {
-		"messageType": "paymentWayCheck",
-		"pg_code": pg_code,
-		"mall_ID": "Joongang",
-		"means": means,
-		"payment_number": payment_number,
-		"payment_password": encrypted_password,
-		"end_month": end_month,
-		"end_year": end_year,
-		"CVC": cvc
-	};
 
-	$.ajax({
-		url: bankURL,
-		method: "post",
-		contentType: "application/json;charset=UTF-8",
-		data: JSON.stringify(sendData),
-		success: function(data) {
-			if (data.messageType == "success") {
-				disconnect(bankURL);
-				success(payment_number);
-			}
-			else {
-				fail("오류가 발생했습니다: " + data.messageType);
-				return false;
-			}
-		}
-	}).fail(function() {
-		alert('오류가 발생했습니다.');
 
-	})
 }
 
 

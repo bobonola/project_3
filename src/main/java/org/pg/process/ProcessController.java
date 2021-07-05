@@ -114,7 +114,7 @@ public class ProcessController
 	@RequestMapping( "/joinProcess" )
 	@ResponseBody
 	public Map<String, Object> joinProcess(
-			@RequestParam( required = false ) Map<String, Object> map, HttpSession session )
+			@RequestBody Map<String, Object> map, HttpSession session )
 	{
 		Map<String, Object> result = service.joinProcess( map, session );
 
@@ -164,7 +164,14 @@ public class ProcessController
 
 		String id = (String)session.getAttribute( "id" );
 		Map<String, Object> map = service.getPaymentInfos( id );
+		map.put("pg_code",PG_Code.value);
 		mav.addObject( "map", map );
+		
+		Object flag=map.get( "emptyFlag" );
+		
+		if(flag==null||flag.equals( "false" )) {
+			mav.setViewName( "redirect:/newPaymentWay");
+		}
 
 		return mav;
 	}

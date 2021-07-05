@@ -2,7 +2,6 @@ package org.pg.receive;
 
 import java.util.*;
 
-import javax.servlet.http.HttpSession;
 
 import org.pg.data.CommunicationMessage;
 import org.pg.data.MallVO;

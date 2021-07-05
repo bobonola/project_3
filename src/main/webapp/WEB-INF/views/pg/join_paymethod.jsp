@@ -2,12 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
-<c:if test="${empty sessionScope.id }">
-	<script>
-		alert("잘못된 접근입니다.");
-		location.href = "/login";
-	</script>
-</c:if>
+
 <head>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');

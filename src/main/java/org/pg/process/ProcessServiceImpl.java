@@ -196,7 +196,7 @@ public class ProcessServiceImpl implements ProcessService
 		MessageDigest msgDigest=null;
 		try
 		{
-			String id = (String)map.get( "userID" );
+			String id = map.get( "userID" ).toString();
 
 			// 아이디 입력 체크
 			if ( id == null || id.equals( "" ) )
@@ -269,6 +269,7 @@ public class ProcessServiceImpl implements ProcessService
 		catch(Exception e) {
 			result.put( "check", false );
 			result.put( "message", "예상 외의 오류가 발생했습니다." );
+			e.printStackTrace();
 		}
 
 		return result;
@@ -291,7 +292,32 @@ public class ProcessServiceImpl implements ProcessService
 
 		String password = paymentInfo.getPayment_password();
 		password = password.replace( ",", "" );
-		paymentInfo.setPayment_password( password );
+		
+		//비밀번호 암호화
+
+		MessageDigest msgDigest;
+		String encryptedPassword=null;
+		try
+		{
+			msgDigest = MessageDigest.getInstance( "SHA3-256" );
+			msgDigest.reset();
+			
+			byte[] passwordBytes=password.getBytes("UTF-8");
+			msgDigest.update( passwordBytes );
+
+			byte[] digestBytes=msgDigest.digest();
+			BigInteger tempNum=new BigInteger(1,digestBytes);
+			encryptedPassword=String.format( "%x", tempNum );
+		}
+		catch( NoSuchAlgorithmException | UnsupportedEncodingException e )
+		{
+			// TODO 자동 생성된 catch 블록
+			e.printStackTrace();
+		}
+		
+
+		
+		paymentInfo.setPayment_password( encryptedPassword );
 
 		String cvc = paymentInfo.getCvc();
 		cvc = cvc.replace( ",", "" );
@@ -325,6 +351,12 @@ public class ProcessServiceImpl implements ProcessService
 
 		List<PaymentWayVO> paymentways = mapper.getPaymentWays( id );
 
+		if(paymentways==null||paymentways.size()==0) {
+			result.put( "emptyFlag","false" );
+		}
+		else {
+			result.put( "emptyFlag","true" );
+		}
 		result.put( "paymentways", paymentways );
 
 		return result;

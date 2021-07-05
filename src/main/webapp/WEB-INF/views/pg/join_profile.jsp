@@ -2,12 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
-<c:if test="${empty sessionScope.id or empty sessionScope.email}">
-	<script>
-		alert("잘못된 접근입니다.");
-		location.href = "/login";
-	</script>
-</c:if>
+
 <head>
 <link rel="stylesheet" type="text/css" href="../css/content.css?v=Y" />
 <style>
@@ -142,7 +137,7 @@ body {
 
 		sendData = {
 			"userID" : id,
-			"password" : password,
+			"payment_password" : password,
 			"password_confirm" : password_confirm,
 			"name" : name,
 			"phone_number" : phone_number,
