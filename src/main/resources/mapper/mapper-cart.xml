@@ -14,6 +14,7 @@
 		       P.PRODUCT_NAME,
 		       P.PRODUCT_PRICE,
 		       C.PRODUCT_COUNT,
+		       C.PRODUCT_SIZE,
 		       (P.PRODUCT_PRICE * C.PRODUCT_COUNT) AS PRODUCT_TOTAL_PRICE
 		FROM   PRODUCT P, CART C
 		WHERE  P.PRODUCT_NO = C.PRODUCT_NO
@@ -35,7 +36,7 @@
 	<insert id="cartInsertDo">
 		INSERT INTO CART
 		VALUES
-		(SEQ_CART_NO.NEXTVAL, #{email}, #{product_no}, #{product_count})
+		(SEQ_CART_NO.NEXTVAL, #{email}, #{product_no}, #{product_count}, #{product_size})
 	</insert>
 	
 </mapper>
