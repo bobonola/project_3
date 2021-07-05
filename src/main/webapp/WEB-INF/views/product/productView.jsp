@@ -137,7 +137,7 @@
 												</div>
 											</li>
 											<br>
-									
+											<li>
 												<%-- 사이즈 선택 시작 --%>
 												<div class="stit">사이즈</div> &emsp; 
 												<select name="product_size" id="product_size" style="width:185px; cursor:pointer">
@@ -153,7 +153,6 @@
 												</select>
 												
 												<%-- 사이즈 선택 끝 --%>
-											<li>
 												<input id="230" type='hidden' value="${map.productVo.product_size_230 }">
 												<input id="240" type='hidden' value="${map.productVo.product_size_240 }">
 												<input id="250" type='hidden' value="${map.productVo.product_size_250 }">
