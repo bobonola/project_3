@@ -133,7 +133,7 @@ public class ProductServiceImpl implements ProductService {
 //				e.printStackTrace();
 //			}
 
-			uploadFileName="/images /product_images/"+uploadFileName;
+			uploadFileName="/images/product_images/"+uploadFileName;
 			// 파일이름 삽입
 			if (i == 1) {
 				productVo.setProduct_main_image(uploadFileName);

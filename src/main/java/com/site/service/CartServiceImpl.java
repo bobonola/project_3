@@ -35,13 +35,13 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override		// 장바구니 선택 삭제
-	public void cartDelete(int cart_no) {
-		cartMapper.deleteCartDelete(cart_no);
+	public void cartDelete(String email, int cart_no) {
+		cartMapper.deleteCartDelete(email, cart_no);
 	}
 
 	@Override		// 장바구니 전체 삭제
-	public void cartAllDelete() {
-		cartMapper.deleteCartAllDelete();
+	public void cartAllDelete(String email) {
+		cartMapper.deleteCartAllDelete(email);
 	}
 	
 	
@@ -49,6 +49,34 @@ public class CartServiceImpl implements CartService {
 	public void cartInsert(CartVo cartVo) {
 		cartMapper.cartInsertDo(cartVo);
 			
+	}
+
+	@Override
+	public Map<String, Object> selectedPayList(String email, int cart_no) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<CartVo> list = cartMapper.selectPayList(email, cart_no);
+		
+		for(CartVo cvo:list) {
+			System.out.println("=========================="+cvo);
+		}
+		
+		map.put("list", list);
+		
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> allPayList(String email) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<CartVo> list = cartMapper.selectAllPayList(email);
+		
+		for(CartVo cvo:list) {
+			System.out.println("=========================="+cvo);
+		}
+		
+		map.put("list", list);
+		
+		return map;
 	}
 
 
