@@ -160,4 +160,10 @@ public class ProductServiceImpl implements ProductService {
 
 	}
 
+	@Override		// 상품 수정페이지 호출
+	public ProductVo productModify(int product_no) {
+		ProductVo productVo = productMapper.selectProductModify(product_no);
+		return productVo;
+	}
+
 }
