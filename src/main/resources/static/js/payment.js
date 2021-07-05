@@ -1,7 +1,10 @@
 /**
  * 
  */
-
+window.onload=function(){
+	let paymentButton=document.getElementsByClassName('sbtnMini iw0140')[0];
+	paymentButton.addEventListener("click",paymentToPG);
+}
 
 function pgOpen(mall_code) {
 	let total_price = "10";
