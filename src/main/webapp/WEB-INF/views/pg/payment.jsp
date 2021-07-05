@@ -122,7 +122,7 @@ body {
 
 </head>
 <body>
-	<input type='hidden' id='pg_code' value="${pg_code }">
+	<input type='hidden' id='pg_code' value="${map.pg_code }">
 	<input type='hidden' id='total_price' value='${sessionScope.total_price}'>
 	<input type='hidden' id='mall_account' value="${sessionScope.mall_account }">
 	<div id="wrap">
