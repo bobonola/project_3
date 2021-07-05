@@ -28,22 +28,36 @@ public class CartController {
 	}
 	
 	@RequestMapping("/cart/cartDelete")		// 장바구니 선택 삭제
-	public String cartDelete(@RequestParam("cart_no")int cart_no) {
-		cartService.cartDelete(cart_no);
+	public String cartDelete(@RequestParam("email") String email, @RequestParam("cart_no")int cart_no) {
+		cartService.cartDelete(email, cart_no);
 		return "redirect:/cart/cartList";
 	}
 	
 	@RequestMapping("/cart/cartAllDelete")	// 장바구니 전체 삭제
-	public String cartAllDelete() {
-		cartService.cartAllDelete();
+	public String cartAllDelete(@RequestParam("email") String email) {
+		cartService.cartAllDelete(email);
 		return "redirect:/cart/cartList";
 	}
 	
-	@RequestMapping("/pay/payment")			// 결제창 리스트
-	public String payment(Model model) {
+	@RequestMapping("/pay/selectedPayment")			// 결제창 리스트
+	public String selectedPayment(@RequestParam("email")String email,
+			@RequestParam("cart_no")int cart_no, 
+			Model model) {
 		Map<String, Object> map = null;
 		
-		map = cartService.cartList();
+		
+		map = cartService.selectedPayList(email, cart_no);
+		model.addAttribute("map", map);
+		return "/pay/payment";
+	}
+	
+	@RequestMapping("/pay/allPayment")			// 결제창 리스트
+	public String allPayment(@RequestParam("email")String email,
+			Model model) {
+		Map<String, Object> map = null;
+		
+		
+		map = cartService.allPayList(email);
 		model.addAttribute("map", map);
 		return "/pay/payment";
 	}

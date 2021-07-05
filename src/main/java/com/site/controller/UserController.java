@@ -63,6 +63,11 @@ public class UserController {
 			session.setAttribute("session_email", uVo.getEmail());
 			session.setAttribute("session_admin_code", uVo.getAdmin_code());
 			session.setAttribute("name", uVo.getName());
+			session.setAttribute("session_phone_no", uVo.getPhone_no());
+			session.setAttribute("session_address1",uVo.getAddress1() );
+			session.setAttribute("session_address2",uVo.getAddress2() );
+			session.setAttribute("session_zipcode", uVo.getZipcode());
+			
 		}
 		return map;
 	}
@@ -147,7 +152,10 @@ public class UserController {
 			session.setAttribute("session_flag", "success");
 			session.setAttribute("session_email", uVo.getEmail());
 			session.setAttribute("session_phone_no", uVo.getPhone_no());
-			session.setAttribute("session_name", uVo.getName());
+			session.setAttribute("session_name",uVo.getName() );
+			session.setAttribute("session_address1",uVo.getAddress1() );
+			session.setAttribute("session_address2",uVo.getAddress2() );
+			session.setAttribute("session_zipcode", uVo.getZipcode());
 
 			// 임의의 문자열+난수 생성
 			StringBuffer temp = new StringBuffer();
@@ -222,50 +230,6 @@ public class UserController {
 		userService.modifyUser(userVo);
 		return "redirect:/index";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
