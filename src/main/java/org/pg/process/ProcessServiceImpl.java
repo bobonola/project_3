@@ -448,4 +448,11 @@ public class ProcessServiceImpl implements ProcessService
 		return result;
 	}
 
+	@Override
+	public String getBankURL(String bankName)
+	{
+		String result=mapper.getBankURL(bankName);
+		return result;
+	}
+
 }

@@ -2,6 +2,17 @@
  * 
  */
 
+function disconnect(bankURL) {
+	let sendData = {
+		"messageType": "disconnect"
+	};
+	$.ajax({
+		url: bankURL,
+		contentType: "application/json;charset=UTF-8",
+		method: "post",
+		data: JSON.stringify(sendData)
+	})
+}
 
 function payment(mall_account) {
 	let total_price = document.getElementById('total_price').value;
@@ -14,15 +25,16 @@ function payment(mall_account) {
 		"mall_account_number": mall_account,
 		"messageType": "payment"
 	};
-
+	let url="http://localhost:8081";
 
 	$.ajax({
-		url: "http://localhost:8081",
+		url: url,
 		contentType: "application/json;charset=UTF-8",
 		method: "post",
 		data: JSON.stringify(sendData),
 		success: function(data) {
 			if (data.messageType == "success") {
+				disconnect(url);
 				opener.window.location="http://localhost:8000";
 				self.close();
 			}

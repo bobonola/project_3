@@ -37,6 +37,8 @@ public interface ProcessService
 
 	String encryption( Map<String, Object> input );
 
+	String getBankURL(String bankName);
+
 
 
 }

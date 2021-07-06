@@ -90,4 +90,12 @@
 	where payment_number=#{payment_number}
 	]]>
 	</select>
+	
+	<select id="getBankURL" resultType="String">
+	<![CDATA[
+	select URL
+	from banks
+	where bank_name=#{bank_name}
+	]]>
+	</select>
 </mapper>

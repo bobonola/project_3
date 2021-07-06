@@ -37,4 +37,6 @@ public interface ProcessMapper
 
 	PaymentWayVO getPaymentWayByPayment_number( String payment_number );
 
+	String getBankURL( String bankName );
+
 }

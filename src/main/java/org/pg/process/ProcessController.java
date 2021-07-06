@@ -185,4 +185,13 @@ public class ProcessController
 
 		return result;
 	}
+	
+	@RequestMapping("/getBankURL")
+	@ResponseBody
+	public String getBankURL(@RequestBody Map<String,Object> input) {
+		String bankName=input.get( "bank_name" ).toString();
+		String result=service.getBankURL(bankName);
+		
+		return result;
+	}
 }
