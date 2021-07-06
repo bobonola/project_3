@@ -19,7 +19,7 @@ public class PayController {
 	@Autowired
 	PayService payService;
 	
-	
+	// 구매완료
 	@RequestMapping("/pay/complete")
 	public String payComplete() {
 		String email=PayServiceImpl.email;
