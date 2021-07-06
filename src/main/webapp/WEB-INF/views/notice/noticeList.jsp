@@ -39,7 +39,7 @@
 	        <td><span class="table-notice">${noticeVo.notice_no }</span></td>
 	        <td class="table-title">
 	        <!-- content_view?번호를 전달 -->
-		    <a href="./noticeView?notice_no=${noticeVo.notice_no }">${noticeVo.notice_content }</a>
+		    <a href="./noticeView?notice_no=${noticeVo.notice_no }">${noticeVo.notice_title }</a>
 	        </td>
 	        <td>${noticeVo.notice_date}</td>
 	        <td>${noticeVo.notice_hit}</td>
