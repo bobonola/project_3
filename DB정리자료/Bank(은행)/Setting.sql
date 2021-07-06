@@ -26,7 +26,7 @@ CREATE TABLE LOGS (
     LOGNO               NUMBER(38,0), /* LogNo */
     UserId              VARCHAR2(255), /* UserId */
     means               VARCHAR2(15) NOT NULL, /* means */
-    payment_number      varchar2(255) NOT NULL, /* 결제 수단 */
+    CARD_OR_ACCOUNT_NUMBER      varchar2(255) NOT NULL, /* 결제 수단 */
     deposit             NUMBER(38,0) DEFAULT 0, /* deposit */
     balance             NUMBER(38,0) DEFAULT 0, /* balance */
     mall_id             VARCHAR2(100) NOT NULL, /* mall_id */
@@ -47,7 +47,7 @@ COMMENT ON COLUMN LOGS.balance IS '잔액';
 COMMENT ON COLUMN LOGS.mall_id IS '거래처 아이디';
 COMMENT ON COLUMN LOGS.mall_account_number IS '거래처 계좌';
 COMMENT ON COLUMN LOGS.means IS '결제 수단';
-COMMENT ON COLUMN LOGS.payment_number IS '카드 또는 계좌번호';
+COMMENT ON COLUMN LOGS.CARD_OR_ACCOUNT_NUMBER IS '카드 또는 계좌번호';
 COMMENT ON COLUMN LOGS.etc IS '비고';
 
 CREATE SEQUENCE SEQ_LOGNO START WITH 1 INCREMENT BY 1 ORDER;
@@ -76,7 +76,7 @@ CREATE TABLE CARDS (
     CARD_NUMBER     VARCHAR2(255) NOT NULL, /* Card_number */
     ACCOUNT_NUMBER  VARCHAR2(255), /* Account_number */
     USERID          VARCHAR2(255), /* UserId */
-    CVC             VARCHAR2(255) NOT NULL, /* CVS */
+    CVC             VARCHAR2(255) NOT NULL, /* CVC */
     END_DATE        TIMESTAMP NOT NULL,
     CONSTRAINT CARDS_PK PRIMARY KEY(CARD_NUMBER),
     CONSTRAINT CARDS_FK_TO_USERS FOREIGN KEY(USERID) REFERENCES USERS(USERID) ON DELETE SET null,
@@ -99,5 +99,3 @@ CREATE TABLE PAYGATES(
 COMMENT ON TABLE PAYGATES IS 'PG';
 COMMENT ON COLUMN PAYGATES.PG_CODE IS 'PG코드';
 COMMENT ON COLUMN PAYGATES.PG_NAME IS 'PG 이름';
-
---ALTER TABLE cards RENAME COLUMN CVS TO CVC;
