@@ -18,5 +18,6 @@ public class PayVo {
 	private int product_no;					// 상품번호
 	private int product_price;				// 상품금액
 	private int product_count;				// 상품갯수
+	private int product_size;				// 상품사이즈
 	
 }
