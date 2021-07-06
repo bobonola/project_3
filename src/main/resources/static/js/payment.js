@@ -16,11 +16,11 @@ function disconnect(bankURL) {
 
 function payment(mall_account) {
 	let total_price = document.getElementById('total_price').value;
-	let payment_number = document.getElementById('paymentway').value;
-	let paymentMeans = document.getElementById(payment_number).value;
+	let card_or_account_number = document.getElementById('paymentway').value;
+	let paymentMeans = document.getElementById(card_or_account_number).value;
 	let sendData = {
 		"means": paymentMeans,
-		"payment_number": payment_number,
+		"card_or_account_number": card_or_account_number,
 		"total_price": total_price,
 		"mall_account_number": mall_account,
 		"messageType": "payment"
@@ -35,7 +35,7 @@ function payment(mall_account) {
 		success: function(data) {
 			if (data.messageType == "success") {
 				disconnect(url);
-				opener.window.location="http://localhost:8000";
+				opener.window.location="http://localhost:8000/pay/complete";
 				self.close();
 			}
 			else {

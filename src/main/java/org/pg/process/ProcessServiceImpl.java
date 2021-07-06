@@ -34,7 +34,8 @@ public class ProcessServiceImpl implements ProcessService
 	DataSourceTransactionManager transactionManager;
 
 	@Override
-	public void open( HttpSession session, long total_price, String mall_code, String mall_account )
+	public void open( HttpSession session, long total_price, String mall_code,
+			String mall_account )
 	{
 		session.setAttribute( "total_price", total_price );
 		MallVO mallInfo = mapper.getMall( mall_code );
@@ -49,7 +50,7 @@ public class ProcessServiceImpl implements ProcessService
 		Map<String, Object> result = new HashMap<>();
 		boolean login = false;
 		UserVO userInfo = null;
-		MessageDigest msgDigest=null;
+		MessageDigest msgDigest = null;
 
 		try
 		{
@@ -65,22 +66,23 @@ public class ProcessServiceImpl implements ProcessService
 			}
 
 			String userID = userInfo.getUserID();
+			userID = userID.trim();
 			String userPassword = userInfo.getPassword();
-			
-			//암호화 영역
-			msgDigest=MessageDigest.getInstance( "SHA3-256" );
+			userPassword = userPassword.trim();
+
+			// 암호화 영역
+			msgDigest = MessageDigest.getInstance( "SHA3-256" );
 			msgDigest.reset();
-			
-			byte[] passwordBytes=password.getBytes("UTF-8");
+
+			byte[] passwordBytes = password.getBytes( "UTF-8" );
 			msgDigest.update( passwordBytes );
 
-			byte[] digestBytes=msgDigest.digest();
-			BigInteger tempNum=new BigInteger(1,digestBytes);
-			String encryptedPassword=String.format( "%x", tempNum );
+			byte[] digestBytes = msgDigest.digest();
+			BigInteger tempNum = new BigInteger( 1, digestBytes );
+			String encryptedPassword = String.format( "%x", tempNum );
 
 			boolean idEqual = id.equals( userID );
 			boolean pwEqual = encryptedPassword.equals( userPassword );
-			
 
 			if ( idEqual && pwEqual )
 			{
@@ -93,7 +95,7 @@ public class ProcessServiceImpl implements ProcessService
 			}
 
 		}
-		catch(NoSuchAlgorithmException | UnsupportedEncodingException e)
+		catch( NoSuchAlgorithmException | UnsupportedEncodingException e )
 		{
 			result.put( "message", "암호화 도중 오류가 발생했습니다." );
 		}
@@ -125,19 +127,10 @@ public class ProcessServiceImpl implements ProcessService
 			return result;
 		}
 
-		UserVO userInfo = mapper.getUserByEmail( email );
+		email = email.trim();
 
-		if ( userInfo != null )
-		{
-			result.put( "check", false );
-			result.put( "message", "이미 존재하는 이메일입니다." );
-		}
-		else
-		{
-			result.put( "email", email );
-			result.put( "check", true );
-
-		}
+		result.put( "email", email );
+		result.put( "check", true );
 
 		return result;
 	}
@@ -156,6 +149,9 @@ public class ProcessServiceImpl implements ProcessService
 
 		String email = (String)input.get( "email" );
 		String code = (String)input.get( "code" );
+
+		email = email.trim();
+		code = code.trim();
 
 		CertifyVO codeInfo = mapper.getCertify( email );
 		String existedCode = codeInfo.getCode();
@@ -193,7 +189,7 @@ public class ProcessServiceImpl implements ProcessService
 	public Map<String, Object> joinProcess( Map<String, Object> map, HttpSession session )
 	{
 		Map<String, Object> result = new HashMap<>();
-		MessageDigest msgDigest=null;
+		MessageDigest msgDigest = null;
 		try
 		{
 			String id = map.get( "userID" ).toString();
@@ -214,27 +210,27 @@ public class ProcessServiceImpl implements ProcessService
 			// 비밀번호 체크
 			String password = (String)map.get( "payment_password" );
 			String password_confirm = (String)map.get( "password_confirm" );
+			password = password.trim();
+			password_confirm = password_confirm.trim();
 			if ( password == null || password.equals( "" ) )
 			{
 				throw new PGException( "비밀번호가 입력되지 않았습니다." );
 			}
 			if ( password.equals( password_confirm ) == false )
 			{
-				System.out.println( "password: " + password );
-				System.out.println( "passwordConfirm: " + password_confirm );
 				throw new PGException( "비밀번호가 일치하지 않습니다." );
 			}
-			
-			//비밀번호 암호화
-			msgDigest=MessageDigest.getInstance( "SHA3-256" );
+
+			// 비밀번호 암호화
+			msgDigest = MessageDigest.getInstance( "SHA3-256" );
 			msgDigest.reset();
-			
-			byte[] passwordBytes=password.getBytes("UTF-8");
+
+			byte[] passwordBytes = password.getBytes( "UTF-8" );
 			msgDigest.update( passwordBytes );
 
-			byte[] digestBytes=msgDigest.digest();
-			BigInteger tempNum=new BigInteger(1,digestBytes);
-			String encryptedPassword=String.format( "%x", tempNum );
+			byte[] digestBytes = msgDigest.digest();
+			BigInteger tempNum = new BigInteger( 1, digestBytes );
+			String encryptedPassword = String.format( "%x", tempNum );
 
 			// 이름 체크
 			String name = (String)map.get( "name" );
@@ -242,6 +238,7 @@ public class ProcessServiceImpl implements ProcessService
 			{
 				throw new PGException( "이름이 입력되지 않았습니다." );
 			}
+			name = name.trim();
 
 			// 전화번호 체크
 			String phone_number = (String)map.get( "phone_number" );
@@ -249,6 +246,7 @@ public class ProcessServiceImpl implements ProcessService
 			{
 				throw new PGException( "전화번호가 입력되지 않았습니다." );
 			}
+			phone_number = phone_number.trim();
 
 			result.put( "check", true );
 			session.setAttribute( "id", id );
@@ -266,7 +264,8 @@ public class ProcessServiceImpl implements ProcessService
 			result.put( "check", false );
 			result.put( "message", e.getMessage() );
 		}
-		catch(Exception e) {
+		catch( Exception e )
+		{
 			result.put( "check", false );
 			result.put( "message", "예상 외의 오류가 발생했습니다." );
 			e.printStackTrace();
@@ -286,41 +285,42 @@ public class ProcessServiceImpl implements ProcessService
 	public void newPaymentWay( PaymentWayVO paymentInfo )
 	{
 
-		String payment_number = paymentInfo.getPayment_number();
-		payment_number = payment_number.replace( ",", "" );
-		paymentInfo.setPayment_number( payment_number );
+		String card_or_account_number = paymentInfo.getCard_or_account_number();
+		card_or_account_number = card_or_account_number.replace( ",", "" );
+		card_or_account_number = card_or_account_number.trim();
+		paymentInfo.setCard_or_account_number( card_or_account_number );
 
 		String password = paymentInfo.getPayment_password();
 		password = password.replace( ",", "" );
-		
-		//비밀번호 암호화
+		password = password.trim();
+
+		// 비밀번호 암호화
 
 		MessageDigest msgDigest;
-		String encryptedPassword=null;
+		String encryptedPassword = null;
 		try
 		{
 			msgDigest = MessageDigest.getInstance( "SHA3-256" );
 			msgDigest.reset();
-			
-			byte[] passwordBytes=password.getBytes("UTF-8");
+
+			byte[] passwordBytes = password.getBytes( "UTF-8" );
 			msgDigest.update( passwordBytes );
 
-			byte[] digestBytes=msgDigest.digest();
-			BigInteger tempNum=new BigInteger(1,digestBytes);
-			encryptedPassword=String.format( "%x", tempNum );
+			byte[] digestBytes = msgDigest.digest();
+			BigInteger tempNum = new BigInteger( 1, digestBytes );
+			encryptedPassword = String.format( "%x", tempNum );
 		}
 		catch( NoSuchAlgorithmException | UnsupportedEncodingException e )
 		{
 			// TODO 자동 생성된 catch 블록
 			e.printStackTrace();
 		}
-		
 
-		
 		paymentInfo.setPayment_password( encryptedPassword );
 
 		String cvc = paymentInfo.getCvc();
 		cvc = cvc.replace( ",", "" );
+		cvc = cvc.trim();
 		paymentInfo.setCvc( cvc );
 
 		mapper.insertNewPaymentWay( paymentInfo );
@@ -328,9 +328,10 @@ public class ProcessServiceImpl implements ProcessService
 	}
 
 	@Override
-	public boolean newPaymentWayCheck( String payment_number )
+	public boolean newPaymentWayCheck( String card_or_account_number )
 	{
-		PaymentWayVO paymentWayInfo = mapper.getPaymentWayByPayment_number( payment_number );
+		PaymentWayVO paymentWayInfo = mapper
+				.getPaymentWayByCard_or_account_number( card_or_account_number );
 		if ( paymentWayInfo == null )
 		{
 
@@ -351,11 +352,13 @@ public class ProcessServiceImpl implements ProcessService
 
 		List<PaymentWayVO> paymentways = mapper.getPaymentWays( id );
 
-		if(paymentways==null||paymentways.size()==0) {
-			result.put( "emptyFlag","false" );
+		if ( paymentways == null || paymentways.size() == 0 )
+		{
+			result.put( "emptyFlag", "false" );
 		}
-		else {
-			result.put( "emptyFlag","true" );
+		else
+		{
+			result.put( "emptyFlag", "true" );
 		}
 		result.put( "paymentways", paymentways );
 
@@ -425,33 +428,33 @@ public class ProcessServiceImpl implements ProcessService
 	@Override
 	public String encryption( Map<String, Object> input )
 	{
-		String data=input.get( "data" ).toString();
-		String result=null;
-		
+		String data = input.get( "data" ).toString();
+		String result = null;
+
 		try
 		{
 			MessageDigest msgDigest = MessageDigest.getInstance( "SHA3-256" );
 			msgDigest.reset();
-			
-			byte[] dataBytes=data.getBytes("UTF-8");
+
+			byte[] dataBytes = data.getBytes( "UTF-8" );
 			msgDigest.update( dataBytes );
 
-			byte[] digestBytes=msgDigest.digest();
-			BigInteger tempNum=new BigInteger(1,digestBytes);
-			result=String.format( "%x", tempNum );
+			byte[] digestBytes = msgDigest.digest();
+			BigInteger tempNum = new BigInteger( 1, digestBytes );
+			result = String.format( "%x", tempNum );
 		}
 		catch( NoSuchAlgorithmException | UnsupportedEncodingException e )
 		{
 			e.printStackTrace();
 		}
-		
+
 		return result;
 	}
 
 	@Override
-	public String getBankURL(String bankName)
+	public String getBankURL( String bankName )
 	{
-		String result=mapper.getBankURL(bankName);
+		String result = mapper.getBankURL( bankName );
 		return result;
 	}
 

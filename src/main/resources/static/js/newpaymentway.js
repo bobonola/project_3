@@ -12,7 +12,7 @@ function test() {
 function success(data) {
 	let form = document.getElementById('form');
 	sendData = {
-		"payment_number": data
+		"card_or_account_number": data
 	};
 
 	$.ajax({
@@ -54,7 +54,7 @@ function disconnect(bankURL) {
 
 function payment(password, bankURL) {
 	let tempMeans = document.getElementsByClassName('on')[0].innerText;
-	let payment_number = "";
+	let card_or_account_number = "";
 	let means = "";
 	let cvc = "";
 	let pg_code = document.getElementById('pg_code').value;
@@ -63,7 +63,7 @@ function payment(password, bankURL) {
 	let end_month = "-1";
 	if (tempMeans == "카드") {
 		means = 'card';
-		payment_number = document.getElementsByName('payment_number')[0].value;
+		card_or_account_number = document.getElementsByName('card_or_account_number')[0].value;
 		cvc = document.getElementById("cvc").value;
 		end_date = document.getElementById('end_date').value;
 		end_date = end_date.split("/");
@@ -72,20 +72,20 @@ function payment(password, bankURL) {
 
 	} else {
 		means = 'account';
-		payment_number = document.getElementsByName('payment_number')[1].value;
+		card_or_account_number = document.getElementsByName('card_or_account_number')[1].value;
 	}
 
 
-		document.getElementById('end_year').value = end_year;
-		document.getElementById('end_month').value = end_month;
-		document.getElementById('means').value = means;
+	document.getElementById('end_year').value = end_year;
+	document.getElementById('end_month').value = end_month;
+	document.getElementById('means').value = means;
 
 	let sendData = {
 		"messageType": "paymentWayCheck",
 		"pg_code": pg_code,
 		"mall_ID": "Joongang",
 		"means": means,
-		"payment_number": payment_number,
+		"card_or_account_number": card_or_account_number,
 		"payment_password": password,
 		"end_month": end_month,
 		"end_year": end_year,
@@ -100,7 +100,7 @@ function payment(password, bankURL) {
 		success: function(data) {
 			if (data.messageType == "success") {
 				disconnect(bankURL);
-				success(payment_number);
+				success(card_or_account_number);
 			}
 			else {
 				fail("오류가 발생했습니다: " + data.message);
@@ -116,7 +116,7 @@ function payment(password, bankURL) {
 function getBankURL(receiveData) {
 
 	let bankName = document.getElementById('bank_name').value;
-	
+
 
 	let send = {
 		"bank_name": bankName
@@ -127,7 +127,7 @@ function getBankURL(receiveData) {
 		type: "post",
 		contentType: "application/json;charset=UTF-8",
 		dataType: "text",
-		data:JSON.stringify(send),
+		data: JSON.stringify(send),
 		success: function(data) {
 			payment(receiveData, data);
 		},
@@ -198,7 +198,7 @@ function payment_ajax() {
 				paymentway_check();
 			}
 			else {
-				alert('은행에 접근할 수 없습니다.' + data.messageType);
+				alert('은행에 접근할 수 없습니다.' + data.message);
 
 				return false;
 			}

@@ -79,15 +79,15 @@
 	<insert id="insertNewPaymentWay" parameterType="org.pg.data.PaymentWayVO">
 	<![CDATA[
 	insert into payment_ways
-	values(SEQ_PAYMENT_NO.nextval,#{userID},#{bank_name},#{means},#{payment_number},#{cvc},#{end_year, jdbcType=INTEGER},#{end_month,jdbcType=INTEGER})
+	values(SEQ_PAYMENT_NO.nextval,#{userID},#{bank_name},#{means},#{card_or_account_number},#{cvc},#{end_year, jdbcType=INTEGER},#{end_month,jdbcType=INTEGER})
 	]]>
 	</insert>
 
-	<select id="getPaymentWayByPayment_number" resultType="org.pg.data.PaymentWayVO">
+	<select id="getPaymentWayByCard_or_account_number" resultType="org.pg.data.PaymentWayVO">
 	<![CDATA[
 	select *
 	from payment_ways
-	where payment_number=#{payment_number}
+	where card_or_account_number=#{card_or_account_number}
 	]]>
 	</select>
 	

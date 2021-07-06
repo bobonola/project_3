@@ -15,6 +15,6 @@ public class RecordVO
 	private BigDecimal record_no;
 	private String userID;
 	private BigDecimal price;
-	private String mall_code, bank_code, means,payment_number;
+	private String mall_code, bank_code, means,card_or_account_number;
 	private Timestamp record_date;
 }

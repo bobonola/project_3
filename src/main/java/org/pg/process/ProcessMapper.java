@@ -35,7 +35,7 @@ public interface ProcessMapper
 
 	void insertNewPaymentWay( PaymentWayVO paymentInfo );
 
-	PaymentWayVO getPaymentWayByPayment_number( String payment_number );
+	PaymentWayVO getPaymentWayByCard_or_account_number( String card_or_account_number );
 
 	String getBankURL( String bankName );
 

@@ -143,8 +143,8 @@ public class ProcessController
 	@ResponseBody
 	public boolean newPaymentWayCheck( @RequestBody Map<String, Object> input )
 	{
-		String payment_number = (String)input.get( "payment_number" );
-		boolean result = service.newPaymentWayCheck( payment_number );
+		String card_or_account_number = (String)input.get( "card_or_account_number" );
+		boolean result = service.newPaymentWayCheck( card_or_account_number );
 
 		return result;
 	}

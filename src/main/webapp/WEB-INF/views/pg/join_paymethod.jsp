@@ -233,7 +233,7 @@ body {
 							<div class="id_area">
 								<div class="input_row" id="card_number_area">
 									<span class="input_box">
-										<input style="font-family: 'Noto Sans KR', sans-serif" type="text" name="payment_number"
+										<input style="font-family: 'Noto Sans KR', sans-serif" type="text" name="card_or_account_number"
 											id="card_number" class="int" placeholder=카드번호>
 									</span>
 								</div>
@@ -276,7 +276,7 @@ body {
 							<div class="id_area">
 								<div class="input_row" id="account_number_area">
 									<span class="input_box">
-										<input style="font-family: 'Noto Sans KR', sans-serif" type="text" name="payment_number"
+										<input style="font-family: 'Noto Sans KR', sans-serif" type="text" name="card_or_account_number"
 											id="account_number" class="int" placeholder=계좌번호>
 									</span>
 								</div>

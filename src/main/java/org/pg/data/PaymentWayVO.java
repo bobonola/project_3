@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 public class PaymentWayVO
 {
 	private BigDecimal payment_no;
-	private String userID,bank_name,means,payment_number,payment_password,cvc;
+	private String userID,bank_name,means,card_or_account_number,payment_password,cvc;
 	private int end_year,end_month;
 }

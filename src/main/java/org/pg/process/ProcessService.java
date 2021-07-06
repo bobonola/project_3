@@ -29,7 +29,7 @@ public interface ProcessService
 
 	List<BankVO> getBanks();
 
-	boolean newPaymentWayCheck( String payment_number );
+	boolean newPaymentWayCheck( String card_or_account_number );
 
 	Map<String, Object> emailConfirm( String email );
 

@@ -136,13 +136,13 @@ body {
 			<div id="content">
 				<div style="margin-bottom: 70px"></div>
 				<c:forEach var="paymentways" items="${map.paymentways }">
-					<input type='hidden' id="${paymentways.payment_number }" value="${paymentways.means }">
+					<input type='hidden' id="${paymentways.card_or_account_number }" value="${paymentways.means }">
 				</c:forEach>
 				<div id="choose">
 					<select class="btn_choose" id="paymentway">
 						<c:forEach var="paymentways" items="${map.paymentways }">
 
-							<option value="${paymentways.payment_number }">&nbsp;${paymentways.bank_name }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${paymentways.payment_number }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<option value="${paymentways.card_or_account_number }">&nbsp;${paymentways.bank_name }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${paymentways.card_or_account_number }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<c:choose>
 									<c:when test="${paymentways.means eq 'card'}">카드
 									</c:when>
