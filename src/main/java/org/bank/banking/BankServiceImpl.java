@@ -347,7 +347,6 @@ public class BankServiceImpl implements BankService
 	{
 		String userPassword = null;
 		UserVO userInfo = mapper.getUser( userID );
-		System.out.println( "payment_password: "+payment_password );
 		switch ( means )
 		{
 			case "card":
