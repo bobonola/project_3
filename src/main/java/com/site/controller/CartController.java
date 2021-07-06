@@ -2,6 +2,8 @@ package com.site.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.site.service.CartService;
+import com.site.service.PayServiceImpl;
 import com.site.vo.CartVo;
 
 @Controller
@@ -45,7 +48,8 @@ public class CartController {
 			Model model) {
 		Map<String, Object> map = null;
 		
-		
+
+		PayServiceImpl.email=email;
 		map = cartService.selectedPayList(email, cart_no);
 		model.addAttribute("map", map);
 		return "/pay/payment";
@@ -56,7 +60,7 @@ public class CartController {
 			Model model) {
 		Map<String, Object> map = null;
 		
-		
+		PayServiceImpl.email=email;
 		map = cartService.allPayList(email);
 		model.addAttribute("map", map);
 		return "/pay/payment";

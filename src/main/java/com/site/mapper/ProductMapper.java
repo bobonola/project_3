@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.site.vo.CartVo;
 import com.site.vo.ProductVo;
 
 @Mapper
@@ -23,5 +24,6 @@ public interface ProductMapper {
 	void insertProductInsert(ProductVo productVo);
 	// 상품 수정페이지 호출 - 관리자
 	ProductVo selectProductModify(int product_no);
+	void updateStocks( CartVo cartVo );
 	
 }

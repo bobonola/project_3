@@ -312,5 +312,27 @@
                                    0)
 		]]>
 	</update> -->
+	
+	<update id="updateStocks" parameterType="com.site.vo.CartVo">
+	<![CDATA[
+			UPDATE PRODUCT_INVENTORY I
+   			SET I.PRODUCT_TOTAL_STOCK = 
+   				I.PRODUCT_TOTAL_STOCK - NVL(
+   									(SELECT SUM(C.PRODUCT_COUNT) AS PRODUCT_COUNT 
+                                       FROM CART C
+                                      WHERE C.EMAIL = #{email}
+                                        AND C.PRODUCT_NO = I.PRODUCT_NO
+                                   GROUP BY C.EMAIL, C.PRODUCT_NO), 
+                                   0),
+                I.PRODUCT_SIZE_${product_size} = 
+                I.PRODUCT_SIZE_${product_size} - NVL(
+                					(SELECT SUM(C.PRODUCT_COUNT) AS PRODUCT_COUNT 
+                                       FROM CART C
+                                      WHERE C.EMAIL = #{email}
+                                        AND C.PRODUCT_NO = I.PRODUCT_NO
+                                   GROUP BY C.EMAIL, C.PRODUCT_NO), 
+                                   0)
+		]]>
+	</update>
 
 </mapper>

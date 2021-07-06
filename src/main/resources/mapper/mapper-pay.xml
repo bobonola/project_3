@@ -2,7 +2,17 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="com.site.mapper.PayMapper">
-	
+	<insert id="insertPayment" parameterType="com.site.vo.CartVo">
+
+		<![CDATA[			
+			INSERT ALL
+			INTO PAY_COMPLETED VALUES
+			(SEQ_ORDER_NO.nextval,#{email},#{product_total_price},sysdate)
+			INTO PAY_COMPLETED_DETAIL VALUES
+			(SEQ_ORDER_NO.nextval,#{product_no},#{product_price},#{product_count},#{product_size})
+			SELECT * FROM DUAL
+		]]>
+		</insert>
 </mapper>

@@ -7,8 +7,8 @@ window.onload=function(){
 }
 
 function pgOpen(mall_code) {
-	let total_price = "10";
-	let mall_account = "1922-1944-1946-2014";
+	let total_price = document.getElementById('total_price').value;
+	let mall_account = document.getElementById('mall_account').value;
 	let url = "http://localhost:8082?total_price=" + total_price + "&mall_code=" + mall_code;
 	url = url + "&mall_account=" + mall_account;
 
