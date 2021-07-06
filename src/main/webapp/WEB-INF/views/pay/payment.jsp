@@ -31,7 +31,6 @@
 <script type="text/javascript">
 	$(document).ready(function()
 	{
-
 	});
 </script>
 </head>
@@ -87,12 +86,10 @@
 	<script type="text/javascript">
 		var settimediv = 200000; //지속시간(1000= 1초)
 		var msietimer;
-
 		$(document).ready(function()
 		{
 			msiecheck();
 		});
-
 		var msiecheck = function()
 		{
 			var browser = navigator.userAgent.toLowerCase();
@@ -105,13 +102,11 @@
 				msiehide();
 			}
 		}
-
 		var msieshow = function()
 		{
 			$("#ieUser").show();
 			msietimer = setTimeout("msiehide()", settimediv);
 		}
-
 		var msiehide = function()
 		{
 			$("#ieUser").hide();
@@ -649,7 +644,6 @@
 						$(function()
 						{
 							// select, radio - display check
-
 							// 1 Step Radio
 							var firstchk = $("input:radio[name=method]:checked").attr(
 									"id");
@@ -660,7 +654,6 @@
 								$(".disnone").css("display", "none");
 								$("div." + divchk).css("display", "block");
 							});
-
 							// 2 Step 영수증 Select
 							var firstselect = $("select[name=receiptChk] option:selected")
 									.attr("value");
@@ -681,7 +674,6 @@
 										{
 											$(".corporate").css("display", "block");
 										}
-
 										var firstindi = $(
 												"input:radio[name=individual]:checked")
 												.attr("id");
@@ -691,7 +683,6 @@
 										$("ul." + firstindi).css("display", "block");
 										$("ul." + firstcorp).css("display", "block");
 									});
-
 							// 3-1 Step 발급방식 - 개인
 							var firstindi = $("input:radio[name=individual]:checked")
 									.attr("id");
@@ -702,7 +693,6 @@
 								$(".inform").css("display", "none");
 								$("ul." + divchk).css("display", "block");
 							});
-
 							// 3-2 Step 발급방식 - 사업자
 							var firstcorp = $("input:radio[name=corporate]:checked")
 									.attr("id");
@@ -713,7 +703,6 @@
 								$(".inform").css("display", "none");
 								$("ul." + divchk).css("display", "block");
 							});
-
 							// layer popup
 							var winWidth = $(window).width();
 							if (winWidth > 767)
@@ -725,7 +714,6 @@
 								var layerCheck = 320;
 								var couponCheck = 320;
 							}
-
 							$(".addressBtn")
 									.fancybox(
 											{
@@ -752,7 +740,6 @@
 																	});
 												}
 											});
-
 							$(".nbtn")
 									.fancybox(
 											{
@@ -790,7 +777,6 @@
 																	});
 												}
 											});
-
 						});
 					</script>
 

@@ -25,7 +25,6 @@
 <script type="text/javascript" src="../js/idangerous.swiper-2.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery.anchor.js"></script>
 <style>
-
 div.text_style {
 	text-align:center;
 }
@@ -87,7 +86,6 @@ div.text_style {
 #loader > div:nth-child(8) {
   transition-delay: 400ms;
 } 
-
  
  
 body:not(.hidden).reveal #loader > div {
