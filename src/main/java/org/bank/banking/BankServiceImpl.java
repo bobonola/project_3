@@ -89,7 +89,7 @@ public class BankServiceImpl implements BankService
 			AccountVO mallInfo = mapper.getAccount( mall_account );
 			if ( mallInfo == null )
 			{
-				exception = new BankException( "등록되지 않은 계좌입니다." );
+				exception = new BankException( "등록되지 않은 업체 계좌입니다." );
 				throw exception;
 			}
 
@@ -203,7 +203,7 @@ public class BankServiceImpl implements BankService
 
 		try
 		{
-			String account_number = (String)input.get( "payment_number" );
+			String account_number = (String)input.get( "card_or_account_number" );
 			AccountVO accountInfo = mapper.getAccount( account_number );
 			if ( accountInfo == null ) // 계좌가 존재하지 않는다면?
 			{
@@ -259,7 +259,7 @@ public class BankServiceImpl implements BankService
 		try
 		{
 			// 카드 정보 긁어오기
-			String card_number = (String)input.get( "payment_number" );
+			String card_number = (String)input.get( "card_or_account_number" );
 			CardVO cardInfo = mapper.getCard( card_number );
 
 			// 카드번호가 없을 경우.
@@ -356,7 +356,6 @@ public class BankServiceImpl implements BankService
 				userPassword = userInfo.getPassword();
 				break;
 		}
-		System.out.println( payment_password );
 
 		boolean result = payment_password.equals( userPassword );
 
@@ -410,7 +409,7 @@ public class BankServiceImpl implements BankService
 			String means = (String)input.get( "means" ); // 결제수단
 
 			// 사용자 정보 조회
-			String account_number = (String)input.get( "payment_number" ); // 계좌번호
+			String account_number = (String)input.get( "card_or_account_number" ); // 계좌번호
 			AccountVO accountInfo = mapper.getAccount( account_number );
 			if ( accountInfo == null )
 			{
@@ -498,7 +497,7 @@ public class BankServiceImpl implements BankService
 			BigDecimal deposit = price.negate();
 
 			// 사용자 정보 조회
-			String card_number = (String)input.get( "payment_number" );
+			String card_number = (String)input.get( "card_or_account_number" );
 			CardVO cardInfo = mapper.getCard( card_number );
 			if ( cardInfo == null )
 			{

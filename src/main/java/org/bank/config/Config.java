@@ -38,7 +38,6 @@ public class Config implements WebMvcConfigurer
 	@Bean
 	public SqlSessionTemplate sqlSession( SqlSessionFactory sqlSessionFactory )
 	{
-		System.out.println( "sqlSessionFactory: " + sqlSessionFactory );
 		SqlSessionTemplate result = new SqlSessionTemplate( sqlSessionFactory );
 
 		return result;

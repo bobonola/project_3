@@ -45,8 +45,8 @@
 		
 		<![CDATA[
 		insert into 
-		logs(logno,userid,means,payment_number,deposit,balance,mall_id,mall_account_number,transaction_date,etc)
-		values(#{logno},#{userID},#{means},#{payment_number},#{deposit},#{balance},#{mall_ID},#{mall_account_number},sysdate,#{etc})
+		logs(logno,userid,means,card_or_account_number,deposit,balance,mall_id,mall_account_number,transaction_date,etc)
+		values(#{logno},#{userID},#{means},#{card_or_account_number},#{deposit},#{balance},#{mall_ID},#{mall_account_number},sysdate,#{etc})
 		]]>
 	</insert>
 

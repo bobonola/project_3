@@ -11,6 +11,6 @@ import lombok.*;
 public class LogVO
 {
 	private BigDecimal logno,deposit,balance;
-	private String userID,means,payment_number,mall_ID,mall_account_number,etc;
+	private String userID,means,card_or_account_number,mall_ID,mall_account_number,etc;
 	private Timestamp transaction_date;
 }
