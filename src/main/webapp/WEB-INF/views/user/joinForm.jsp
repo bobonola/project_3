@@ -69,7 +69,6 @@
 
 	<section>
 		<form action="./joinDo" name="joinDo" id="joinDo" method="post">
-			<div id="subBanner"></div>
 			<div id="locationN">
 				<ul>
 					<li>HOME</li>

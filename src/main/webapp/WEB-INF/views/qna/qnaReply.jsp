@@ -8,24 +8,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QNA 답변</title>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/write.css">
-  <script type="text/javascript">
-	  document.addEventListener("DOMContentLoaded", function(){
-		  
-		  document.getElementById("qna_secret_code${qnaVo.qna_secret_code }").checked = true;
-		  
-		  
-	  });
-	  
-	</script>
-	  
+  <link rel="stylesheet" href="../css/notice_list.css">
+  <link rel="stylesheet" href="../css/read.css">
 </head>
+<style>
+#container{	
+	width: 1180px;
+	height: auto;
+	margin: 0 auto 123px auto;
+	color: #101010;
+    margin-top: -67px;
+}
+#h1 {
+    margin-top: 121px;
+    font-size: 51px;
+    width: 274px;
+    height: 76px;
+}	
+#radio_circle{
+	top: 1px;
+    margin: 0 9px 0 0px;
+
+}
+#radio_circle1{
+	top: 1px;
+    margin: 0 9px 0 29px;
+}
+.list {
+    float: right;
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    margin: 7px 24px 50px 0;
+    border: 1px #d8d6ec solid;
+    color: black;
+    background:white;
+}
+textarea {
+    padding: 5px;
+    border: white;
+    font-size: 15px;
+    height: 167px;
+}
+table {
+    width: 96%;
+    margin-top: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 40px;
+}
+button {
+    top: 50%;
+	left: 50%;
+	width: 40px;
+	height: 40px;
+	background: #666666;
+	color: white;
+	border: none;
+	cursor:pointer;
+}
+</style>
+ <script type="text/javascript">
+	  document.addEventListener("DOMContentLoaded", function(){
+		  document.getElementById("qna_secret_code${qnaVo.qna_secret_code }").checked = true;
+	  });
+</script>
 <body>
 <c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 <section>
-    <h1>QNA 답글</h1>
-    <hr>
+<div id="container">
+    <h1 id="h1">QNA 답글</h1>
 
     <form action="./qnaReplyDo" name="qnaReply" method="post">
       <table>
@@ -68,20 +120,17 @@ ${qnaVo.qna_content }
         	<th>비밀글 체크</th>
         	<td>
 		        <div id="radiobox">
-		        	오픈글<input type="radio" name="qna_secret_code" id="qna_secret_code1" value="1">
-					비밀글<input type="radio" name="qna_secret_code" id="qna_secret_code2" value="2">  
+		        	<input type="radio" id ="radio_circle" name="qna_secret_code" value="1" checked>오픈글
+					<input type="radio" id ="radio_circle1" name="qna_secret_code" value="2">비밀글   
 		        </div>
         	</td>
         </tr>
         
       </table>
-      <hr>
-      <div class="button-wrapper">
-        <button type="submit" class="write">답변완료</button>
-        <button type="button" class="cancel" onclick="javascript:location.href='./qnaList'">취소</button>
-      </div>
+        <button type="button" class="list" onclick="javascript:location.href='./qnaList'">취소</button>
+        <button type="submit" class="list">답변완료</button>
     </form>
-
+	</div>
   </section>
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 </body>

@@ -19,37 +19,114 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scaleable=no" />
 <link rel="stylesheet" type="text/css" href="../css/reset.css" />
 <link rel="stylesheet" type="text/css" href="../css/content.css" />
-<link rel="stylesheet" href="../css/style.css">
-<link  rel="stylesheet" href="../css/write.css">
+<link rel="stylesheet" href="../css/notice_list.css">
+ <link rel="stylesheet" href="../css/read.css">
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/common.js"></script>
 <script type="text/javascript">
 </script>
 <style>
-#contain {
-	margin : 0 250px
+#container{	
+	width: 1180px;
+    height: auto;
+    margin: 0 auto 30px auto;
+    color: #101010;
+    padding-top: 0px;
 }
-
+#h1 {
+    margin-top: 100px;
+    margin-left: 16px;
+    font-size: 31px;
+    width: 266px;
+    height: 100px;
+}	
+.list {
+    float: right;
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    margin: 7px 24px 50px 0;
+    border: 1px #d8d6ec solid;
+    color: black;
+    background:white;
+}
+button {
+    top: 50%;
+	left: 50%;
+	width: 40px;
+	height: 40px;
+	background: #666666;
+	color: white;
+	border: none;
+	cursor:pointer;
+}
+table {
+    width: 96%;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 40px;
+}
+section {
+    text-align: center;
+    top: 15px;
+}
+textarea {
+    padding: 5px;
+    border: white;
+    font-size: 15px;
+    height:182px;
+    width:659px
+}
+table tr {
+    height: 100px;
+}
+table th {
+    text-align: center;
+    padding: 0px;
+    /* margin: 25px; */
+}
+input {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    border: none;
+    font-size: 20px;
+    width: 100%;
+}
+#product_total_stock input {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    border: none;
+    font-size: 20px;
+    width: 17%;
+    background: #ffffff;
+    border: 1px #cca8a8 solid;
+    border-bottom: none;
+    border-top: none;
+    text-align: center;
+}
+#product_total_stock  {
+    font-size: 20px;
+}
 </style>
 </head>
 <body>
 <c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 
-<div id="contain">
-<div id="layerWrap">
+<div id="container">
 
 
-<div class="inputWrap">
 		
 	<div class="inputBody">
-		<div class="title">상품 등록하기</div>
+	   <h1 id="h1">🎁상품 등록</h1>
 		
 			<form action="./productInsertDo" name="productInsert" method="post" enctype="multipart/form-data">
 		      <table>
 		        <colgroup>
-		          <col width="55%">
-		          <col width="25%">
-		          <col width="50%">
+		          <col width="20%">
+		          <col width="80%">
 		        </colgroup>
 		        
 		        <tr>
@@ -89,7 +166,7 @@
 		          	<td id="product_total_stock">
 		          		<c:set var="sum" value="0" />
 		          		<c:forEach var="i" begin="230" end="300" step="10">
-		            		${i } : <input type="text" name="product_size_${i }"><br /><br />
+		            		${i } : <input type="text" name="product_size_${i }">
 		          		</c:forEach>
 		            	<c:set var="sum" value="${sum + i}" />
 		          
@@ -105,21 +182,13 @@
 		        </tr>
 		        
 		      </table>
-		      <hr>
-		      <div class="button-wrapper">
-		        <button type="submit" class="write">등록하기</button>
-		        <button type="button" class="cancel" onclick="javascript:location.href='../user/adminList'">취소</button>
-		      </div>
+		        <button type="button" class="list" onclick="javascript:location.href='../user/adminList'">취소</button>
+		        <button type="submit" class="list">등록하기</button>
 		    </form>
 		</div>
 
 	</div>
 
-</div>
-
-</div>
-
-</div>
 <c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 </body>
 </html>

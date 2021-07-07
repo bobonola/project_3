@@ -117,16 +117,7 @@
 	<div id="container">
 
 		<div id="outbox">		
-			<div id="left">
-				<div id="title">MY PAGE<span>마이페이지</span></div>
-				<ul>	
-					<li><a href="#" id="leftNavi1">주문/배송 조회</a></li>
-					<li><a href="#" id="leftNavi2">반품/배송 현황</a></li>
-					<li><a href="#" id="leftNavi3">장바구니</a></li>
-					<li><a href="#" id="leftNavi8">회원정보 수정</a></li>
-					<li class="last"><a href="#" id="leftNavi9">회원 탈퇴</a></li>
-				</ul>			
-			</div><script type="text/javascript">initSubmenu(3,0);</script>
+			<script type="text/javascript">initSubmenu(3,0);</script>
 
 
 			<!-- contents -->
@@ -135,12 +126,9 @@
 					<h2><strong>장바구니</strong><span>장바구니에 담긴 상품을 확인해보세요.</span></h2>
 					
 					<div class="myInfo">
-						<ul>
-							<li class="info"><strong>${session_email}</strong> 님의 정보를 한눈에 확인하세요.</li>
-							<li>보유 쿠폰<br/><span class="num">199</span> <span class="unit">장</span></li>
-							<li class="point">내 포인트<br/><span class="num">100,000</span> <span class="unit">P</span></li>
-							<li class="last">진행중인 주문<br/><span class="num">199</span> <span class="unit">건</span></li>
-						</ul>
+
+							<div class="info" align="center"><strong>${name}</strong> 님의 정보를 한눈에 확인하세요.</div>
+
 					</div>
 
 				<!-- 장바구니에 상품이 있을경우 -->
@@ -181,8 +169,10 @@
 												<ul class="goods">
 													<li>
 														<a href="../view">${cartVo.product_name }</a>
-														<p>
-														<!-- 상세에서 선택한 product_size 텍스트가 나와야 되는 부분/ value값 아님 --></p>
+														<p><br>
+															<!-- 상세에서 선택한 product_size 텍스트가 나와야 되는 부분/ value값 아님 -->
+															선택옵션 : ${cartVo.product_size }
+														</p>
 													</li>
 												</ul>
 											</td>

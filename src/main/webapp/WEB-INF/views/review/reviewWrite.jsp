@@ -18,15 +18,83 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean"
 	rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/write.css">
+<link rel="stylesheet" href="../css/notice_list.css">
+  <link rel="stylesheet" href="../css/read.css">
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
+<style>
+#container{	
+	width: 1180px;
+	height: auto;
+	margin: 0 auto 123px auto;
+	color: #101010;
+    margin-top: -67px;
+}
+#h1 {
+    margin-top: 107px;
+    font-size: 51px;
+    width: 232px;
+    height: 76px;
+}	
+.list {
+    float: right;
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    margin: 7px 24px 50px 0;
+    border: 1px #d8d6ec solid;
+    color: black;
+    background:white;
+    cursor:pointer;
+}
+button {
+    top: 50%;
+	left: 50%;
+	width: 40px;
+	height: 40px;
+	background: #666666;
+	color: white;
+	border: none;
+	cursor:pointer;
+}
+table {
+    width: 96%;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 40px;
+}
+section {
+    text-align: center;
+    top: 15px;
+}
+textarea {
+    padding: 5px;
+    border: white;
+    font-size: 15px;
+    width: 782px;
+    height: 180px;
+}
+#radio_circle{
+	top: 1px;
+    margin: 0 9px 0 0px;
 
+}
+#radio_circle1{
+	top: 1px;
+    margin: 0 9px 0 29px;
+}
+label.star input {
+    top: 2px;
+    margin: 0 4px 0 9px;
+}
+
+</style>
 <body>
+<c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 	<section>
-		<h1>구매후기 작성</h1>
-		<hr>
+	<div id="container">
+		<h1 id="h1">구매후기</h1>
 		<!-- enctype="multipart/form-data" : 이걸 써줘야 파일이 업로드된다. 꼭 필요함! -->	
 		<form action="./reviewWriteDo" name="reviewWrite" method="post" enctype="multipart/form-data">
 		<table>
@@ -93,15 +161,12 @@
 					<td><input type="file" name="file" id="file"></td>
 				</tr>
 			</table>
-			<hr>
-			<div class="button-wrapper">
-				<input type="button" class="write" value="작성완료" onclick="checkfield()">
-				<input type="button" class="cancel" onclick="history.back(-1);" value="취소" >
-			</div>
+				<a href="#" onclick="history.back(-1);"><div class="list">삭제</div></a>
+				<a href="#" onclick="checkfield()"><div class="list">작성완료</div></a>
 		</form>
-
+	 </div>
 	</section>
-
+	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 </body>
 <script>
 /* 유효성검사 */

@@ -56,7 +56,6 @@
 	<c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 	<section>
 		<form action="./userModifyDo" name="userModifyDo" id= "userModifyDo" method="post">
-			<div id="subBanner"></div>
 			<div id="locationN">
 				<ul>
 					<li>HOME</li>
@@ -158,6 +157,7 @@
 
 		</form>
 	</section>
+	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 </body>
 <script>
 	//주소 api 연동

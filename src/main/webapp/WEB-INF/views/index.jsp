@@ -27,7 +27,7 @@ img#sold_out {
     position: relative;
     opacity: 0.5;
     padding: 27px 0;
-    padding-bottom: 91px;
+    padding-bottom: 80px;
 }
 img#main_img {
     position: absolute;
@@ -92,9 +92,11 @@ div {
     font-size: 29px;
     font-family: 'Noto Sans KR', sans-serif;
 }
-ul.page-num li {
-    /* padding: 0px 0px; */
-    margin: 0px 10px;
+.num a div {
+    position: relative;
+    top: 2px;
+    font-size: 28px;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 	</style>
@@ -133,11 +135,15 @@ ul.page-num li {
 			 					<c:if test="${productVo.product_total_stock == 0}">
 			 						<img id="main_img" alt="" src="${productVo.product_main_image }">
 			 						<img id="sold_out" alt="" src="../images/ico/sold_out2.PNG">
+			 						<div id = "product_name">${productVo.product_name }</div>
+			 						<div id = "product_price">
+						 						<fmt:formatNumber value="${productVo.product_price}" pattern="#,###"/> 원
+						 					</div>
 			 					</c:if>
 			 					<c:if test="${productVo.product_total_stock != 0}">
 			 						<a href="./product/productView?product_no=${productVo.product_no }">
 			 							<img alt="" src="${productVo.product_main_image }">
-			 							<span id="best_top">BEST<br>${productVo.product_no }</span>
+			 							<%-- <span id="best_top">BEST<br>${productVo.product_no }</span> --%>
 				 							<div id = "product_name">${productVo.product_name }</div>
 						 					<div id = "product_price">
 						 						<fmt:formatNumber value="${productVo.product_price}" pattern="#,###"/> 원
@@ -194,7 +200,7 @@ ul.page-num li {
 		      </c:if>
 		        <!-- 마지막페이지 이동 -->
 		      <c:if test="${map.page < map.maxPage }">
-		        <a href="./index?page=${map.page + 1 }&search=${map.search}&sort=${map.sort}"><li class="last"></li></a>
+		        <a href="./index?page=${map.maxPage }&search=${map.search}&sort=${map.sort}"><li class="last"></li></a>
 		      </c:if>
 		      <c:if test="${map.page == map.maxPage }">
 		        <li style="background: white" class="last"></li>

@@ -11,13 +11,62 @@
   <title>게시판</title>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-  <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/notice_list.css">
+  <link rel="stylesheet" href="../css/page.css">
 </head>
+<style>
+#container{	
+	width: 1180px;
+	height: auto;
+	margin: 0 auto 75px auto;
+	color: #101010;
+    top: 500px;
+}
+#page {
+    height: 120px;
+    width: 374px;
+    margin: 0 auto;
+    color: #101010;
+    margin-bottom: 34px;
+}
+
+.write {
+    float: right;
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    margin: 7px 24px 50px 0;
+    border: 1px #d8d6ec solid;
+    color: black;
+}
+button {
+    position: absolute;
+    width: 47px;
+    height: 40px;
+    margin-left: 107px;
+    margin-top: -19.5px;
+    border-radius: 4px;
+    border: #e49f43;
+    cursor: pointer;
+}
+.title {
+    border-radius: 4px;
+}
+input {
+    position: relative;
+    top: 5px;
+    left: 0.5px;
+    border: none;
+    font-size: 19px;
+	width:180px;
+}
+</style>
 <body>
 <c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 <section>
-    <h1 id="notice_h1">QNA 게시판</h1>
+    <h1 id="notice_h1">Q & A</h1>
+    
+  
     <div class="wrapper">
       <form action="./qnaList" name="search" method="post">
         <select name="category" id="category">
@@ -30,12 +79,11 @@
         <div class="title">
           <input type="text" size="16" name="search" id="search" value="${map.search }">
         </div>
-  
         <button type="submit"><i class="fas fa-search"></i></button>
       </form>
     </div>
-
     
+<div id="container">
     <table>
       <colgroup>
         <col width="10%">
@@ -46,7 +94,7 @@
       </colgroup>
       <!-- 제목부분 -->
       <tr>
-        <th>No.</th>
+        <th>No</th>
         <th>제목</th>
         <th>작성일</th>
         <th>작성자</th>
@@ -147,22 +195,30 @@
       </c:forEach>
       <!-- 내용부분 끝 -->
     </table>
+<a href="./qnaWrite"><div class="write">작성</div></a>
+</div>
 
+ </section>
+<div id="page">
     <!-- 하단 넘버링 -->
     <ul class="page-num">
-      <a href="./qnaList?page=1&category=${map.category}&search=${map.search}"><li class="first"></li></a>
+   	  <c:if test="${map.page == 1 }">
+		  <li style="background: white" class="first"></li>
+	  </c:if>
+   	  <c:if test="${map.page > 1 }">
+		  <a href="./qnaList?page=1&category=${map.category}&search=${map.search}"><li class="first"></li></a>
+	  </c:if>
       <!-- 이전페이지는 1이상일때 -1을 해줌, 1일때는 링크 삭제시킴 -->
-      <c:if test="${map.page <= 1 }">
-        <li class="prev"></li>
-      </c:if>
+      <c:if test="${map.page == 1 }">
+		  <li style="background: white" class="prev"></li>
+	  </c:if>
       <c:if test="${map.page > 1}">
         <a href="./qnaList?page=${map.page - 1 }&category=${map.category}&search=${map.search}"><li class="prev"></li></a>
       </c:if>
-      
       <!-- 번호넣기 -->
       <c:forEach var="nowPage" begin="${map.startPage}" end="${map.endPage }">
         <c:if test="${map.page == nowPage }">
-          <li class="num"><div>${nowPage}</div></li>
+          <li class="num" style="cursor:default;"><div>${nowPage}</div></li>
         </c:if>
         <c:if test="${map.page != nowPage }">
           <li class="num">
@@ -171,19 +227,27 @@
         </c:if>
       </c:forEach>
       <!-- 다음페이지는 max보다 작을때 +1 증가, max보다 크거나 같을때 링크 삭제시킴 -->
-      <c:if test="${map.page >= map.maxPage }">
-        <li class="next"></li>
+      <c:if test="${map.page == map.maxPage }">
+        <li style="background: white" class="next"></li>
       </c:if>
       <c:if test="${map.page < map.maxPage }">
         <a href="./qnaList?page=${map.page + 1 }&category=${map.category}&search=${map.search}"><li class="next"></li></a>
       </c:if>
+      
       <!-- 마지막페이지 이동 -->
-      <a href="./qnaList?page=${map.maxPage }&category=${map.category}&search=${map.search}"><li class="last"></li></a>
+      <c:if test="${map.page < map.maxPage }">
+      	<a href="./qnaList?page=${map.maxPage }&category=${map.category}&search=${map.search}"><li class="last"></li></a>
+	  </c:if>
+	  <c:if test="${map.page == map.maxPage }">
+	    <li style="background: white" class="last"></li>
+	  </c:if>
     </ul>
     <!-- 하단 넘버링 끝 -->
-
-    <a href="./qnaWrite"><div class="write">쓰기</div></a>
-  </section>
+    
+</div>
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
+	
 </body>
+
+
 </html>

@@ -47,7 +47,7 @@
 	<form action="" method="post">
 	<h3 class="input_title" data-v-38b8e602>이메일 주소</h3>
       <div class="input_item" data-v-83b8e602>
-        <input type="text" name="email" id="email" class="int" size="45" placeholder="회원가입하신 email을 입력하세요">
+        <input type="text" name="email" id="email" class="int" size="45" placeholder="가입하신 email을 입력하세요">
       </div>
       
     <h3 class="input_title" data-v-38b8e602>비밀번호</h3>
@@ -56,7 +56,8 @@
       </div>
       <button type="button" onclick="login_ajax()">로그인</button>
     </form>
-	<a href="./emailPasswordSearch" id="e_search">이메일/비밀번호찾기&nbsp;</a>
+
+	<a href="./emailPasswordSearch" id="e_search"><strong>이메일/비밀번호찾기&nbsp;</strong></a>
 
 
   </section>

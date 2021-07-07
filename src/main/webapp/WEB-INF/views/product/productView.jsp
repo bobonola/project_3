@@ -19,7 +19,7 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scaleable=no" />
 <!-- 
-	viewport : 반응형 웹, 모든 장치에서 웹 사이트가 잘 보이도록 뷰포트(viewport)를 설정 
+viewport : 반응형 웹, 모든 장치에서 웹 사이트가 잘 보이도록 뷰포트(viewport)를 설정 
 ☆width=device-width : 페이지의 너비를 기기의 스크린 너비로 설정합니다. 즉, 렌더링 영역을 기기의 뷰포트의 크기와 같게 만들어 줍니다.
 ☆initial-scale=1.0 : 처음 페이지 로딩시 확대/축소가 되지 않은 원래 크기를 사용하도록 합니다. 0~10 사이의 값을 가집니다.
 ☆minimum-scale : 줄일 수 있는 최소 크기를 지정합니다. 0~10 사이의 값을 가집니다.
@@ -67,6 +67,88 @@
 
  </script>
 </head>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Jomhuria&display=swap');
+#main_logo {
+    font-size: 20px;
+    font-family: 'Jomhuria', cursive;
+    background: black;
+    color: white;
+    width: 51px;
+    height: 16px;
+    padding: 0px 1px 0px 4px;
+}
+#style_code{
+	font-size: 15px;
+	margin: 0 0 30px 0;
+	color: #8f8e94;
+	
+}
+#product_price{
+	font-size: 26px;
+    height: 50px;
+    border-bottom: 3px black solid;
+
+}
+button#cartButton {
+    top: 50%;
+    left: 50%;
+    width: 430px;
+    height: 40px;
+    background: #666666;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button#cartButton {
+    top: 50%;
+    left: 50%;
+    width: 430px;
+    height: 40px;
+    background: #666666;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#total_price{
+	border-top: 2px #e4e4e4 solid;
+    margin-top: 10px;
+    padding-top: 18px;
+    height: 39px;
+
+}
+h3 {
+    font-size: 20px;
+    margin-top: 35px;
+}
+#total_price #total {
+    font-size: 34px;
+    margin-left: 98px;
+    color: #a21616;
+}
+span.searchStyleSelectBox.changed {
+    width: 80px;
+}
+span.searchStyleSelectBox {
+    width: 80px;
+}
+.detailTab {
+    width: 100%;
+    margin: 25px 0;
+    overflow: hidden;
+}
+button.btn {
+    text-align: center;
+    background: #777373;
+    height: 45px;
+    border: 0px;
+    width: 100%;
+}
+button.btn a {
+	color:white;
+}
+</style>
+
 <body>
 	<section class="content">
 		<c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
@@ -116,42 +198,29 @@
 							<!-- info -->
 							<div class="info">
 							<form action="<c:url value='../cart/cartInsert'/>" id="cartCheck" method="post"> 
-								<p class="title">${ map.productVo.product_name }</p>
-
+								<div id="main_logo">RUNNER'Z</div>
+									<p class="title">${ map.productVo.product_name }</p>
+										<div id="style_code" >스타일 번호 ${map.productVo.st_no} | 상품코드 ${map.productVo.product_no}</div>
+										<div id="product_price">
+											<fmt:formatNumber value="${map.productVo.product_price}" pattern="#,###" /> 원
+										</div>
+										
 								<div class="priceInfo">
 									<tr>
 										<ul>
-
-											<li>
-												<div class="stit">판매가</div>&emsp;
-												<div class="heavygray">
-													&emsp;<strong><fmt:formatNumber value="${map.productVo.product_price}" pattern="#,###" /> 원</strong>
-												</div>
-
-											</li>
-											<br>
-											<li>
-												<div class="stit">스타일 번호</div> &emsp;
-												<div class="heavygray">
-													&emsp;<strong>${map.productVo.st_no}</strong>
-												</div>
-											</li>
-											<br>
-											
-											
 											<li>
 												<%-- 사이즈 선택 시작 --%>
 												<div class="stit">사이즈</div> &emsp; 
-												<select name="product_size" id="product_size" style="width:185px; cursor:pointer">
-													<option value="" selected="selected">&nbsp;▼▼▼▼재고▼▼▼▼&nbsp;</option>
-													<option value="230">&nbsp;size 230&emsp;&emsp;&emsp;&emsp;</option>	
-													<option value="240">&nbsp;size 240&emsp;&emsp;&emsp;&emsp;</option>	
-													<option value="250">&nbsp;size 250&emsp;&emsp;&emsp;&emsp;</option>	
-													<option value="260">&nbsp;size 260&emsp;&emsp;&emsp;&emsp;</option>	
-													<option value="270">&nbsp;size 270&emsp;&emsp;&emsp;&emsp;</option>	
-													<option value="280">&nbsp;size 280&emsp;&emsp;&emsp;&emsp;</option>	
-													<option value="290">&nbsp;size 290&emsp;&emsp;&emsp;&emsp;</option>	
-													<option value="300">&nbsp;size 300&emsp;&emsp;&emsp;&emsp;</option>	
+												<select name="product_size" id="product_size" style="width:100px; cursor:pointer">
+													<option value="" selected="selected">&nbsp;Select Size&nbsp;</option>
+													<option value="230">&nbsp;size 230&emsp;</option>	
+													<option value="240">&nbsp;size 240&emsp;</option>	
+													<option value="250">&nbsp;size 250&emsp;</option>	
+													<option value="260">&nbsp;size 260&emsp;</option>	
+													<option value="270">&nbsp;size 270&emsp;</option>	
+													<option value="280">&nbsp;size 280&emsp;</option>	
+													<option value="290">&nbsp;size 290&emsp;</option>	
+													<option value="300">&nbsp;size 300&emsp;</option>	
 												</select>
 												
 												<%-- 사이즈 선택 끝 --%>
@@ -175,23 +244,17 @@
 													<div class="num" id="size_amount">
 														&emsp; <select name="product_count" id="product_count">
 															<option value="0">0</option>
-														</select>&nbsp;개 
+														</select>
 													</div>
 											
 											</li>
-												<li>
-
-													<div class="stit"><h3><strong>총 금 액</strong></h3></div> &emsp;
+												<li id="total_price">
+													<div class="stit"><h3><strong>총 결제금액</strong></h3></div> &emsp;
 													<div class="num">
-														&emsp;<strong id="total"/>
+														&emsp;<strong id="total"  />
 													</div>
 
 												</li>
-
-
-												<br>
-											
-											<br>
 										</ul>
 								</div>
 								</table>
@@ -207,7 +270,7 @@
 										</c:if>
 										
 										<c:if test="${session_flag == null || session_flag == '' }">
-											<li><a class="ty1" href="../user/login">로그인 하러 가기</a></li>
+											<li><a id="ty1" href="../user/login">로그인 하러 가기</a></li>
 										</c:if>
 										
 									</ul>
@@ -310,9 +373,8 @@
 		                    <div class="goodsReview disnone">
 		                       <div class="headTitle">
 		                          <!-- product_no를 가지고 rewrite로 가기위해서 번호를 담아감-->
-		                          <p class="btn">
-		                             <a href="../review/reviewWrite?product_no=${ map.productVo.product_no }">구매 후기 작성</a>
-		                          </p>
+		                             <button class="btn"><a class="btn" href="../review/reviewWrite?product_no=${ map.productVo.product_no }">구매 후기 작성</a>
+		                          	</button>
 		                       </div>
 		                       <br> <br> <br>
 		                       <!-- 내용부분 -->
@@ -366,7 +428,9 @@
 							<!-- goods notice -->
 							<div class="goodsNotice disnone">
 								<div class="headTitle depth">
-									<strong>정책 및 공지&nbsp;</strong>주문 전 필독 사항입니다.
+									<strong>※ 정책 및 공지&nbsp;</strong>주문 전 필독 사항입니다.
+									<br>
+									<br>
 								</div>
 
 								<div class="detailDiv">
@@ -518,7 +582,9 @@ var amount=document.getElementById(size).value;
 		}
 		$("#product_count").html(html);
 	});
-	
+	function numberFormat(inputNumber) {
+		   return inputNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
 	//select박스를 이용한 금액 구하기(change: select 박스의 값이 변경되었을 경우 발생되는 이벤트)
 	$('#product_count').change(function() { //id가 product_count인것이 바뀌면 함수작동한다.
 		var product = $("#product_count option:selected").val(); //물품 갯수를 변수에 담음
@@ -532,7 +598,7 @@ var amount=document.getElementById(size).value;
 			joinanable();
 		}
 		/* alert(aaaa); */
-		$('#total').text(aaaa+"원");
+		$('#total').text(numberFormat(aaaa)+"원");
 	});
 	
 	
