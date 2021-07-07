@@ -38,12 +38,6 @@ public class ProductController {
 	@Autowired
 	CartService cartService;
 	
-	//메인 페이지 리다이렉트
-	@RequestMapping("")
-	public String main() {
-		return "redirect:/index";
-	}
-	
 	// 메인페이지 호출
 	@RequestMapping("/index")		
 	public String index(@RequestParam(value="page", defaultValue="1")int page,
