@@ -19,7 +19,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 	vertical-align:baseline;
 	background:transparent;
 	-webkit-text-size-adjust:none;
-	font-family:'Nanum Gothic', sans-serif, 'Dotum', 'Gulim', 'Arial', sans-serif;
+	font-family: 'Noto Sans KR', sans-serif;
 	list-style:none;
 	line-height:1;
 }

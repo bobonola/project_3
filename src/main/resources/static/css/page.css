@@ -5,6 +5,7 @@
   height: 35px;
 	width: 36px;
 	float: left;
+	cursor:pointer;
 }
 
 .prev {
@@ -12,6 +13,7 @@
 	height: 35px;
 	width: 36px;
 	float: left;
+	cursor:pointer;
 }
 
 .num {
@@ -23,9 +25,23 @@
   
 }
 
+ul.page-num li {
+    margin: 0px 10px;
+    cursor:default;
+    color:#ef5a5a;
+}
+
+
 .num > div {
   position: relative;
-  top: 2px;
+  top: -4px;
+  font-size:28px;
+  font-family: 'Noto Sans KR', sans-serif;
+} 
+
+.num a div {
+  position: relative;
+  top: -4px;
   font-size:28px;
   font-family: 'Noto Sans KR', sans-serif;
 } 
@@ -35,6 +51,7 @@
 	height: 35px;
 	width: 36px;
 	float: left;
+	cursor:pointer;
 }
 
 .last {
@@ -42,4 +59,5 @@
 	height: 35px;
 	width: 36px;
 	float: left;
+	cursor:pointer;
 }

@@ -10,7 +10,7 @@ h1#log {
   text-align: center;
 }
 
-a#e_search{text-decoration:none; color: blue; }
+a#e_search{text-decoration:none; color: #606060; }
 
 #category ul {
   width: 100%;
@@ -119,8 +119,8 @@ button {
   width: 455px;
   height: 55px;
 
-  background: #bdd61a;
-  color: black;
+  background: #333;
+  color: white;
 
   font-size: 18px;
   font-weight: bold;

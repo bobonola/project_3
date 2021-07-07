@@ -2,13 +2,6 @@
 section {
   text-align: center;
 }
-
-h1 {
-  margin-top: 50px;
-  margin-bottom: 0;
-  font-size: 40px;
-}
-
 table {
   width: 96%;
   margin-top: 70px;
@@ -40,7 +33,7 @@ td {
 }
 
 .article {
-  padding: 20px 0 20px 20px;
+  padding: 20px 50px 20px 50px;
 }
 
 .separator {
