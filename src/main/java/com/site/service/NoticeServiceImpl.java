@@ -52,6 +52,10 @@ public class NoticeServiceImpl implements NoticeService {
 		Map<String,Object> map = new HashMap<String, Object>();
 		noticeMapper.updatehit(notice_no);
 		NoticeVo noticeVo = noticeMapper.selectNoticeView(notice_no);
+		
+		String content = noticeVo.getNotice_content();
+	    content = content.replace( "\n", "<br>" );
+	    noticeVo.setNotice_content( content );
 		map.put("noticeVo", noticeVo);
 
 		return map;

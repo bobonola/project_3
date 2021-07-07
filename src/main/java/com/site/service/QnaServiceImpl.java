@@ -109,7 +109,9 @@ public class QnaServiceImpl implements QnaService {
 		QnaVo qnaPre = qnaMapper.selectQnaViewPre(qna_no);
 		// 다음글
 		QnaVo qnaNext = qnaMapper.selectQnaViewNext(qna_no);
-		
+		String content = qnaVo.getQna_content();
+	    content = content.replace( "\n", "<br>" );
+	    qnaVo.setQna_content( content );
 		map.put("qnaVo", qnaVo);
 		map.put("qnaPre", qnaPre);
 		map.put("qnaNext", qnaNext);

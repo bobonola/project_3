@@ -128,7 +128,7 @@ public class ProductServiceImpl implements ProductService {
 			// File f = new File(fileUrl + uploadFileName);
 			// 파일전송
 //			try {
-//				file.transferTo(f);
+//				file.transferTo(f); 
 //			} catch (Exception e) {
 //				e.printStackTrace();
 //			}
