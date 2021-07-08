@@ -424,7 +424,7 @@
 .checkTable{width:100%; border-width:0; border-spacing:0; border-style:none; font-size:14px;}
 .checkTable th{color:#666; vertical-align:top; text-align:left; font-size:14px; font-weight:600; height:38px;  background:#ebebeb; border-bottom:1px #d9d9d9 solid; vertical-align:middle;}
 .checkTable th.info{font-weight:normal; font-size:13px;}
-.checkTable th span{padding:0 0 0 30px;}
+.checkTable th span{padding:0 0 0 23px;}
 .checkTable th span u{text-decoration:none;}
 .checkTable td{color:#888; padding:8px 0 8px 20px; vertical-align:middle; text-align:left; font-size:13px; line-height:1.3; border-bottom:1px #d9d9d9 solid;}
 .checkTable td label{font-size:13px; color:#666; padding:2px 35px 0 2px;}
