@@ -101,9 +101,10 @@ table {
 	      </tr>
     </c:forEach>
    </table>
-</div>
- </section>
-  	<div id="page">
+   <c:if test="${session_admin_code==2 }">
+    	<a href="./noticeWrite"><div class="write">쓰기</div>
+    </c:if> 
+   <div id="page">
 	 		<!-- 하단 넘버링 -->
 		    <ul class="page-num">
 		      <c:if test="${map.page == 1 }">
@@ -149,8 +150,9 @@ table {
 		    </ul>
 		    <!-- 하단 넘버링 끝 -->	
 		    </div>
-    
- 
+</div>
+ </section>
+  	
 
   <c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>	
 </body>
