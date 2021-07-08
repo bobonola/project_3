@@ -82,9 +82,8 @@ section {
     position: relative;
 }
 #page {
-    width: 100%;
+	width:524px;
     height: 120px;
-    width: 424px;
     margin: 0 auto;
     color: #101010;
 }
