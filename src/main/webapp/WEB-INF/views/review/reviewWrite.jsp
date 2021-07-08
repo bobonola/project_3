@@ -161,7 +161,7 @@ label.star input {
 					<td><input type="file" name="file" id="file"></td>
 				</tr>
 			</table>
-				<a href="#" onclick="history.back(-1);"><div class="list">삭제</div></a>
+				<a href="#" onclick="history.back(-1);"><div class="list">돌아가기</div></a>
 				<a href="#" onclick="checkfield()"><div class="list">작성완료</div></a>
 		</form>
 	 </div>

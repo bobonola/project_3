@@ -116,7 +116,7 @@
 	<!-- container -->
 	<div id="container">
 
-		<div id="outbox">		
+		<div id="outbox_c">		
 			<script type="text/javascript">initSubmenu(3,0);</script>
 
 
@@ -223,9 +223,8 @@
 
 					<div class="cartarea">
 						<ul>
-							<li><a href="#" class="ty1">선택상품 <span>주문하기</span></a></li>
-							<li><a href="#" class="ty2">전체상품 <span>주문하기</span></a></li>
 							<li class="last"><a href="../index" class="ty3">쇼핑 <span>계속하기</span></a></li>
+							<li><a href="#" class="ty2" onclick="all_pay('${session_email}')">전체상품 <span>주문하기</span></a></li>
 						</ul>
 					</div>
 
@@ -253,6 +252,9 @@
 .ui-corner-all{border-bottom-right-radius:0 !important; border-bottom-left-radius:0 !important; border-top-left-radius:0 !important; border-top-right-radius:0 !important;}
 .ui-widget-content{border:0;}
 .ui-spinner-input{width:44px; margin:0; border:1px #ddd solid; padding:2px 0 2px 5px; font-family:'Nanum Gothic' !important; font-size:12px !important;}
+#outbox_c{width: 100%;
+    margin: 20px 0 0 110px;
+    overflow: hidden;}
 </style>
 
 

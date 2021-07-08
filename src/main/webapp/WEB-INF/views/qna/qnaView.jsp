@@ -95,12 +95,11 @@ table {
     </table>
 
     <a href="./qnaList"><div class="list">목록</div></a>
-    <c:if test="${session_admin_code == 1 }">
+
     	<c:if test="${session_email == map.qnaVo.email }">
 	    	<a href="#" onclick="qnaDelete_check()"><div class="list">삭제</div></a>
 	    	<a href="./qnaModify?qna_no=${map.qnaVo.qna_no}"><div class="list">수정</div></a>
     	</c:if>
-    </c:if>
     <c:if test="${session_admin_code == 2 }">    	
     	<a href="./qnaReply?qna_no=${map.qnaVo.qna_no}&qna_secret_code=${map.qnaVo.qna_secret_code}&qna_original_name=${map.qnaVo.qna_original_name }"><div class="list">답변달기</div></a>
     </c:if>

@@ -439,7 +439,7 @@ $(document).ready(function() {
 					<div class="btnArea">
 						<div class="orderCenter">
 							<ul>
-								<li><a href="#" class="nbtnbig iw0140">뒤로가기</a></li>
+								<li><a href="#" class="nbtnbig iw0140" onclick="history.back(-1);">뒤로가기</a></li>
 								<li><a href="#" class="sbtnMini iw0140">주문 / 결제</a></li>								
 							</ul>
 						</div>
