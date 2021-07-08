@@ -97,7 +97,6 @@ div {
     font-size: 28px;
     font-family: 'Noto Sans KR', sans-serif;
 }
-
 	</style>
 	<body>
 		<c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>

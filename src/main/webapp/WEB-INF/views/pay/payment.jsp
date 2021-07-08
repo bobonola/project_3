@@ -36,6 +36,21 @@ $(document).ready(function() {
 });
 </script>
 </head>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Jua&display=swap');
+
+.checkTable td label {
+    font-size: 16px;
+    color: #000;
+    padding: 0px 12px 0px 9px;
+    font-family: 'Fredoka One', cursive;
+}
+input#method01 {
+    margin-top: 2px;
+}
+</style>
 <body>
 
 
@@ -288,19 +303,7 @@ $(document).ready(function() {
 									<td>
 										<ul class="pta">
 											<li>
-												<input type="radio" id="method01" name="method" checked="checked" /><label for="method01">신용카드 결제</label>
-											</li>
-											<li>
-												<input type="radio" id="method02" name="method" /><label for="method02">실시간 계좌이체</label>
-											</li>
-											<li>
-												<input type="radio" id="method03" name="method" /><label for="method03">가상계좌</label>
-											</li>
-											<li>
-												<input type="radio" id="method04" name="method" /><label for="method04">가상계좌(에스크로)</label>
-											</li>
-											<li>
-												<input type="radio" id="method05" name="method" /><label for="method05">무통장 입금</label>
+												<input type="radio" id="method01" name="method" checked="checked" /><label for="method01">PayMent's</label>
 											</li>
 										</ul>
 									</td>
@@ -310,56 +313,10 @@ $(document).ready(function() {
 					</div>
 				<!-- //결제수단 선택 -->
 
-					<div class="disnone method01"><!-- 신용카드 -->
-						<p class="orderalert"><strong>[신용카드]</strong> 온라인상에서 소유하신 신용카드를 통해, 전자결제를 진행합니다.</p>
+					<div class="disnone method01"><!-- PayMent's -->
+						<p class="orderalert"><strong>[PayMent's]</strong> PayMent's로 결제를 진행합니다.</p>
 					</div>
-					<div class="disnone method02"><!-- 실시간 계좌이체 -->
-						<p class="orderalert"><strong>[실시간 계좌이체]</strong> 주민번호, 계좌 정보, 공인인증서를 통해 실시간 계좌이체를 진행합니다.</p>
-					</div>
-					<div class="disnone method03"><!-- 가상계좌 -->
-						<p class="orderalert"><strong>[가상계좌]</strong> 원하시는 은행으로 가상계좌를 발급해 드리며, 발급된 계좌로 구매대금을 직접 송금합니다.</p>
-					</div>
-					<div class="disnone method04"><!-- 가상계좌 에스크로 -->
-						<p class="orderalert"><strong>[가상계좌 에스크로]</strong> 원하시는 은행으로 가상계좌를 발급해 드리며, 발급된 계좌로 구매대금을 직접 송금합니다.(에스크로 안전결제)</p>
-					</div>
-
-					<div class="disnone method05"><!-- 무통장 입금 -->
-						<p class="orderalert"><strong>[무통장 입금]</strong> 쇼핑몰의 대표 계좌로 구매대금을 직접 송금합니다.</p>
-
-						<div class="checkDiv">
-							<table summary="신용카드 결제, 실시간 계좌이체, 가상계좌, 가상계좌(에스크로), 무통장 입금 순으로 결제수단을 선택하실 수 있습니다." class="checkTable" border="1" cellspacing="0">
-								<caption>결제수단 선택</caption>
-								<colgroup>
-								<col width="22%" class="tw30" />
-								<col width="*" />
-								</colgroup>
-								<tbody>
-									<tr>
-										<th scope="row"><span>입금은행</span></th>
-										<td>
-											<select name="bank">
-												<option value="" >선택하세요.</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<th scope="row"><span>입금자 명</span></th>
-										<td><input type="text" class="w134" /></td>
-									</tr>
-									<tr>
-										<th scope="row"><span>영수증 신청</span></th>
-										<td>
-											<select name="receiptChk">
-												<option value="none">신청안함</option>
-												<option value="individual">개인소득공제</option>
-												<option value="corporate">사업자 지출증빙</option>
-											</select>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						
+				
 						<!-- 개인소득공제 -->
 						<div class="receipt individual">
 							<dl>
