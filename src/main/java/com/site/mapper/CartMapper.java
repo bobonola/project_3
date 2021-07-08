@@ -21,5 +21,7 @@ public interface CartMapper {
 	List<CartVo> selectPayList(String email, int cart_no);
 	// 전체구매 페이지 호출
 	List<CartVo> selectAllPayList(String email);
+	// 장바구니 리스트 이메일로 불러오기
+	List<CartVo> selectCartListWithEmail( String email );
 
 }
