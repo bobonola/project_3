@@ -739,8 +739,11 @@
 .cartarea li{float:left; width:160px; padding:0 5px;}
 .cartarea li a{display:block; width:100%; font-size:16px; color:#fff; text-align:center; font-weight:600; padding:16px 0; line-height:1.2;}
 .cartarea li a.ty1{background:#444;}
-.cartarea li a.ty2{background:#444;}
-.cartarea li a.ty3{width:430px; color:#666; background:#fff; border:1px #d3d3d3 solid; padding:15px 0;}
+.cartarea li a.ty2{ background: #444;
+				    width: 180px;
+				    margin: 0 0 0 234px;
+				    text-align: center;}
+.cartarea li a.ty3{width:180px; color:#666; background:#fff; border:1px #d3d3d3 solid; padding:15px 0; margin: 0 0 0 200px;}
 
 .infobtn{width:100%; margin:44px 0 0 0;}
 .infobtn li{float:left; width:140px; padding:0 5px 0 0;}
