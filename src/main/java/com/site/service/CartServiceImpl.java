@@ -51,7 +51,7 @@ public class CartServiceImpl implements CartService {
 			
 	}
 
-	@Override
+	@Override		// 선택구매
 	public Map<String, Object> selectedPayList(String email, int cart_no) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<CartVo> list = cartMapper.selectPayList(email, cart_no);
@@ -65,7 +65,7 @@ public class CartServiceImpl implements CartService {
 		return map;
 	}
 
-	@Override
+	@Override		// 전체구매
 	public Map<String, Object> allPayList(String email) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<CartVo> list = cartMapper.selectAllPayList(email);

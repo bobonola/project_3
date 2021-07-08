@@ -29,9 +29,11 @@ public class PayServiceImpl implements PayService {
 	@Override
 	public void paymentComplete( String email )
 	{
-		List<CartVo> list= cartMapper.selectCartList();
-		System.out.println( list );
+//		List<CartVo> list= cartMapper.selectCartList();
+		List<CartVo> list=cartMapper.selectCartListWithEmail(email);
+		
 		for(CartVo cartVo:list) {
+			System.out.println( "CartVO: "+cartVo );
 			productMapper.updateStocks(cartVo);
 		}
 		cartMapper.deleteCartAllDelete( email );
