@@ -45,7 +45,6 @@ public class ProductController {
 			@RequestParam @Nullable String search,
 			Model model) {
 		Map<String, Object> map = null;
-		System.out.println("sort ========= " +sort);
 		
 		if(search == null || search == "") {
 			map = productService.productList(page, sort);		// 전체리스트 가져오기
@@ -78,10 +77,7 @@ public class ProductController {
 	// 장바구니 저장
 	@RequestMapping("/cart/cartInsert")
 	public String cartInsert(CartVo cartVo) {
-		System.out.println("cartVo : " + cartVo);
 		
-		cartService.cartInsert(cartVo);
-		System.out.println("controller : " + cartVo.getProduct_size());
 		return "redirect:/cart/cartList";
 	}
 	

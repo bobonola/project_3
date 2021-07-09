@@ -25,9 +25,6 @@ public class CartServiceImpl implements CartService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<CartVo> list = cartMapper.selectCartList();
 		
-		for(CartVo cvo:list) {
-			System.out.println("=========================="+cvo);
-		}
 		
 		map.put("list", list);
 		
@@ -56,9 +53,6 @@ public class CartServiceImpl implements CartService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<CartVo> list = cartMapper.selectPayList(email, cart_no);
 		
-		for(CartVo cvo:list) {
-			System.out.println("=========================="+cvo);
-		}
 		
 		map.put("list", list);
 		
@@ -70,9 +64,6 @@ public class CartServiceImpl implements CartService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<CartVo> list = cartMapper.selectAllPayList(email);
 		
-		for(CartVo cvo:list) {
-			System.out.println("=========================="+cvo);
-		}
 		
 		map.put("list", list);
 		

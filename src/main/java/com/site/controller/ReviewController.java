@@ -54,7 +54,6 @@ public class ReviewController {
 	@RequestMapping("/reviewDelete") // review 삭제
 	public String reviewDelete(@RequestParam("review_no") int review_no, ReviewVo reviewVo) {
 		reviewService.reviewDelete(review_no);
-		System.out.println("삭제 : " + review_no);
 		return "redirect:/product/productView?product_no=" + reviewVo.getProduct_no();
 	}
 

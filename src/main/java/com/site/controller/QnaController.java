@@ -47,8 +47,6 @@ public class QnaController {
 	@RequestMapping("/qnaWriteDo") //쓰기저장 호출
 	public String writeDo(QnaVo qnaVo) {
 		// 데이터, 파일첨부에서 넘어온 파일명을 매개변수로 보냄.
-		System.out.println("qnaVo.getQna_secret_code() : " + qnaVo.getQna_secret_code());
-		System.out.println("qnaVo.getEmail() : " + qnaVo.getEmail());
 		qnaService.qnaWriteDo(qnaVo);
 		
 		return "redirect:/qna/qnaList";

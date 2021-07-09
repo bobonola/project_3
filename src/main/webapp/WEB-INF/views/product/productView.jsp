@@ -349,7 +349,7 @@ button.btn a {
 
 											<tr>
 												<th scope="row" class="info"><span>제조자/수입자</span></th>
-												<td colspan="3">아디다스코리아/RUNNER'Z</td>
+												<td colspan="3">나이키코리아/RUNNER'Z</td>
 											</tr>
 
 											<tr>

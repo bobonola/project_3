@@ -39,9 +39,6 @@ public class QnaServiceImpl implements QnaService {
 		if (endPage > startPage + 10 - 1) {
 			endPage = startPage + 10 - 1;
 		}
-		for(QnaVo qvo:list) {
-			System.out.println("================================"+qvo);
-		}
 		map.put("list", list);
 		map.put("page", page);
 		map.put("listCount", listCount);

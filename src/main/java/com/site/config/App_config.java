@@ -35,7 +35,6 @@ public class App_config implements WebMvcConfigurer{
 
 	@Bean
 	public SqlSessionTemplate sqlSession(SqlSessionFactory sqlSessionFactory) {
-		System.out.println("sqlSessionFactory : " + sqlSessionFactory);
 		return new SqlSessionTemplate(sqlSessionFactory);
 	}
 

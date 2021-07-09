@@ -33,7 +33,6 @@ public class PayServiceImpl implements PayService {
 		List<CartVo> list=cartMapper.selectCartListWithEmail(email);
 		
 		for(CartVo cartVo:list) {
-			System.out.println( "CartVO: "+cartVo );
 			productMapper.updateStocks(cartVo);
 		}
 		cartMapper.deleteCartAllDelete( email );

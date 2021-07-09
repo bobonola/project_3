@@ -24,7 +24,7 @@ public class ReviewServiceImpl implements ReviewService {
 	public void reviewWriteDo(ReviewVo reviewVo, ProductVo productVo, MultipartFile file) {
 
 		// 파일저장위 치
-		String fileUrl = "D:/workspace3/project_3/src/main/resources/static/";
+		String fileUrl = "D:/Workspaces/Eclipse/Java/teamproject/shop/src/main/resources/static";
 
 		//
 		String fileName=file.getOriginalFilename();
@@ -36,7 +36,6 @@ public class ReviewServiceImpl implements ReviewService {
 			long time = System.currentTimeMillis();
 			uploadFileName = "/images/reviewUpload/" + time + "_" + fileName;
 			File f = new File(fileUrl + uploadFileName);
-			System.out.println(uploadFileName);
 
 			try {
 				file.transferTo(f);
@@ -75,7 +74,6 @@ public class ReviewServiceImpl implements ReviewService {
 			endPage = startPage + 10 - 1;
 		}
 
-		System.out.println(list);
 
 		map.put("list", list);
 		map.put("page", page);
@@ -110,7 +108,6 @@ public class ReviewServiceImpl implements ReviewService {
 			
 			// 파일저장 - io를 import해서 자동으로 디렉토리 없으면 만들어서 저장시킴
 			File f = new File(fileUrl + uploadFileName);
-			System.out.println("DB저장 전 uploadFileName : " + uploadFileName);
 			
 			try {
 				file.transferTo(f);

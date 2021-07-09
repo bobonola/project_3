@@ -192,10 +192,10 @@ input#method01 {
 									<li class="money"><span><fmt:formatNumber value="${sum + 3000}" pattern="#,###" /></span> 원</li>
 								</c:if>
 							</li>
-							
-							
-							
+					
 						</ul>
+						<input type='hidden' value="${sum}" id="total_price">
+						<input type="hidden" value="1922-1944-1946-2014" id="mall_account">
 					</div>
 					<!-- //주문 상품 -->
 					

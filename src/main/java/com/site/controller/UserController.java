@@ -138,7 +138,6 @@ public class UserController {
 			Model model) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		System.out.println("Controller : " + userVo);
 		UserVo uVo = userService.searchPassword(userVo);
 		map.put("uVo", uVo);
 		

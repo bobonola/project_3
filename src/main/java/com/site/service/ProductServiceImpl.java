@@ -29,16 +29,11 @@ public class ProductServiceImpl implements ProductService {
 		int startRow = (page - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
 
-		System.out.println("sort: " + sort);
 		List<ProductVo> list = productMapper.selectProductList(startRow, endRow, sort);
 
 		int listCount = 0; // 총 상품 수
 		listCount = productMapper.selectProductCount();
 
-		for (ProductVo productVo : list) {
-//			System.out.println("productVo.getProduct_no() : " + productVo.getProductNo());
-			System.out.println(productVo);
-		}
 
 		// 하단 최대 넘버링페이지
 		int maxPage = (int) ((double) listCount / limit + 0.99);
@@ -72,13 +67,11 @@ public class ProductServiceImpl implements ProductService {
 
 		int startRow = (page - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
-		System.out.println("impl search : " + search);
 
 		int listCount = 0;
 		list = productMapper.selectProductListSearch(startRow, endRow, sort, search);
 		listCount = productMapper.selectProductSearchCount(search);
 
-		System.out.println("listCount : " + listCount);
 
 		int maxPage = (int) ((double) listCount / limit + 0.99);
 		int startPage = (((int) ((double) page / 9 + 0.99)) - 1) * 9 + 1;
@@ -122,7 +115,7 @@ public class ProductServiceImpl implements ProductService {
 			// 파일이름중복방지
 			long time = System.currentTimeMillis();
 			String uploadFileName = time + "_" + originalfileName;
-			File f = new File("D:/workspace3/project_3/src/main/resources/static/images/product_images/" + uploadFileName);
+			File f = new File("D:/Workspaces/Eclipse/Java/teamproject/shop/src/main/resources/static/images/product_images/" + uploadFileName);
 
 			// 파일저장
 			// File f = new File(fileUrl + uploadFileName);
